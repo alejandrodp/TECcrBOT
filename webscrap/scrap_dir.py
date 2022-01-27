@@ -158,7 +158,7 @@ for i, contact in enumerate(staff):
 out = {
     'staff': staff,
     'depts': depts,
-    'staff_types': types,
+    'staff_types': staff_types,
     'locations': locations,
     }
 
