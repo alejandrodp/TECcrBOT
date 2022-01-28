@@ -1,0 +1,439 @@
+[
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Asistente administrativa",
+    "dest": "Asistente Administrativa"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "cultural y deportiva",
+    "new": "Cultural y Deportiva"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "director de carrera",
+    "dest": "Director de carrera"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Director de carrera",
+    "new": "Director de Carrera"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Profesores",
+    "dest": "Profesor"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Profesor",
+    "dest": "Docente"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Investigadores",
+    "dest": "Investigador"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Colaboradores",
+    "dest": "Colaborador"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Encargada de Supervisi\u00f3n  Servicio de Aseo y Limpieza Externo",
+    "new": "Encargada de Supervisi\u00f3n Servicio de Aseo y Limpieza Externo"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Coordinaci\u00f3n de la Carrera de Administraci\u00f3n de Empresas en la Sede Regional San Carlos",
+    "new": "Coordinaci\u00f3n de la Carrera de Administraci\u00f3n de Empresas, Sede Regional San Carlos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Secretar\u00eda de Apoyo de la Comisi\u00f3n de del Estatuto Org\u00e1nico",
+    "new": "Secretar\u00eda de Apoyo de la Comisi\u00f3n del Estatuto Org\u00e1nico"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor de Ingl\u00e9s/Coordinador examen de suficiencia",
+    "new": "Coordinador Examen de Suficiencia"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Coordinadora del bachillerato en gesti\u00f3n de turismo sostenible",
+    "new": "Coordinadora del Bachillerato en Gesti\u00f3n de Turismo Sostenible"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Estudiantes",
+    "new": "Estudiante"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Reconocimiento de Cursos.",
+    "new": "Reconocimiento de Cursos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Abastecimiento de agua",
+    "new": "Abastecimiento de Agua"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Director del doctorado en ciencias naturales para el desarrollo",
+    "new": "Director del Doctorado en Ciencias Naturales para el Desarrollo"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Bibliotecologa",
+    "new": "Bibliotec\u00f3loga"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Secretaria Direcci\u00f3n CTL San Jos\u00e9",
+    "new": "Secretar\u00eda Direcci\u00f3n CTL, San Jos\u00e9"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Tr\u00e1mites contables",
+    "new": "Tr\u00e1mites Contables"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor - Coordinador Comisi\u00f3n Docencia",
+    "new": "Coordinador Comisi\u00f3n de Docencia"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Personal de apoyo a la academia",
+    "new": "Personal de Apoyo a la Academia"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor de econom\u00eda",
+    "new": "Profesor de Econom\u00eda"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Analista de compras",
+    "dest": "Analista de Compras"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Solicitud de pagos",
+    "new": "Solicitud de Pagos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Profesor Escuela de Ciencias del Lenguaje"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Asistente administrativa de la Maestr\u00eda en Administraci\u00f3n de la Ingenier\u00eda Electromec\u00e1nica (MAIE)",
+    "new": "Asistente Administrativa de la Maestr\u00eda en Administraci\u00f3n de la Ingenier\u00eda Electromec\u00e1nica (MAIE)"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Coordinador Licenciatura sede San Carlos y San Jose",
+    "new": "Coordinador Licenciatura, Sede San Carlos y San Jos\u00e9"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Profesor Escuela de Computaci\u00f3n"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor de Filosof\u00eda/Coordinador de \u00c1rea Ciencias Sociales/Coordinador C\u00e1tedra de Realidad Nacional Yolanda Oreamuno",
+    "new": "Coordinador de \u00c1rea Ciencias Sociales y de la C\u00e1tedra de Realidad Nacional Yolanda Oreamuno"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Profesor-Investigador"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Metabolismo humano: entenderlo y manipularlo adem\u00e1s de vivirlo"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Sede San Carlos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor de Ingl\u00e9s/Coordinador de \u00c1rea de Ingl\u00e9s",
+    "new": "Coordinador de \u00c1rea de Ingl\u00e9s"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Oficial de Sefguridad",
+    "dest": "Oficial de Seguridad"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Profesro",
+    "dest": "Docente"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Bibliotecologo",
+    "new": "Bibliotec\u00f3logo"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Profesor - Coordinador SIMTEC",
+    "new": "Coordinador SIMTEC"
+  },
+  {
+    "is_dept": false,
+    "cmd": "rename",
+    "old": "Director San Carlos",
+    "new": "Director, Sede San Carlos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Docente de Ingl\u00e9s",
+    "dest": "Profesor de Ingl\u00e9s"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Mi primer aplicaci\u00f3n de realidad aumentada"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Website: http://www.gonzalez.cr"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "Coordinador sede San Carlos",
+    "dest": "Coordinador Sede San Carlos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Electrotecnia. T\u00e9cnicas para superar la amaxofobia (para mujeres)"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Campus Tecnol\u00f3gico Local San Carlos"
+  },
+  {
+    "is_dept": false,
+    "cmd": "merge",
+    "src": "coordinador",
+    "dest": "Coordinador"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "lsancho@tec.ac.cr"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Aprendamos a jugar"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": " Divi\u00e9rtete creando e innovando"
+  },
+  {
+    "is_dept": false,
+    "cmd": "delete",
+    "tag": "Filosof\u00eda Japonesa de las 5\u00b4s para la vida"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Chemistry"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Language Sciences"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Biology"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Business Administration"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Forest Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Mathematics"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Social Sciences"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Construction Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Technical Education"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Physics"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Languages and Social Sciences"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Industrial Production Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Agricultural Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Natural and Exact Sciences"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Architecture and Urban Planning"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Computer Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Electromechanical Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Industrial Design Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Electronic Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Materials Science and Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Engineering in Occupational Safety and Environmental Hygiene"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Agricultural Engineering"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "School of Culture and Sports"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Agribusiness School"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Master\u2019s Degree in Business Management"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Agroforestry Academic Area"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Computer Engineering Unit, San Carlos Technological Campus"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Computer Engineering Academic Area"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "International Affairs and Cooperation Office"
+  },
+  {
+    "is_dept": true,
+    "cmd": "delete",
+    "tag": "Supply Chain Technician"
+  }
+]
