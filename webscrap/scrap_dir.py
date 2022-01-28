@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys, json
 import requests, bs4
 
