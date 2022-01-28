@@ -53,7 +53,7 @@ class TripStartPoint(Model):
     """
 
     description = TextField(max_length=1000)
-    Trip = ForeignKey(Trip, DO_NOTHING)
+    trip = ForeignKey(Trip, DO_NOTHING)
 
     class Meta:
         constraints = [
