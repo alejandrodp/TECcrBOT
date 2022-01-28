@@ -5,7 +5,7 @@ from telegram.ext import CallbackContext
 
 from common.constants import DAYS_MAPPING
 from transport import apps
-from transport.models import TravelType, Travel, Schedule
+from transport.models import Vehicle, Trip, Schedule
 
 IKB = InlineKeyboardButton
 
@@ -15,33 +15,33 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
         text="Seleccione un tipo de transporte:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(travel_type.name, callback_data=f"{apps.TransportConfig.name}:t_type:{travel_type.id}")
-                for travel_type in TravelType.objects.all()
+                IKB(vehicle.name, callback_data=f"{apps.TransportConfig.name}:t_type:{vehicle.id}")
+                for vehicle in Vehicle.objects.all()
             ]
         )
     )
 
 
-def _build_travel_list(travel_type: str) -> List[IKB]:
-    travels = []
+def _build_travel_list(vehicle: str) -> List[IKB]:
+    trip = []
 
-    for travel in TravelType.objects.get(id=travel_type).travel_set.order_by('start').all():
+    for trip in Vehicle.objects.get(id=vehicle).trip_set.order_by('start_location').all():
         text = '{start} -> {end}'.format(
-            start=travel.start,
-            end=travel.end
+            start=trip.start_location,
+            end=trip.end_location
         )
 
-        travels.append(IKB(text, callback_data=f"{apps.TransportConfig.name}:travel:{travel.id}"))
+        trip.append(IKB(text, callback_data=f"{apps.TransportConfig.name}:travel:{trip.id}"))
 
-    return travels
+    return trip
 
 
 def process_type(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
 
-    travel_type = query.data.split(':')[-1]
+    vehicle = query.data.split(':')[-1]
 
-    if not TravelType.objects.get(id=travel_type).travel_set.exists():
+    if not Vehicle.objects.get(id=vehicle).trip_set.exists():
         query.message.edit_text(
             text="No existen trayectos para este servicio de transporte",
         )
@@ -50,15 +50,15 @@ def process_type(update: Update, context: CallbackContext) -> None:
     query.message.edit_text(
         text="Seleccione un trayecto:",
         reply_markup=InlineKeyboardMarkup.from_column(
-            _build_travel_list(travel_type)
+            _build_travel_list(vehicle)
         )
     )
 
 
-def _build_schedule(travel: Travel):
+def _build_schedule(travel: Trip):
     start_points = []
 
-    for point in travel.travelstartpoint_set.all():
+    for point in travel.tripstartpoint_set.all():
         schedules = []
 
         schedules.append(
@@ -121,16 +121,16 @@ def _build_time_schedule(day_index, travel_id, start_point_id) -> str:
 def process_travel(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
 
-    travel_id = query.data.split(':')[-1]
+    trip_id = query.data.split(':')[-1]
 
-    travel = Travel.objects.get(id=travel_id)
+    trip = Trip.objects.get(id=trip_id)
 
-    schedule = _build_schedule(travel)
+    schedule = _build_schedule(trip)
 
     response = 'Servicio de {service}\nTrayecto: Desde {start} hasta {end}\n\n{schedule}'.format(
-        service=travel.type.name,
-        start=travel.start,
-        end=travel.end,
+        service=trip.type.name,
+        start=trip.start_location,
+        end=trip.end_location,
         schedule=schedule
     )
 
