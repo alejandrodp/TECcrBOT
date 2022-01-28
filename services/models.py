@@ -22,6 +22,7 @@ class Service(Model):
     contact:
     Información de contacto para usar el servicio.
     """
+
     name = TextField(max_length=500, unique=True)
     description = TextField(max_length=5000)
     link = URLField(max_length=500)
