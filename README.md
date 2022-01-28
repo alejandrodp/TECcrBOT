@@ -22,8 +22,8 @@ Este proyecto utiliza Python 3.9.6
 Al final, el archivo se debería ver parecido a esto:
 
 ```
-SECRET_KEY=09a8shdf09a8hsdf
-BOT_SECRET_KEY=0a98sdhf09a8sdhf
+SECRET_KEY=secret
+BOT_SECRET_KEY=secret
 DATABASE_URL=sqlite:///./tcrb.sqlite3
 DEBUG=true
 ```
