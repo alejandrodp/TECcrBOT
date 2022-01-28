@@ -1,5 +1,4 @@
 <h1 align="center">TECcrBOT</h1>
-<h3 align="center">Repo temporal para TCRB</h3>
 
 !["banner"](bot.jpg)
 
