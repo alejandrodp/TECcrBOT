@@ -4,7 +4,7 @@ from telegram.ext import CallbackContext
 
 from places import apps
 from common.constants import DAYS_MAPPING
-from places.models import Tag, Place, Phone, ScheduleDay
+from places.models import Tag, Place, Phone, WeekDay
 
 IKB = InlineKeyboardButton
 
@@ -87,7 +87,7 @@ def _get_phones(phones_set: QuerySet[Phone]) -> str:
     return "\n".join(phones)
 
 
-def _get_schedule(days: QuerySet[ScheduleDay]) -> str:
+def _get_schedule(days: QuerySet[WeekDay]) -> str:
     if not days.exists():
         return "No disponible"
 
