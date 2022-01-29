@@ -10,6 +10,5 @@ def main_menu(update: Update, context: CallbackContext) -> None:
         reply_markup=ReplyKeyboardMarkup(
             MAIN_MENU,
             resize_keyboard=True,
-            one_time_keyboard=True
         )
     )
