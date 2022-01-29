@@ -21,6 +21,7 @@ def start_polling() -> Optional[Queue]:
 
 def _add_default_handlers(dispatcher: Dispatcher):
     dispatcher.add_handler(CommandHandler("menu", main_menu))
+    dispatcher.add_handler(CommandHandler("start", main_menu))
 
 
 def _init_handlers(dispatcher: Dispatcher) -> None:

@@ -5,7 +5,7 @@ from django.db.models import Model, TextField, IntegerField, DateTimeField, Fore
 class Tag(Model):
     name = TextField(max_length=100)
     description = TextField(max_length=1000, null=True)
-    index = IntegerField()
+    index = IntegerField(unique=True)
     category = BooleanField()
 
 
