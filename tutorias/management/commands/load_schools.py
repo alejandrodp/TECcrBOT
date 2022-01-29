@@ -9,7 +9,7 @@ from places.models import Place, Location
 
 import requests
 
-from tutorials.models import School, Course
+from tutorias.models import School, Course
 
 
 class Command(BaseCommand):

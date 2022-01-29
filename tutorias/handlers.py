@@ -1,8 +1,8 @@
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
-from tutorials import apps
-from tutorials.models import School, Course, Tutorial
+from tutorias import apps
+from tutorias.models import School, Course, Tutoria
 
 IKB = InlineKeyboardButton
 
@@ -18,8 +18,8 @@ def main_entry(update: Update, context: CallbackContext) -> None:
         text="Seleccione un método de búsqueda:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB('Buscar por escuela', callback_data=f'{apps.TutorialsConfig.name}:school_search'),
-                IKB('Buscar por curso', callback_data=f'{apps.TutorialsConfig.name}:course_search')
+                IKB('Buscar por escuela', callback_data=f'{apps.TutoriasConfig.name}:school_search'),
+                IKB('Buscar por curso', callback_data=f'{apps.TutoriasConfig.name}:course_search')
             ]
         )
     )
@@ -30,7 +30,7 @@ def school_search(update: Update, context: CallbackContext) -> None:
         text='Las siguientes escuelas ofrecen tutorías:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(s.name, callback_data=f'{apps.TutorialsConfig.name}:choosing_school:{s.id}')
+                IKB(s.name, callback_data=f'{apps.TutoriasConfig.name}:choosing_school:{s.id}')
                 for s in School.objects.filter(course__tutorial__isnull=False).all()
             ]
         )
@@ -65,7 +65,7 @@ def process_course_selection(update: Update, context: CallbackContext) -> None:
 def _build_tutorials(course_id):
     tutorials = []
 
-    for tutorial in Tutorial.objects.filter(course_id=course_id).all():
+    for tutorial in Tutoria.objects.filter(course_id=course_id).all():
         tutorials.append(
             'Información para la tutoría del curso: {course}\n\n'
             'Tutor: {tutor}\n\n'
@@ -97,7 +97,7 @@ def _choose_course(query, school_id=None):
         text='Se ofrecen tutorías para los siguientes cursos:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(f'{course.code} - {course.name}', callback_data=f'{apps.TutorialsConfig.name}:choosing_course:{course.id}')
+                IKB(f'{course.code} - {course.name}', callback_data=f'{apps.TutoriasConfig.name}:choosing_course:{course.id}')
                 for course in db.filter(tutorial__isnull=False).all()
             ]
         )
