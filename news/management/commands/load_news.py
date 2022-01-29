@@ -19,11 +19,20 @@ class Command(BaseCommand):
 
             print(f'Loading tag: {tag["name"]}')
 
+            if key == 62:
+                name = 'Últimas noticias'
+                desc = 'Las últimas noticias publicadas'
+                category = True
+            else:
+                name = tag['name']
+                desc = None if tag['description'] == '' else tag['description']
+                category = True if tag['category'] else False
+
             tag_db = Tag(
-                name=tag['name'].split(' - ')[1],
-                description=None if tag['description'] == '' else tag['description'],
+                name=name,
+                description=desc,
                 index=key,
-                category=True if tag['category'] else False
+                category=category
             )
 
             tag_db.save()

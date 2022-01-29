@@ -15,7 +15,8 @@ def main_entry(update: Update, context: CallbackContext) -> None:
              'Seleccione una opción:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB('Ver últimas noticias', callback_data=f'{apps.NewsConfig.name}:last_news:'),
+                IKB('Ver últimas noticias', callback_data=f'{apps.NewsConfig.name}:category_select:58'),
+                IKB('Ver por categorías', callback_data=f'{apps.NewsConfig.name}:category_list:'),
             ]
         )
     )
@@ -24,12 +25,22 @@ def main_entry(update: Update, context: CallbackContext) -> None:
 def categories_list(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
 
+    categories = Tag.objects.filter(category=True).order_by('name')
+
     query.message.edit_text(
-        text='Seleccione una categoría:',
+        text='Seleccione una categoría:\n\n'
+             '{tags}'.format(
+            tags='\n\n'.join(
+                [
+                    f'<b>{t.name}</b>: {t.description}'
+                    for t in categories.all()
+                ]
+            )
+        ),
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(tag.name, callback_data=f'{apps.NewsConfig.name}:category_list:{tag.id}')
-                for tag in Tag.objects.filter(category=True).all()
+                IKB(tag.name, callback_data=f'{apps.NewsConfig.name}:category_select:{tag.id}')
+                for tag in categories.all()
             ]
         )
     )
@@ -88,10 +99,12 @@ def next_page(update: Update, context: CallbackContext) -> None:
 
 def send_page(tag_id, query, current_page, total_pages, articles):
     query.message.edit_text(
-        text='Noticias disponibles:\n\n{articles}'.format(
+        text='Noticias de <i>{tag}</i> disponibles:\n\n{articles}'.format(
+            tag=Tag.objects.get(id=tag_id).name,
             articles='\n\n'.join(
                 [
-                    f'{index}. {art.title}'
+                    f'{index}. {art.title}\n'
+                    f'<i>Fecha de publicación: {art.pub_date.strftime("%-d/%-m/%Y %-I:%M:%S %p")}</i>'
                     for index, art in enumerate(articles, 1)
                 ])
         ),
@@ -100,6 +113,8 @@ def send_page(tag_id, query, current_page, total_pages, articles):
                 [IKB(text=str(i), callback_data=f'{apps.NewsConfig.name}:article:{art.id}')]
                 for i, art in enumerate(articles, 1)
             ] + [[
+                IKB(text='Regresar a categorías️', callback_data=f'{apps.NewsConfig.name}:category_list:'),
+            ]] + [[
                 IKB(text='◀️', callback_data=f'{apps.NewsConfig.name}:previous_articles:{tag_id}:{current_page}'),
                 IKB(text=f'{current_page}/{total_pages}', callback_data='ferwgr'),
                 IKB(text='▶️', callback_data=f'{apps.NewsConfig.name}:next_articles:{tag_id}:{current_page}'),
@@ -121,8 +136,8 @@ def get_article(update: Update, context: CallbackContext) -> None:
     author = article.author
     link = article.link
 
-    art_tags = ', '.join([
-        t.tag.name
+    art_tags = '\n'.join([
+        f'- {t.tag.name}'
         for t in article.articletagged_set.all()
     ])
 
@@ -130,6 +145,6 @@ def get_article(update: Update, context: CallbackContext) -> None:
         text=f'<strong>Título: {title}</strong>\n'
              f'Fecha de publicación: {pub_date.strftime("%-d/%-m/%Y %-I:%M:%S %p")}\n'
              f'Autor: {author}\n'
-             f'Etiquetas: {art_tags}\n'
-             f'<a href="{link}">Enlace de la noticia</a>'
+             f'Etiquetas:\n{art_tags}\n'
+             f'<a href="{link}">Enlace de la noticia</a>',
     )
