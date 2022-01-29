@@ -26,7 +26,7 @@ class Course(Model):
     Unidad académica a la que pertenece la tutoría.
     """
 
-    code = TextField(max_length=6, unique=True)
+    code = TextField(max_length=50, unique=True)
     name = TextField(max_length=500)
     school = ForeignKey(School, DO_NOTHING)
 
