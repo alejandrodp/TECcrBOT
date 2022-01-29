@@ -31,7 +31,7 @@ class Course(Model):
     school = ForeignKey(School, DO_NOTHING)
 
 
-class Tutorial(Model):
+class Tutoria(Model):
     """Representa la tutoría.
 
     tutor:

@@ -31,7 +31,7 @@ BOT_APPS = [
     'places',
     'transport',
     'services',
-    'tutorials'
+    'tutorias'
 ]
 
 INSTALLED_APPS = [
