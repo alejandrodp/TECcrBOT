@@ -1,3 +1,7 @@
+import base64
+import json
+from uuid import uuid4
+
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
@@ -52,7 +56,12 @@ def get_place(update: Update, context: CallbackContext) -> None:
         schedule=schedules
     )
 
-    main_message_id = query.edit_message_text(text=response).message_id
+    main_message_id = query.edit_message_text(
+        text=response,
+        reply_markup=InlineKeyboardMarkup.from_column([
+            IKB('Sugerir cambio de nombre', callback_data=f'{apps.PlacesConfig.name}:name_edit:{place_id}')
+        ])
+    ).message_id
 
     if place.latitude and place.longitude is None:
         update.callback_query.message.reply_text("Ubicación no disponible", reply_to_message_id=main_message_id)
@@ -65,3 +74,30 @@ def get_place(update: Update, context: CallbackContext) -> None:
         update.callback_query.message.reply_text("Imagen no disponible", reply_to_message_id=main_message_id)
     else:
         update.callback_query.message.reply_photo(place.photo.open(mode='rb'), reply_to_message_id=main_message_id)
+
+
+def name_edit(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    data = query.data.split(':')
+
+    place_id = data[-1]
+    place_name = Place.objects.get(id=place_id).name
+
+    data = {
+        'ty': 0,
+        'n': place_name,
+        's': apps.PlacesConfig.name,
+        't': str(uuid4()),
+        'i': place_id
+    }
+
+    data_encoded = base64.b64encode(json.dumps(data).encode('ascii')).decode('ascii')
+
+    query.message.reply_text(
+        text=f'Sugerencia de nombre para el lugar <i>{place_name}</i>\n'
+             f'Ticket: {data["t"]}\n'
+             f'Datos: {data_encoded}\n\n'
+             f'<b>Por favor, responda este mensaje con el nuevo nombre. '
+             f'Si incluye fuentes confiables será más probable que su contribución sea aceptada.</b>',
+        reply_to_message_id=query.message.message_id
+    )
