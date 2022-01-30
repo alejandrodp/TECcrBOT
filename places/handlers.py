@@ -1,12 +1,15 @@
 import base64
+import binascii
 import json
-from uuid import uuid4
+from json import JSONDecodeError
+from uuid import uuid4, UUID
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from places import apps
-from places.models import Tag, Place
+from places.constants import CONTRIBUTION_TYPE
+from places.models import Tag, Place, Editor, Edition
 
 IKB = InlineKeyboardButton
 
@@ -59,7 +62,7 @@ def get_place(update: Update, context: CallbackContext) -> None:
     main_message_id = query.edit_message_text(
         text=response,
         reply_markup=InlineKeyboardMarkup.from_column([
-            IKB('Sugerir cambio de nombre', callback_data=f'{apps.PlacesConfig.name}:name_edit:{place_id}')
+            IKB('Sugerir cambio', callback_data=f'{apps.PlacesConfig.name}:name_edit:{place_id}'),
         ])
     ).message_id
 
@@ -85,10 +88,8 @@ def name_edit(update: Update, context: CallbackContext) -> None:
 
     data = {
         'ty': 0,
-        'n': place_name,
-        's': apps.PlacesConfig.name,
-        't': str(uuid4()),
-        'i': place_id
+        't': uuid4().hex,
+        'i': int(place_id)
     }
 
     data_encoded = base64.b64encode(json.dumps(data).encode('ascii')).decode('ascii')
@@ -97,7 +98,47 @@ def name_edit(update: Update, context: CallbackContext) -> None:
         text=f'Sugerencia de nombre para el lugar <i>{place_name}</i>\n'
              f'Ticket: {data["t"]}\n'
              f'Datos: {data_encoded}\n\n'
-             f'<b>Por favor, responda este mensaje con el nuevo nombre. '
+             f'<b>Por favor responda este mensaje con el nuevo nombre. '
              f'Si incluye fuentes confiables será más probable que su contribución sea aceptada.</b>',
         reply_to_message_id=query.message.message_id
     )
+
+
+def handle_edit(update: Update, context: CallbackContext) -> None:
+    data = context.match.groups()[0]
+    user_id = update.effective_user.id
+
+    try:
+        decoded_data = json.loads(base64.b64decode(data, validate=True))
+
+        ty = int(decoded_data['ty'])
+        ticket = UUID(decoded_data['t'])
+        i = int(decoded_data['i'])
+
+        if not Editor.objects.filter(telegram_id=user_id).exists():
+            editor = Editor(telegram_id=user_id)
+            editor.save()
+        else:
+            editor = Editor.objects.get(telegram_id=user_id)
+
+        if not Edition.objects.filter(unique_id=ticket).exists():
+            Edition(
+                unique_id=ticket,
+                field_type=CONTRIBUTION_TYPE[ty],
+                text=update.message.text,
+                editor=editor,
+                place_id=i
+            ).save()
+
+            update.message.reply_text(
+                text='Gracias por su contribución, se le notificará en caso de ser aceptada por los moderadores.'
+            )
+        else:
+            update.message.reply_text(
+                text='Ya se realizó la contribución, '
+                     'para generar una nueva contribución por favor use el menú bajo el mensaje del lugar.'
+            )
+
+    except (binascii.Error, JSONDecodeError, UnicodeDecodeError, ValueError, KeyError) as e:
+        update.message.reply_text('Hubo un problema procesando su solicitud. Intente de nuevo.')
+        return
