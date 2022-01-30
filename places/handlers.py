@@ -82,6 +82,7 @@ def get_place(update: Update, context: CallbackContext) -> None:
 def select_edit(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
     data = query.data.split(':')
+    query.answer()
 
     place_id = data[-1]
 
