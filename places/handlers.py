@@ -1,10 +1,8 @@
-from django.db.models import QuerySet
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from places import apps
-from common.constants import DAYS_MAPPING
-from places.models import Tag, Place, Phone, WeekDay
+from places.models import Tag, Place
 
 IKB = InlineKeyboardButton
 
@@ -45,11 +43,10 @@ def get_place(update: Update, context: CallbackContext) -> None:
     place = Place.objects.get(id=place_id)
 
     name = place.name
-    phones = _get_phones(place.phone_set)
-    schedules = _get_schedule(place.scheduleday_set)
-    location = place.location
+    phones = place.contact
+    schedules = place.schedule
 
-    response = "<b>Nombre: {name}</b>\n\n<b>Teléfonos:</b>\n{phones}\n\n<b>Horario:</b>\n{schedule}".format(
+    response = '<b>Nombre: {name}</b>\n\n<b>Contacto:</b>\n{phones}\n\n<b>Horario:</b>\n{schedule}'.format(
         name=name,
         phones=phones,
         schedule=schedules
@@ -57,56 +54,14 @@ def get_place(update: Update, context: CallbackContext) -> None:
 
     main_message_id = query.edit_message_text(text=response).message_id
 
-    if location is None:
+    if place.latitude and place.longitude is None:
         update.callback_query.message.reply_text("Ubicación no disponible", reply_to_message_id=main_message_id)
     else:
-        update.callback_query.message.reply_location(latitude=float(location.latitude),
-                                                     longitude=float(location.longitude),
+        update.callback_query.message.reply_location(latitude=place.latitude,
+                                                     longitude=place.longitude,
                                                      reply_to_message_id=main_message_id)
 
     if place.photo.name == '':
         update.callback_query.message.reply_text("Imagen no disponible", reply_to_message_id=main_message_id)
     else:
         update.callback_query.message.reply_photo(place.photo.open(mode='rb'), reply_to_message_id=main_message_id)
-
-
-def _get_phones(phones_set: QuerySet[Phone]) -> str:
-    if not phones_set.exists():
-        return "No disponible"
-
-    phones = []
-
-    for p in phones_set.all():
-        phones.append(
-            "{phone}{details}".format(
-                phone=p.phone,
-                details=f" ({p.details})" if p.details is not None and p.details != '' else ''
-            )
-        )
-
-    return "\n".join(phones)
-
-
-def _get_schedule(days: QuerySet[WeekDay]) -> str:
-    if not days.exists():
-        return "No disponible"
-
-    schedules = []
-
-    for day in days.order_by('day_index').all():
-        time = '\n'.join(
-            ["{start} - {end}{details}".format(
-                start=time.start,
-                end=time.end,
-                details=f" ({time.details})" if time.details is not None and time.details != '' else '')
-                for time in day.scheduletime_set.order_by('start').all()]
-        ) if day.scheduletime_set.exists() else "Cerrado"
-
-        schedules.append(
-            "<i>{day}:</i>\n{time}".format(
-                day=DAYS_MAPPING.get(day.day_index),
-                time=time
-            )
-        )
-
-    return "\n\n".join(schedules)
