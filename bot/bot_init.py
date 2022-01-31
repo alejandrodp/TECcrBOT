@@ -28,13 +28,6 @@ def _init_handlers(dispatcher: Dispatcher) -> None:
     _add_default_handlers(dispatcher)
 
     for app in settings.BOT_APPS:
-
         config = importlib.import_module('.settings', app)
-
         for hdlr in config.HANDLERS:
             dispatcher.add_handler(hdlr)
-
-
-
-
-

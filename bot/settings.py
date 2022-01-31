@@ -9,3 +9,7 @@ MAIN_MENU = [
     [PLACES_COMMAND, TUTORIALS_COMMAND],
     ['Noticias TEC 📰', 'Correos ✉️'],
     ['Info 🤖']]
+
+PAGES_MODULES_MAPPING = {
+    'services': 0
+}

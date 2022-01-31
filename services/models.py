@@ -1,4 +1,4 @@
-from django.db.models import Model, TextField, URLField
+from django.db.models import Model, TextField, URLField, BigIntegerField
 
 
 class Service(Model):
@@ -23,6 +23,7 @@ class Service(Model):
     Información de contacto para usar el servicio.
     """
 
+    id = BigIntegerField(primary_key=True)
     name = TextField(max_length=500, unique=True)
     description = TextField(max_length=5000)
     link = URLField(max_length=500)
