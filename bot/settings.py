@@ -11,5 +11,5 @@ MAIN_MENU = [
     ['Info 🤖']]
 
 PAGES_MODULES_MAPPING = {
-    'services': 0
+    'services': 0,
 }
