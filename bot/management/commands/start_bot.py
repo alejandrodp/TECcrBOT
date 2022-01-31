@@ -2,7 +2,7 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-from bot.initial import start_polling
+from bot.bot_init import start_polling
 
 logger = logging.getLogger(__name__)
 
