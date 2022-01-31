@@ -1,6 +1,7 @@
 import importlib
 import os.path
 
+from environ import ImproperlyConfigured
 from whoosh.analysis import LanguageAnalyzer
 from whoosh.fields import SchemaClass, NUMERIC, TEXT
 from whoosh.index import open_dir, exists_in, create_in
@@ -59,10 +60,22 @@ def search(searcher, term):
 def load_pages():
     for app in settings.BOT_APPS:
 
-        module_cfg = importlib.import_module('.settings', app)
-        index_func = getattr(module_cfg, 'INDEX_GENERATOR', None)
-        ty = getattr(module_cfg, 'PAGE_TY', None)
+        generator_name = 'generator'
+        ty_name = 'ty'
+        desc_name = 'desc'
 
-        if index_func and ty:
-            for doc in index_func():
+        module_cfg = importlib.import_module('.settings', app)
+        page_settings: dict = getattr(module_cfg, 'PAGE_SETTINGS', None)
+
+        if not page_settings:
+            continue
+
+        assert generator_name in page_settings and ty_name in page_settings and desc_name in page_settings, \
+            f'Page settings improperly configured. Missing "{generator_name}", "{ty_name}" or "{desc_name}" attributes'
+
+        generator = page_settings[generator_name]
+        ty = page_settings[ty_name]
+
+        if generator and ty:
+            for doc in generator():
                 yield ty, doc

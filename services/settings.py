@@ -11,5 +11,8 @@ HANDLERS = [
     CallbackQueryHandler(process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
 ]
 
-INDEX_GENERATOR = index
-PAGE_TY = 0
+PAGE_SETTINGS = {
+    'generator': index,
+    'ty': 0,
+    'desc': 'Servicios'
+}
