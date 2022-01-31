@@ -76,6 +76,5 @@ def load_pages():
         generator = page_settings[generator_name]
         ty = page_settings[ty_name]
 
-        if generator and ty:
-            for doc in generator():
-                yield ty, doc
+        for doc in generator():
+            yield ty, doc
