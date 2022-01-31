@@ -10,6 +10,3 @@ MAIN_MENU = [
     ['Noticias TEC 📰', 'Correos ✉️'],
     ['Info 🤖']]
 
-PAGES_MODULES_MAPPING = {
-    'services': 0,
-}

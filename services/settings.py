@@ -12,3 +12,4 @@ HANDLERS = [
 ]
 
 INDEX_GENERATOR = index
+PAGE_TY = 0
