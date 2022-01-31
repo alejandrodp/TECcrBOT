@@ -4,7 +4,7 @@ from typing import Optional
 
 from django.conf import settings
 from telegram import ParseMode
-from telegram.ext import Updater, Dispatcher, CommandHandler, Defaults
+from telegram.ext import Updater, Dispatcher, CommandHandler, Defaults, Handler
 
 from bot.handlers import main_menu
 
@@ -29,5 +29,11 @@ def _init_handlers(dispatcher: Dispatcher) -> None:
 
     for app in settings.BOT_APPS:
         config = importlib.import_module('.settings', app)
-        for hdlr in config.HANDLERS:
-            dispatcher.add_handler(hdlr)
+
+        handlers: list = getattr(config, 'HANDLERS', None)
+        if handlers is isinstance(handlers, list):
+
+            for hdrl in handlers:
+                if isinstance(hdrl, Handler):
+                    dispatcher.add_handler(hdrl)
+
