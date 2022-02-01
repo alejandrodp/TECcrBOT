@@ -1,5 +1,11 @@
-# tcrb-dev
-Repo temporal para TCRB
+<h1 align="center">TECcrBOT</h1>
+
+!["banner"](bot.jpg)
+
+## Descripción
+TECcrBot (TCRB) es un bot de telegram dedicado a proporcionar información y utilidades para los integrante de la comunidad TEC.
+
+Este bot fue inicialmente creado por Esteban Sánchez Trejos, quién lo mantuvo desde 2017 hasta 2021, en conjunto con la asociación de estudiantes de la carrera de mecatrónica. A partir de 2021 Cluster451 se incorporó al proyecto desarollando el proyecto.
 
 # Versión de Python
 Este proyecto utiliza Python 3.9.6
@@ -18,10 +24,11 @@ Este proyecto utiliza Python 3.9.6
 Al final, el archivo se debería ver parecido a esto:
 
 ```
-SECRET_KEY=09a8shdf09a8hsdf
-BOT_SECRET_KEY=0a98sdhf09a8sdhf
+SECRET_KEY=secret
+BOT_SECRET_KEY=secret
 DATABASE_URL=sqlite:///./tcrb.sqlite3
 DEBUG=true
 ```
 
 2. Ejecutar el siguiente comando desde la carpeta raíz inicia el bot: `./manage.py start_bot`.
+

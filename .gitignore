@@ -1,6 +1,13 @@
+# Created by https://www.toptal.com/developers/gitignore/api/git,venv,linux,python,dotenv,windows,virtualenv,intellij+all,visualstudiocode,database
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,venv,linux,python,dotenv,windows,virtualenv,intellij+all,visualstudiocode,database
 
-# Created by https://www.toptal.com/developers/gitignore/api/git,venv,linux,dotenv,windows,virtualenv,intellij+all,visualstudiocode,python
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,venv,linux,dotenv,windows,virtualenv,intellij+all,visualstudiocode,python
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
 
 ### dotenv ###
 .env
@@ -346,4 +353,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/git,venv,linux,dotenv,windows,virtualenv,intellij+all,visualstudiocode,python
+# End of https://www.toptal.com/developers/gitignore/api/git,venv,linux,python,dotenv,windows,virtualenv,intellij+all,visualstudiocode,database
