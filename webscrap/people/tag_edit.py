@@ -7,28 +7,27 @@ def update_dept(contact, updater):
     if roles is None:
         return
 
-    while True:
-        for role_no, role in enumerate(roles):
-            new_dept = updater(role['dept'])
-            if new_dept is None:
-                del roles[role_no]
-                break
+    role_no = 0
+    while role_no < len(roles):
+        role = roles[role_no]
+        new_dept = updater(role['dept'])
+        if new_dept is None:
+            del roles[role_no]
+            continue
 
-            role['dept'] = new_dept
-        else:
-            break
+        role['dept'] = new_dept
+        role_no += 1
 
 def update_role_ty(types, updater):
-    while True:
-        for type_no, ty in enumerate(types):
-            ty = updater(ty)
-            if ty is None:
-                del types[type_no]
-                break
+    type_no = 0
+    while type_no < len(types):
+        ty = updater(types[type_no])
+        if ty is None:
+            del types[type_no]
+            continue
 
-            types[type_no] = ty
-        else:
-            break
+        types[type_no] = ty
+        type_no += 1
 
 save = False
 def update(store, args, updater):
@@ -36,8 +35,10 @@ def update(store, args, updater):
     for contact in store['staff']:
         if args.is_dept:
             update_dept(contact, updater)
-        else:
-            types, functions = contact.get('types'), contact.get('functions')
+            continue
+
+        for role in contact.get('roles', ()):
+            types, functions = role.get('types'), role.get('functions')
             if types:
                 update_role_ty(types, updater)
             if functions:
