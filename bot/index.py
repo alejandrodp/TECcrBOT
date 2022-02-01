@@ -2,7 +2,7 @@ import os.path
 
 from environ import ImproperlyConfigured
 from whoosh.analysis import LanguageAnalyzer
-from whoosh.fields import SchemaClass, NUMERIC, TEXT
+from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID
 from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import QueryParser
 
@@ -17,7 +17,10 @@ class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True)
     title = TEXT(stored=True, analyzer=ANALYZER)
-    author = TEXT(analyzer=ANALYZER)
+    name = TEXT(analyzer=ANALYZER)
+    surname = TEXT(analyzer=ANALYZER)
+    email = ID
+    tel = ID
 
 
 _IX_PATH = os.path.join(settings.BASE_DIR, 'index')
