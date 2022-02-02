@@ -3,10 +3,12 @@ from typing import Optional
 
 from django.conf import settings
 from telegram import ParseMode
-from telegram.ext import Updater, Dispatcher, CommandHandler, Defaults, Handler
+from telegram.ext import Updater, Dispatcher, CommandHandler, Defaults, Handler, MessageHandler, Filters, \
+    CallbackQueryHandler
 
+from bot import apps
 from bot.settings import APP_CONFIGS
-from bot.handlers import main_menu
+from bot.handlers import main_menu, type_handler, search_handler
 
 defaults = Defaults(parse_mode=ParseMode.HTML, )
 
@@ -22,6 +24,8 @@ def start_polling() -> Optional[Queue]:
 def _add_default_handlers(dispatcher: Dispatcher):
     dispatcher.add_handler(CommandHandler("menu", main_menu))
     dispatcher.add_handler(CommandHandler("start", main_menu))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, search_handler), 1)
+    dispatcher.add_handler(CallbackQueryHandler(type_handler, pattern=rf'{apps.BotConfig.name}:get_type_pages:(\d*)'))
 
 
 def _init_handlers(dispatcher: Dispatcher) -> None:

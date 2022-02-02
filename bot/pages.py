@@ -11,5 +11,4 @@ class PageTy:
         PageTy._tys[ty] = self
 
 def read_page_tys():
-    import bot.settings as _ # Do not remove, preserves import order
-    return PageTy._tys.items()
+    return PageTy._tys

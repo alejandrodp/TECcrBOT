@@ -62,6 +62,6 @@ def search(searcher, term):
 
 
 def load_pages():
-    for ty, ty_obj in read_page_tys():
+    for ty, ty_obj in read_page_tys().items():
         for doc in ty_obj.index():
             yield ty, doc
