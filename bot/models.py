@@ -1,4 +1,4 @@
-from django.db.models import Model, BigIntegerField, IntegerField, UniqueConstraint
+from django.db.models import Model, IntegerField, UniqueConstraint
 
 
 class Page(Model):
@@ -10,20 +10,8 @@ class Page(Model):
         - Servicios
         - Entre otros...
 
-    id:
-    Identificador único de la página entre todos los tipos de página.
-
     ty:
     Tipo de página al que pertenece este identificador.
     """
 
-    id = BigIntegerField(primary_key=True)
     ty = IntegerField()
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=['id', 'ty'],
-                name='page_id_type_unique'
-            )
-        ]

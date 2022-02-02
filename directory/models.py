@@ -1,4 +1,5 @@
-from django.db.models import Model, TextField, ForeignKey, DO_NOTHING, UniqueConstraint
+from django.db.models import \
+        Model, BooleanField, TextField, ForeignKey, DO_NOTHING, UniqueConstraint
 
 
 class Person(Model):
@@ -22,8 +23,8 @@ class Person(Model):
 
     name = TextField(max_length=100)
     surname = TextField(max_length=100)
-    email = TextField(max_length=500)
-    phone = TextField(max_length=100)
+    email = TextField(max_length=500, null=True)
+    phone = TextField(max_length=100, null=True)
     href = TextField(max_length=1000)
 
 
@@ -34,18 +35,6 @@ class Ty(Model):
 
     name:
     Nombre del tipo.
-    """
-
-    name = TextField(max_length=100, unique=True)
-
-
-class Function(Model):
-    """Se refiere a la función que cumple una persona en un departamento.
-
-    Por ejemplo, "profesor", "investigador, etc.
-
-    name:
-    Nombre de la función.
     """
 
     name = TextField(max_length=100, unique=True)
@@ -62,18 +51,7 @@ class Location(Model):
     """
 
     name = TextField(max_length=100, unique=True)
-
-
-class UnitTy(Model):
-    """Tipos de unidades.
-
-    Básicamente sirve para diferenciar entre escuelas/áreas académicas y los demás departamentos.
-
-    name:
-    Nombre del tipo de la unidad.
-    """
-
-    name = TextField(max_length=100)
+    href = TextField(max_length=1000)
 
 
 class Unit(Model):
@@ -81,18 +59,10 @@ class Unit(Model):
 
     name:
     Nombre de la unidad.
-
-    url:
-    Link a la página del TEC de la unidad.
-
-    location:
-    Ubicación de la unidad.
     """
 
     name = TextField(max_length=100, unique=True)
-    url = TextField(max_length=1000)
-    location = ForeignKey(Location, DO_NOTHING)
-    ty = ForeignKey(UnitTy, DO_NOTHING)
+    href = TextField(max_length=1000)
 
 
 class Role(Model):
@@ -114,20 +84,10 @@ class Role(Model):
     """
 
     person = ForeignKey(Person, DO_NOTHING)
-    department = ForeignKey(Unit, DO_NOTHING)
+    unit = ForeignKey(Unit, DO_NOTHING)
+
+
+class RoleTy(Model):
+    role = ForeignKey(Role, DO_NOTHING)
     ty = ForeignKey(Ty, DO_NOTHING)
-    function = ForeignKey(Function, DO_NOTHING)
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=['person', 'department', 'ty', 'function'],
-                name='role_person_department_ty_function_key'
-            )
-        ]
-
-
-
-
-
-
+    is_function = BooleanField()

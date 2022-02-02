@@ -1,13 +1,14 @@
-import importlib
 import os.path
 
 from environ import ImproperlyConfigured
 from whoosh.analysis import LanguageAnalyzer
-from whoosh.fields import SchemaClass, NUMERIC, TEXT
+from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID
 from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import QueryParser
 
 from django.conf import settings
+
+from bot.settings import APP_CONFIGS
 
 ANALYZER = LanguageAnalyzer('es')
 
@@ -16,7 +17,10 @@ class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True)
     title = TEXT(stored=True, analyzer=ANALYZER)
-    author = TEXT(analyzer=ANALYZER)
+    name = TEXT(analyzer=ANALYZER)
+    surname = TEXT(analyzer=ANALYZER)
+    email = ID
+    tel = ID
 
 
 _IX_PATH = os.path.join(settings.BASE_DIR, 'index')
@@ -58,23 +62,20 @@ def search(searcher, term):
 
 
 def load_pages():
-    for app in settings.BOT_APPS:
+    for module_cfg in APP_CONFIGS.values():
+        TY_NAME = 'PAGE_TY'
+        GENERATOR_NAME = 'PAGE_INDEX'
+        DESC_NAME = 'PAGE_DESC'
 
-        generator_name = 'generator'
-        ty_name = 'ty'
-        desc_name = 'desc'
+        ty = getattr(module_cfg, TY_NAME, None)
+        generator = getattr(module_cfg, GENERATOR_NAME, None)
+        desc = getattr(module_cfg, DESC_NAME, None)
 
-        module_cfg = importlib.import_module('.settings', app)
-        page_settings: dict = getattr(module_cfg, 'PAGE_SETTINGS', None)
-
-        if not page_settings:
+        if not ty and not generator and not desc:
             continue
 
-        assert generator_name in page_settings and ty_name in page_settings and desc_name in page_settings, \
-            f'Page settings improperly configured. Missing "{generator_name}", "{ty_name}" or "{desc_name}" attributes'
-
-        generator = page_settings[generator_name]
-        ty = page_settings[ty_name]
+        assert ty is not None and generator and desc, \
+            f'Page settings improperly configured. Missing at least one of `{TY_NAME}`, `{GENERATOR_NAME}`, or `{DESC_NAME}`'
 
         for doc in generator():
             yield ty, doc
