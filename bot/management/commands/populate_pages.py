@@ -48,7 +48,7 @@ def load_all():
         Unit(id = id, name = unit['name'], href = unit['href']).save()
 
     for person in scrap['staff']:
-        page = Page(ty = directory.settings.PAGE_TY)
+        page = Page(ty = directory.settings.PEOPLE_PAGES.ty)
         page.save()
 
         person_obj = Person(

@@ -8,7 +8,7 @@ from whoosh.qparser import QueryParser
 
 from django.conf import settings
 
-from bot.settings import APP_CONFIGS
+from bot.pages import read_page_tys
 
 ANALYZER = LanguageAnalyzer('es')
 
@@ -62,20 +62,6 @@ def search(searcher, term):
 
 
 def load_pages():
-    for module_cfg in APP_CONFIGS.values():
-        TY_NAME = 'PAGE_TY'
-        GENERATOR_NAME = 'PAGE_INDEX'
-        DESC_NAME = 'PAGE_DESC'
-
-        ty = getattr(module_cfg, TY_NAME, None)
-        generator = getattr(module_cfg, GENERATOR_NAME, None)
-        desc = getattr(module_cfg, DESC_NAME, None)
-
-        if not ty and not generator and not desc:
-            continue
-
-        assert ty is not None and generator and desc, \
-            f'Page settings improperly configured. Missing at least one of `{TY_NAME}`, `{GENERATOR_NAME}`, or `{DESC_NAME}`'
-
-        for doc in generator():
+    for ty, ty_obj in read_page_tys():
+        for doc in ty_obj.index():
             yield ty, doc
