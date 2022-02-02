@@ -1,6 +1,7 @@
 from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 from whoosh.query import Query
+from whoosh.searching import Results
 
 from bot import apps
 from bot.index import search, read_index
@@ -26,7 +27,7 @@ def search_handler(update: Update, context: CallbackContext) -> None:
     tys = {}
 
     with read_index() as ix:
-        results = search(ix, msg)
+        results: Results = search(ix, msg)
 
         for r in results:
             if not tys.get(r['ty']):
@@ -34,12 +35,29 @@ def search_handler(update: Update, context: CallbackContext) -> None:
             else:
                 tys[r['ty']].append(r['id'])
 
-        update.message.reply_text(
-            text=f'Resultados para <i>{msg}</i>',
-            reply_markup=InlineKeyboardMarkup.from_column([
-                IKB(f'{read_page_tys()[ty].desc} ({len(ids)})', callback_data=f'{apps.BotConfig.name}:get_type_pages:{ty}')
+        if results.is_empty():
+            update.message.reply_text(f'No se encontraron resultados para <i>{msg}</i>')
+            return
+
+        if len(tys.keys()) > 1:
+            text = f'Resultados para <i>{msg}</i>'
+            buttons = [
+                IKB(f'{read_page_tys()[ty].desc} ({len(ids)})',
+                    callback_data=f'{apps.BotConfig.name}:get_type_pages:{ty}')
                 for ty, ids in tys.items()
-            ])
+            ]
+        else:
+            ty = tys.popitem()[0]
+            text = f'Resultados de {read_page_tys()[ty].desc} para <i>{msg}</i>'
+            buttons = [
+                IKB(f'{r["title"]}',
+                    callback_data=f'{apps.BotConfig.name}:get_page:{r["id"]}')
+                for r in results
+            ]
+
+        update.message.reply_text(
+            text=text,
+            reply_markup=InlineKeyboardMarkup.from_column(buttons)
         )
 
 
