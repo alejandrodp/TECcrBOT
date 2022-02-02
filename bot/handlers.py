@@ -5,6 +5,7 @@ from whoosh.searching import Results
 
 from bot import apps
 from bot.index import search, read_index
+from bot.models import Page
 from bot.pages import read_page_tys
 from bot.settings import MAIN_MENU
 
@@ -51,7 +52,7 @@ def search_handler(update: Update, context: CallbackContext) -> None:
             text = f'Resultados de {read_page_tys()[ty].desc} para <i>{msg}</i>'
             buttons = [
                 IKB(f'{r["title"]}',
-                    callback_data=f'{apps.BotConfig.name}:get_page:{r["id"]}')
+                    callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{r["id"]}')
                 for r in results
             ]
 
@@ -76,7 +77,18 @@ def type_handler(update: Update, context: CallbackContext) -> None:
         cq.message.edit_text(
             text=f'Resultados de {read_page_tys()[ty].desc} para <i>{query}</i>',
             reply_markup=InlineKeyboardMarkup.from_column([
-                IKB(r['title'], callback_data=f'{apps.BotConfig.name}:get_page:{r["id"]}')
+                IKB(r['title'], callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{int(r["id"])}')
                 for r in results if r['ty'] == ty
             ])
         )
+
+
+def show_page(update: Update, context: CallbackContext) -> None:
+    ty = int(context.match.group(1))
+    page_id = int(context.match.group(2))
+
+    update.callback_query.answer()
+
+    read_page_tys()[ty].page_builder(page_id, update.callback_query.message)
+
+

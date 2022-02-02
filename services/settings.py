@@ -12,4 +12,4 @@ HANDLERS = [
     CallbackQueryHandler(process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
 ]
 
-PageTy(0, 'Servicios', index_services)
+PageTy(0, 'Servicios', index_services, None)
