@@ -1,8 +1,9 @@
 from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
 
+from bot.pages import PageTy
 from . import apps
 from .handlers import main_entry, process_service
-from .util import index
+from .util import index_services
 
 MAIN_MENU_COMMAND = 'Servicios generales 🏫'
 
@@ -11,6 +12,4 @@ HANDLERS = [
     CallbackQueryHandler(process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
 ]
 
-PAGE_TY = 0
-PAGE_INDEX = index
-PAGE_DESC = 'Servicios'
+PageTy(0, 'Servicios', index_services)

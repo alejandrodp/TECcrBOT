@@ -1,7 +1,7 @@
 from .models import Person
 
 
-def index():
+def index_people():
     for person in Person.objects.all():
         yield {
             'id': person.id,

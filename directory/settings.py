@@ -1,8 +1,6 @@
-from .util import index
+from bot.pages import PageTy
+from .util import index_people
 
-HANDLERS = [
-]
+HANDLERS = []
 
-PAGE_TY = 1
-PAGE_INDEX = index
-PAGE_DESC = 'Directorio'
+PEOPLE_PAGES = PageTy(1, 'Personas', index_people)
