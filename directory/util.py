@@ -1,4 +1,4 @@
-from .models import Person
+from .models import Person, Unit, Location
 
 
 def index_people():
@@ -10,4 +10,20 @@ def index_people():
             'surname': person.surname,
             'tel': person.phone,
             'email': person.email,
+        }
+
+
+def index_depts():
+    for unit in Unit.objects.all():
+        yield {
+            'id': unit.id,
+            'title': unit.name,
+        }
+
+
+def index_locs():
+    for location in Location.objects.all():
+        yield {
+            'id': location.id,
+            'title': location.name,
         }

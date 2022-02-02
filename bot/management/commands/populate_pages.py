@@ -35,17 +35,24 @@ def load_all():
 
     scrap = json.loads(str(scrap, 'utf-8'))
 
-    for id, location in enumerate(scrap['locations']):
-        Location(id = id, name = location['name'], href = location['href']).save()
-
     for id, ty in enumerate(scrap['staff_types']):
         Ty(id = id, name = ty).save()
 
-    for id, unit in enumerate(scrap['depts']):
-        Unit(id = id, name = unit['name'], href = unit['href']).save()
+    locations = []
+    for location in scrap['locations']:
+        page = Page(ty = directory.settings.LOC_PAGES.ty)
+        page.save()
+        locations.append(page.id)
 
-    for id, unit in enumerate(scrap['depts']):
-        Unit(id = id, name = unit['name'], href = unit['href']).save()
+        Location(id = page.id, name = location['name'], href = location['href']).save()
+
+    depts = []
+    for unit in scrap['depts']:
+        page = Page(ty = directory.settings.DEPT_PAGES.ty)
+        page.save()
+        depts.append(page.id)
+
+        Unit(id = page.id, name = unit['name'], href = unit['href']).save()
 
     for person in scrap['staff']:
         page = Page(ty = directory.settings.PEOPLE_PAGES.ty)
@@ -63,8 +70,12 @@ def load_all():
         person_obj.save()
 
         for role in person.get('roles', ()):
-            unit_obj = Unit.objects.get(id = role['dept'])
-            role_obj = Role(person = person_obj, unit = unit_obj)
+            location = role.get('location')
+            if location is not None:
+                location = Location.objects.get(id = locations[location])
+
+            unit_obj = Unit.objects.get(id = depts[role['dept']])
+            role_obj = Role(person = person_obj, unit = unit_obj, location = location)
             role_obj.save()
 
             def insert_tys(key, is_function):

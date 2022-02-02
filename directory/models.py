@@ -85,6 +85,7 @@ class Role(Model):
 
     person = ForeignKey(Person, DO_NOTHING)
     unit = ForeignKey(Unit, DO_NOTHING)
+    location = ForeignKey(Location, DO_NOTHING, null=True)
 
 
 class RoleTy(Model):
