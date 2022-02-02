@@ -83,12 +83,20 @@ def type_handler(update: Update, context: CallbackContext) -> None:
         )
 
 
+
+
+
 def show_page(update: Update, context: CallbackContext) -> None:
     ty = int(context.match.group(1))
     page_id = int(context.match.group(2))
-
     update.callback_query.answer()
 
-    read_page_tys()[ty].page_builder(page_id, update.callback_query.message)
+    msg, page_buttons = read_page_tys()[ty].page_builder(page_id)
+
+    update.callback_query.message.edit_text(
+        text=msg,
+        reply_markup=InlineKeyboardMarkup.from_column(page_buttons)
+        if page_buttons else None
+    )
 
 

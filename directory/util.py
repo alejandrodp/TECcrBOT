@@ -1,4 +1,6 @@
-from telegram import Message
+from typing import List, Optional
+
+from telegram import Message, InlineKeyboardButton
 
 from .models import Person, Unit, Location
 
@@ -31,31 +33,30 @@ def index_locs():
         }
 
 
-def loc_builder(page: int, msg: Message) -> None:
+def loc_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
     loc = Location.objects.get(id=page)
 
-    msg.edit_text(
-        text=f'Nombre: {loc.name}\n\n'
-             f'<a href="https://www.tec.ac.cr/{loc.href}">Ver más información</a>',
-    )
+    msg = f'Nombre: {loc.name}\n\n<a href="https://www.tec.ac.cr{loc.href}">Ver más información</a>'
+
+    return msg, None
 
 
-def depts_builder(page: int, msg: Message) -> None:
+def depts_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
 
     dept = Unit.objects.get(id=page)
 
-    msg.edit_text(
-        text=f'Nombre: {dept.name}\n\n'
-             f'<a href="https://www.tec.ac.cr/{dept.href}">Ver más información</a>',
-    )
+    msg = f'Nombre: {dept.name}\n\n<a href="https://www.tec.ac.cr{dept.href}">Ver más información</a>'
+
+    return msg, None
 
 
-def people_builder(page: int, msg: Message) -> None:
+def people_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
 
     person = Person.objects.get(id=page)
 
     email = person.email if person.email else 'No disponible'
     tel = person.phone if person.phone else 'No disponible'
+
     roles = '\n\n'.join([
         f'Departamento: {r.unit.name}\n'
         f'Funciones: {", ".join([n.ty.name for n in r.rolety_set.all()])}\n'
@@ -63,13 +64,10 @@ def people_builder(page: int, msg: Message) -> None:
         for r in person.role_set.all()
     ])
 
+    msg = f'Nombre: {person.name} {person.surname}\n' \
+          f'Correo electrónico: {email}\n'\
+          f'Teléfono: {tel}\n\n'\
+          f'{roles}\n'\
+          f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
 
-    msg.edit_text(
-        text=f'Nombre: {person.name} {person.surname}\n'
-             f'Correo electrónico: {email}\n'
-             f'Teléfono: {tel}\n\n'
-             f'{roles}\n'
-             f'<a href="https://www.tec.ac.cr/{person.href}">Ver más información</a>',
-
-
-    )
+    return msg, None
