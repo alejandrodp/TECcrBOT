@@ -1,10 +1,15 @@
-from django.db.models import QuerySet
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+import base64
+import binascii
+import json
+from json import JSONDecodeError
+from uuid import uuid4, UUID
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from places import apps
-from common.constants import DAYS_MAPPING
-from places.models import Tag, Place, Phone, WeekDay
+from places.constants import CONTRIBUTION_TYPE
+from places.models import Tag, Place, Editor, Edition
 
 IKB = InlineKeyboardButton
 
@@ -45,23 +50,27 @@ def get_place(update: Update, context: CallbackContext) -> None:
     place = Place.objects.get(id=place_id)
 
     name = place.name
-    phones = _get_phones(place.phone_set)
-    schedules = _get_schedule(place.scheduleday_set)
-    location = place.location
+    phones = place.contact
+    schedules = place.schedule
 
-    response = "<b>Nombre: {name}</b>\n\n<b>Teléfonos:</b>\n{phones}\n\n<b>Horario:</b>\n{schedule}".format(
+    response = '<b>Nombre: {name}</b>\n\n<b>Contacto:</b>\n{phones}\n\n<b>Horario:</b>\n{schedule}'.format(
         name=name,
         phones=phones,
         schedule=schedules
     )
 
-    main_message_id = query.edit_message_text(text=response).message_id
+    main_message_id = query.edit_message_text(
+        text=response,
+        reply_markup=InlineKeyboardMarkup.from_column([
+            IKB('Sugerir cambio', callback_data=f'{apps.PlacesConfig.name}:select_edit:{place_id}'),
+        ])
+    ).message_id
 
-    if location is None:
+    if place.latitude and place.longitude is None:
         update.callback_query.message.reply_text("Ubicación no disponible", reply_to_message_id=main_message_id)
     else:
-        update.callback_query.message.reply_location(latitude=float(location.latitude),
-                                                     longitude=float(location.longitude),
+        update.callback_query.message.reply_location(latitude=place.latitude,
+                                                     longitude=place.longitude,
                                                      reply_to_message_id=main_message_id)
 
     if place.photo.name == '':
@@ -70,43 +79,120 @@ def get_place(update: Update, context: CallbackContext) -> None:
         update.callback_query.message.reply_photo(place.photo.open(mode='rb'), reply_to_message_id=main_message_id)
 
 
-def _get_phones(phones_set: QuerySet[Phone]) -> str:
-    if not phones_set.exists():
-        return "No disponible"
+def select_edit(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    data = query.data.split(':')
+    query.answer()
 
-    phones = []
+    place_id = data[-1]
 
-    for p in phones_set.all():
-        phones.append(
-            "{phone}{details}".format(
-                phone=p.phone,
-                details=f" ({p.details})" if p.details is not None and p.details != '' else ''
-            )
+    query.message.reply_text(
+        text='Seleccione el tipo de sugerencia:',
+        reply_to_message_id=query.message.message_id,
+        reply_markup=InlineKeyboardMarkup.from_column([
+            IKB('Nombre', callback_data=f'{apps.PlacesConfig.name}:request_edit:0:{place_id}'),
+            IKB('Ubicación', callback_data=f'{apps.PlacesConfig.name}:request_edit:1:{place_id}'),
+            IKB('Información de contacto', callback_data=f'{apps.PlacesConfig.name}:request_edit:2:{place_id}'),
+            IKB('Horario de apertura', callback_data=f'{apps.PlacesConfig.name}:request_edit:3:{place_id}'),
+            IKB('Imagen', callback_data=f'{apps.PlacesConfig.name}:request_edit:4:{place_id}'),
+        ])
+    )
+
+
+def request_edit(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    data = query.data.split(':')
+
+    place_id = data[-1]
+    edit_type = int(data[-2])
+    place_name = Place.objects.get(id=place_id).name
+
+    data = {
+        'ty': edit_type,
+        't': uuid4().hex,
+        'i': int(place_id)
+    }
+
+    data_encoded = base64.b64encode(json.dumps(data).encode('ascii')).decode('ascii')
+
+    title = CONTRIBUTION_TYPE[edit_type]['message']
+    foot = CONTRIBUTION_TYPE[edit_type]['foot']
+
+    query.message.edit_text(
+        text=f'{title} <i>{place_name}</i>\n'
+             f'Ticket: {data["t"]}\n'
+             f'Datos: {data_encoded}\n\n'
+             f'<b>{foot}\n'
+             f'Si incluye fuentes confiables será más probable que su contribución sea aceptada.</b>',
+    )
+
+
+def _process_edition(ty, ticket, i, editor, update: Update) -> None:
+    text = '{data_type}:\n{object_data}\n\nDetalles:\n{details}'.format(
+        data_type=CONTRIBUTION_TYPE[ty]['db_name'],
+        object_data='{object_data}',
+        details='{details}'
+
+    )
+    location = update.message.location
+
+    if ty == 1 and location:
+        text = text.format(
+            object_data='\n'.join([f'Latitud: {location.latitude}', f'Longitud: {location.longitude}']),
+            details='Sin detalles'
+        )
+    elif ty == 4 and update.message.photo:
+        text = text.format(
+            object_data=','.join([
+                p.file_id
+                for p in update.message.photo
+            ]),
+            details=update.message.caption if update.message.caption else 'Sin detalles'
+        )
+    else:
+        text = text.format(
+            object_data=update.message.text,
+            details='Sin detalles'
         )
 
-    return "\n".join(phones)
+    Edition(
+        unique_id=ticket,
+        field_type=CONTRIBUTION_TYPE[ty]['db_name'],
+        text=text,
+        editor=editor,
+        place_id=i
+    ).save()
 
 
-def _get_schedule(days: QuerySet[WeekDay]) -> str:
-    if not days.exists():
-        return "No disponible"
+def handle_text_edit(update: Update, context: CallbackContext) -> None:
+    data = context.match.groups()[0]
+    user_id = update.effective_user.id
 
-    schedules = []
+    try:
+        decoded_data = json.loads(base64.b64decode(data, validate=True))
 
-    for day in days.order_by('day_index').all():
-        time = '\n'.join(
-            ["{start} - {end}{details}".format(
-                start=time.start,
-                end=time.end,
-                details=f" ({time.details})" if time.details is not None and time.details != '' else '')
-                for time in day.scheduletime_set.order_by('start').all()]
-        ) if day.scheduletime_set.exists() else "Cerrado"
+        ty = int(decoded_data['ty'])
+        ticket = UUID(decoded_data['t'])
+        i = int(decoded_data['i'])
 
-        schedules.append(
-            "<i>{day}:</i>\n{time}".format(
-                day=DAYS_MAPPING.get(day.day_index),
-                time=time
+        if not Editor.objects.filter(telegram_id=user_id).exists():
+            editor = Editor(telegram_id=user_id)
+            editor.save()
+        else:
+            editor = Editor.objects.get(telegram_id=user_id)
+
+        if not Edition.objects.filter(unique_id=ticket).exists():
+            _process_edition(ty, ticket, i, editor, update)
+
+            update.message.reply_text(
+                text='Gracias por su contribución, se le notificará en caso de ser aceptada por los moderadores.'
             )
-        )
+        else:
+            update.message.reply_text(
+                text='Ya se realizó la contribución, '
+                     'para generar una nueva contribución por favor use el menú bajo el mensaje del lugar.'
+            )
 
-    return "\n\n".join(schedules)
+    except (binascii.Error, JSONDecodeError, UnicodeDecodeError, ValueError, KeyError) as e:
+        update.message.reply_text('Hubo un problema procesando su solicitud. Intente de nuevo.')
+        raise e
