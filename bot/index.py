@@ -1,24 +1,24 @@
 import os.path
 
 from environ import ImproperlyConfigured
-from whoosh.analysis import LanguageAnalyzer
+from whoosh.analysis import CharsetFilter, StandardAnalyzer
 from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID
 from whoosh.index import open_dir, exists_in, create_in
-from whoosh.qparser import QueryParser
+from whoosh.qparser import MultifieldParser
+from whoosh.support.charset import accent_map
 
 from django.conf import settings
 
 from bot.pages import read_page_tys
 
-ANALYZER = LanguageAnalyzer('es')
-
+NO_ACCENT_ANALYZER = StandardAnalyzer() | CharsetFilter(accent_map)
 
 class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
-    id = NUMERIC(stored=True)
-    title = TEXT(stored=True, analyzer=ANALYZER)
-    name = TEXT(analyzer=ANALYZER)
-    surname = TEXT(analyzer=ANALYZER)
+    id = NUMERIC(stored=True, unique=True)
+    title = TEXT(stored=True, lang='es')
+    name = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=1.5)
+    surname = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.0)
     email = ID
     tel = ID
 
@@ -57,8 +57,9 @@ def read_index():
     return _ix.searcher()
 
 
-def search(searcher, term):
-    return searcher.search(QueryParser('title', schema=_ix.schema).parse(term))
+def search(searcher, query):
+    parser = MultifieldParser(['title', 'surname', 'name'], schema=_ix.schema)
+    return searcher.search(parser.parse(query))
 
 
 def load_pages():
