@@ -13,13 +13,13 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
-        tags = json.load(open(BASE_DIR / 'webscrap' / 'scrapped_news.json'))
+        tags = json.load(open(BASE_DIR / 'webscrap' / 'news' / 'scrapped_news.json'))
 
         for key, tag in tags.items():
 
             print(f'Loading tag: {tag["name"]}')
 
-            if key == 62:
+            if key == '63':
                 name = 'Últimas noticias'
                 desc = 'Las últimas noticias publicadas'
                 category = True
