@@ -26,6 +26,7 @@ class Place(Model):
     Fotografía del lugar.
     """
 
+    id = BigIntegerField(primary_key=True)
     name = TextField(unique=True, max_length=500)
     latitude = FloatField(null=True)
     longitude = FloatField(null=True)

@@ -64,28 +64,18 @@ class TripStartPoint(Model):
         ]
 
 
-class WeekDay(Model):
-    """Días de la semana.
-
-    Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo
-    """
-
-    day_index = IntegerField(
-        unique=True,
-        validators=[
-            MaxValueValidator(7),
-            MinValueValidator(1)
-        ]
-    )
-
-
 class Schedule(Model):
     """Representa el horario de todos viajes disponibles.
 
     Contiene la información de a qué horas y dónde se puede iniciar cada viaje.
     """
 
-    day = ForeignKey(WeekDay, DO_NOTHING)
+    day = IntegerField(
+        validators=[
+            MaxValueValidator(7),
+            MinValueValidator(1)
+        ]
+    )
     time = TimeField()
     start_point = ForeignKey(TripStartPoint, DO_NOTHING)
     travel = ForeignKey(Trip, DO_NOTHING)

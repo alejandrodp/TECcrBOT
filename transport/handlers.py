@@ -67,13 +67,13 @@ def _build_schedule(travel: Trip):
                     sorted(
                         set([f'{t.time}'
                              for t in Schedule.objects
-                            .filter(day__day_index__in=range(1, 6))
+                            .filter(day__in=range(1, 6))
                             .filter(travel_id=travel.id)
                             .filter(start_point_id=point.id)
                             .order_by('time')
                             .all()
                              ]))) if Schedule.objects
-                    .filter(day__day_index__in=range(1, 6))
+                    .filter(day__in=range(1, 6))
                     .filter(travel_id=travel.id)
                     .filter(start_point_id=point.id).exists() else "No hay servicio"
             )
@@ -106,13 +106,13 @@ def _build_time_schedule(day_index, travel_id, start_point_id) -> str:
         times='\n'.join(
             set([f'{t.time}'
                  for t in Schedule.objects
-                .filter(day__day_index=day_index)
+                .filter(day=day_index)
                 .filter(travel_id=travel_id)
                 .filter(start_point_id=start_point_id)
                 .order_by('time')
                 .all()
                  ])) if Schedule.objects
-            .filter(day__day_index=day_index)
+            .filter(day=day_index)
             .filter(travel_id=travel_id)
             .filter(start_point_id=start_point_id).exists() else "No hay servicio"
     )
