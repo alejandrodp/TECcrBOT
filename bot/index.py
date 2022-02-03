@@ -1,8 +1,8 @@
 import os.path
 
 from environ import ImproperlyConfigured
-from whoosh.analysis import CharsetFilter, StandardAnalyzer
-from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID
+from whoosh.analysis import CharsetFilter, LanguageAnalyzer, StandardAnalyzer
+from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID, KEYWORD
 from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import MultifieldParser
 from whoosh.support.charset import accent_map
@@ -11,15 +11,17 @@ from django.conf import settings
 
 from bot.pages import read_page_tys
 
+LANGUAGE_ANALYZER = LanguageAnalyzer('es')
 NO_ACCENT_ANALYZER = StandardAnalyzer() | CharsetFilter(accent_map)
 
 
 class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True, unique=True)
-    title = TEXT(stored=True, lang='es')
-    name = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=1.5)
-    surname = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.0)
+    title = TEXT(stored=True, analyzer=LANGUAGE_ANALYZER, field_boost=1.5)
+    kw = KEYWORD(scorable=True, analyzer=LANGUAGE_ANALYZER)
+    name = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.0)
+    surname = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.5)
     email = ID
     tel = ID
 
@@ -59,7 +61,8 @@ def read_index():
 
 
 def search(searcher, query):
-    parser = MultifieldParser(['title', 'surname', 'name'], schema=_ix.schema)
+    parser = MultifieldParser(
+        ['title', 'surname', 'name', 'kw'], schema=_ix.schema)
     return searcher.search(parser.parse(query))
 
 

@@ -2,7 +2,8 @@ from typing import List, Optional
 
 from telegram import Message, InlineKeyboardButton
 
-from .models import Person, Unit, Location
+from bot.index import LANGUAGE_ANALYZER
+from .models import Person, Unit, Role, RoleTy, Location
 
 
 def index_people():
@@ -10,12 +11,20 @@ def index_people():
         yield {
             'id': person.id,
             'title': f'{person.surname}, {person.name}',
+            'kw': person_kws(person),
             'name': person.name,
             'surname': person.surname,
             'tel': person.phone,
             'email': person.email,
         }
 
+
+def person_kws(person):
+    return [kw.text
+        for role in Role.objects.filter(person=person)
+        for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
+        for term in source
+        for kw in LANGUAGE_ANALYZER(term.name)]
 
 def index_depts():
     for unit in Unit.objects.all():
