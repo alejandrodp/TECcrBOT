@@ -35,7 +35,7 @@ def _init_handlers(dispatcher: Dispatcher) -> None:
     _add_default_handlers(dispatcher)
 
 
-    # import bot.settings
+    import bot.settings
     for handler in BotHandler._handlers:
         dispatcher.add_handler(handler)
 
