@@ -61,7 +61,7 @@ def update(store, args, updater):
             cmds = []
 
         ns = vars(args).copy()
-        del ns['file'], ns['log']
+        del ns['file'], ns['log'], ns['out']
         cmds.append(ns)
 
         with open(args.log, 'w') as log:

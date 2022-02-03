@@ -288,103 +288,123 @@
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Chemistry"
+    "cmd": "merge",
+    "src": "School of Chemistry",
+    "dest": "Escuela de Qu\u00edmica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Language Sciences"
+    "cmd": "merge",
+    "src": "School of Language Sciences",
+    "dest": "Escuela de Ciencias del Lenguaje"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Biology"
+    "cmd": "merge",
+    "src": "School of Biology",
+    "dest": "Escuela de Biolog\u00eda"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Business Administration"
+    "cmd": "merge",
+    "src": "School of Business Administration",
+    "dest": "Escuela de Administraci\u00f3n de Empresas"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Forest Engineering"
+    "cmd": "merge",
+    "src": "School of Forest Engineering",
+    "dest": "Escuela de Ingenier\u00eda Forestal"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Mathematics"
+    "cmd": "merge",
+    "src": "School of Mathematics",
+    "dest": "Escuela de Matem\u00e1tica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Social Sciences"
+    "cmd": "merge",
+    "src": "School of Social Sciences",
+    "dest": "Escuela de Ciencias Sociales"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Construction Engineering"
+    "cmd": "merge",
+    "src": "School of Construction Engineering",
+    "dest": "Escuela de Ingenier\u00eda en Construcci\u00f3n"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Technical Education"
+    "cmd": "merge",
+    "src": "School of Technical Education",
+    "dest": "Escuela de Educaci\u00f3n T\u00e9cnica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Physics"
+    "cmd": "merge",
+    "src": "School of Physics",
+    "dest": "Escuela de F\u00edsica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Languages and Social Sciences"
+    "cmd": "merge",
+    "src": "School of Languages and Social Sciences",
+    "dest": "Escuela de Idiomas y Ciencias Sociales"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Industrial Production Engineering"
+    "cmd": "merge",
+    "src": "School of Industrial Production Engineering",
+    "dest": "Escuela de Ingenier\u00eda en Producci\u00f3n Industrial"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Agricultural Engineering"
+    "cmd": "merge",
+    "src": "School of Agricultural Engineering",
+    "dest": "Escuela de Ingenier\u00eda Agr\u00edcola"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Natural and Exact Sciences"
+    "cmd": "merge",
+    "src": "School of Natural and Exact Sciences",
+    "dest": "Escuela de Ciencias Naturales y Exactas"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Architecture and Urban Planning"
+    "cmd": "merge",
+    "src": "School of Architecture and Urban Planning",
+    "dest": "Escuela de Arquitectura y Urbanismo"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Computer Engineering"
+    "cmd": "merge",
+    "src": "School of Computer Engineering",
+    "dest": "Escuela de Ingenier\u00eda en Computaci\u00f3n"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Electromechanical Engineering"
+    "cmd": "merge",
+    "src": "School of Electromechanical Engineering",
+    "dest": "Escuela de Ingenier\u00eda Electromec\u00e1nica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Industrial Design Engineering"
+    "cmd": "merge",
+    "src": "School of Industrial Design Engineering",
+    "dest": "Escuela de Dise\u00f1o Industrial"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Electronic Engineering"
+    "cmd": "merge",
+    "src": "School of Electronic Engineering",
+    "dest": "Escuela de Ingenier\u00eda Electr\u00f3nica"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Materials Science and Engineering"
+    "cmd": "merge",
+    "src": "School of Materials Science and Engineering",
+    "dest": "Escuela de Ciencia e Ingenier\u00eda de los Materiales"
   },
   {
     "is_dept": true,
@@ -398,13 +418,15 @@
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "School of Culture and Sports"
+    "cmd": "merge",
+    "src": "School of Culture and Sports",
+    "dest": "Escuela de Cultura y Deporte"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "Agribusiness School"
+    "cmd": "merge",
+    "src": "Agribusiness School",
+    "dest": "Escuela de Agronegocios"
   },
   {
     "is_dept": true,
@@ -413,27 +435,37 @@
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "Agroforestry Academic Area"
+    "cmd": "merge",
+    "src": "Agroforestry Academic Area",
+    "dest": "\u00c1rea Acad\u00e9mica Agroforestal"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "Computer Engineering Unit, San Carlos Technological Campus"
+    "cmd": "merge",
+    "src": "Computer Engineering Unit, San Carlos Technological Campus",
+    "dest": "Unidad de Ingenier\u00eda en Computaci\u00f3n, Campus Tecnol\u00f3gico Local San Carlos"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "Computer Engineering Academic Area"
+    "cmd": "merge",
+    "src": "Computer Engineering Academic Area",
+    "dest": "\u00c1rea Acad\u00e9mica Ingenier\u00eda en Computadores"
   },
   {
     "is_dept": true,
-    "cmd": "delete",
-    "tag": "International Affairs and Cooperation Office"
+    "cmd": "merge",
+    "src": "International Affairs and Cooperation Office",
+    "dest": "Direccio\u0301n de Cooperacio\u0301n"
   },
   {
     "is_dept": true,
     "cmd": "delete",
     "tag": "Supply Chain Technician"
+  },
+  {
+    "is_dept": true,
+    "cmd": "rename",
+    "old": "Direccio\u0301n de Cooperacio\u0301n",
+    "new": "Direcci\u00f3n de Cooperaci\u00f3n"
   }
 ]
