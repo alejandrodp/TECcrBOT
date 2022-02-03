@@ -32,7 +32,7 @@ class Place(Model):
     longitude = FloatField(null=True)
     contact = TextField(max_length=1000, null=True)
     schedule = TextField(max_length=1000, null=True)
-    photo = ImageField(upload_to="places/", null=True)
+    photo = ImageField(null=True)
 
     class Meta:
         constraints = [

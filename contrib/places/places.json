@@ -21,7 +21,8 @@
     "name": "A4",
     "tags": "A4 - Física - Matemática - Ciencias Sociales - Gestión del turismo\nFISICA MATEMATICA CIENCIAS SOCIALES\nESCUELA CIENCIAS SOCIALES\nCIENCIAS SOCIALES\nFISICA\nESCUELA FISICA\nMATEMATICAS\nMATEMATICA\nESCUELA MATEMATICA\nESCUELA MATEMATICAS\nMATE\nESCUELA MATE\nGESTION TURISMO SOSTENIBLE\nGESTION TURISMO\nTURISMO\nA4\nASOCIACION ESTUDIANTES MATEMATICA\nASOCIA MATEMATICA\nASOCIACION ENSENANZA MATEMATICA\nASOCIA MATE\nAEEMAC",
     "lat": 9.856072,
-    "long": -83.913167
+    "long": -83.913167,
+    "photo": "A4.jpg"
   },
   {
     "name": "A5",
@@ -57,7 +58,8 @@
     "name": "B1",
     "tags": "B1",
     "lat": 9.855942,
-    "long": -83.912633
+    "long": -83.912633,
+    "photo": "B1.jpg"
   },
   {
     "name": "B10",
@@ -69,49 +71,57 @@
     "name": "B11",
     "tags": "B11",
     "lat": 9.856161,
-    "long": -83.911478
+    "long": -83.911478,
+    "photo": "B11.jpg"
   },
   {
     "name": "B2",
     "tags": "B2",
     "lat": 9.856142,
-    "long": -83.912644
+    "long": -83.912644,
+    "photo": "B2.jpg"
   },
   {
     "name": "B3",
     "tags": "B3 - LAIMI C - Tierra media - Laboratorios H\nLAIMI C\nTERRAMEDIA\nTERRA MEDIA\nASOCIACION ESTUDIANTES COMPUTACION\nASOCIA COMPUTACION\nASOCIACION COMPUTACION\nASOCIA COMPU\nASODEC\nTIERRA MEDIA\nTIERRAMEDIA\nH AZUL\nH ROJO\nLABORATORIO H\nLABORATORIOS H\nLAB H\nLABS H\nB3",
     "lat": 9.856344,
-    "long": -83.912597
+    "long": -83.912597,
+    "photo": "B3.jpg"
   },
   {
     "name": "B4",
     "tags": "B4 - FEITEC\nFEITEC\nB4",
     "lat": 9.855986,
-    "long": -83.912075
+    "long": -83.912075,
+    "photo": "B4.jpg"
   },
   {
     "name": "B5",
     "tags": "B5 - Cultura y Deporte - Equidad de Genero - TEE\nESCUELA CULTURA DEPORTE\nCULTURA DEPORTE\nESCUELA CULTURA\nESCUELA DEPORTE\nCULTURA\nEQUIDAD\nEQUIDAD GENERO\nB5\nTEE\nTRIBUNAL ELECTORAL ESTUDIANTIL\nTRIBUNAL ESTUDIANTIL",
     "lat": 9.856328,
-    "long": -83.911753
+    "long": -83.911753,
+    "photo": "B5.jpg"
   },
   {
     "name": "B6",
     "tags": "B6 - Editorial Tecnológica\nEDITORIAL\nEDITORIAL TECNOLOGICA\nEDITORIAL TEC\nB6",
     "lat": 9.856561,
-    "long": -83.912008
+    "long": -83.912008,
+    "photo": "B6.jpg"
   },
   {
     "name": "B7",
     "tags": "B7",
     "lat": 9.855878,
-    "long": -83.911556
+    "long": -83.911556,
+    "photo": "B7.jpg"
   },
   {
     "name": "B8",
     "tags": "B8",
     "lat": 9.856096,
-    "long": -83.911403
+    "long": -83.911403,
+    "photo": "B8.jpg"
   },
   {
     "name": "Cancha de Baloncesto",
@@ -129,31 +139,36 @@
     "name": "C1",
     "tags": "C1 - CEDA - AFITEC\nCEDA\nAFITEC\nC1",
     "lat": 9.855675,
-    "long": -83.913115
+    "long": -83.913115,
+    "photo": "C1.jpg"
   },
   {
     "name": "C10",
     "tags": "C10 - Comedor Institucional\nCOMEDOR\nCOMEDOR INSTITUCIONAL\nCOMEDOR ESTUDIANTIL\nRESTAURANTE INSTITUCIONAL\nMICROONDAS\nC10",
     "lat": 9.855444,
-    "long": -83.912908
+    "long": -83.912908,
+    "photo": "C10.jpg"
   },
   {
     "name": "C3",
     "tags": "C3 - Biblioteca - Centro de vinculación\nBIBLIOTECA\nBIBLIO\nCENTRO DE VINCULACION\nCENTRO VINCULACION\nVINCULACION\nC3",
     "lat": 9.854951,
-    "long": -83.91266
+    "long": -83.91266,
+    "photo": "C3.jpg"
   },
   {
     "name": "C4",
     "tags": "C4 - Laboratorios Química y Física\nLABORATORIO QUIMICA LABORATORIO FISICA\nLABORATORIO QUIMICA\nLABORATORIO FISICA\nLABORATORIOS QUIMICA FISICA\nLAB FISICA\nLAB QUIMICA\nCEQIATEC\nCEQUIATEC\nC4",
     "lat": 9.855056,
-    "long": -83.913275
+    "long": -83.913275,
+    "photo": "C4.jpg"
   },
   {
     "name": "C9",
     "tags": "C9 - LAIMI 1\nLAIMI 1\nLAIMI I\nLAIMI1\nC9",
     "lat": 9.855444,
-    "long": -83.913325
+    "long": -83.913325,
+    "photo": "C9.jpg"
   },
   {
     "name": "A10",
@@ -183,13 +198,15 @@
     "name": "Casa de la Ciudad",
     "tags": "Casa de la Ciudad\nCASA CIUDAD",
     "lat": 9.865243,
-    "long": -83.922934
+    "long": -83.922934,
+    "photo": "CASA CIUDAD.jpg"
   },
   {
     "name": "Centro de las Artes",
     "tags": "Centro de las Artes\nCENTRO ARTES",
     "lat": 9.857483,
-    "long": -83.911508
+    "long": -83.911508,
+    "photo": "CENTRO ARTES.jpg"
   },
   {
     "name": "I5",
@@ -207,7 +224,8 @@
     "name": "D10",
     "tags": "D10 - Electromecánica\nESCUELA INGENIERIA ELECTROMECANICA\nELECTROMECANICA\nINGENIERIA ELECTROMECANICA\nESCUELA ELECTROMECANICA\nMANTENIMIENTO\nMANTE\nESCUELA MANTENIMIENTO\nESCUELA MANTE\nESCUELA MANTENIMIENTO INDUSTRIAL\nMANTENIMIENTO INDUSTRIAL\nASOCIACION ESTUDIANTES MANTE\nASOCIACION MANTE\nASOCIA MANTE\nASIEM\nD10",
     "lat": 9.854908,
-    "long": -83.911372
+    "long": -83.911372,
+    "photo": "D10.jpg"
   },
   {
     "name": "D11",
@@ -225,19 +243,22 @@
     "name": "D3",
     "tags": "D3 - Auditorio D3\nAUDITORIO D3\nD3",
     "lat": 9.855553,
-    "long": -83.911322
+    "long": -83.911322,
+    "photo": "D3.jpg"
   },
   {
     "name": "D4",
     "tags": "D4 - Proveduría - Aprovisionamiento\nPROVEDURIA\nAPROVISIONAMIENTO\nD4",
     "lat": 9.855506,
-    "long": -83.910933
+    "long": -83.910933,
+    "photo": "D4.jpg"
   },
   {
     "name": "D5",
     "tags": "D5 - Librería\nLIBRERIA\nD5",
     "lat": 9.855439,
-    "long": -83.912239
+    "long": -83.912239,
+    "photo": "D5.jpg"
   },
   {
     "name": "D6",
@@ -249,19 +270,22 @@
     "name": "D7",
     "tags": "D7 - Escuela de ATI\nESCUELA ATI\nATI\nASOCIACION ESTUDIANTES ATI\nASOCIACION ATI\nASOCIA ATI\nASEATI\nD7",
     "lat": 9.855283,
-    "long": -83.911547
+    "long": -83.911547,
+    "photo": "D7.jpg"
   },
   {
     "name": "D8",
     "tags": "D8 - AIR - Publicaciones - Banco Crédito Agrícola\nAIR\nSERVICIOS GENERALES\nSERVICIOS INSTITUCIONALES\nPUBLICACIONES\nTALLER PUBLICACIONES\nBANCO CREDITO AGRICOLA\nBANCREDITO\nD8",
     "lat": 9.855167,
-    "long": -83.910906
+    "long": -83.910906,
+    "photo": "D8.jpg"
   },
   {
     "name": "D9",
     "tags": "D9",
     "lat": 9.855264,
-    "long": -83.910656
+    "long": -83.910656,
+    "photo": "D9.jpg"
   },
   {
     "name": "Señor del Carrito",
@@ -321,19 +345,22 @@
     "name": "F1",
     "tags": "F1 - Construcción - Biotecnología - Biología\nESCUELA INGENIERIA CONSTRUCCION\nCONSTRUCCION\nESCUELA CONSTRUCCION\nESCUELA BIOTECNOLOGIA\nBIOTECNOLOGIA\nBIOLOGIA\nESCUELA BIOLOGIA\nASOCIACION ESTUDIANTES CONSTRUCCION\nASOCIA CONSTRUCCION\nASOCIACION CONSTRUCCION\nASOCIA CONSTRU\nAEICO\nASOCIACION ESTUDIANTES BIOTECNOLOGIA\nASOCIA BIOTECNOLOGIA\nASOCIACION BIOTECNOLOGIA\nASOCIA BIOTEC\nASEIBIO\nREGIONALIZACION\nF1",
     "lat": 9.8552,
-    "long": -83.909489
+    "long": -83.909489,
+    "photo": "F1.jpg"
   },
   {
     "name": "F10",
     "tags": "F10 - LAIMI 2 - Sala de Aplicaciones\nLAIMI 2\nLAIMI II\nLAIMI2\nSALA APLICACIONES\nAPLICACIONES INGENIERIA\nSALA APLICACIONES INGENIERIA\nF10",
     "lat": 9.855061,
-    "long": -83.908289
+    "long": -83.908289,
+    "photo": "F10.jpg"
   },
   {
     "name": "F11",
     "tags": "F11 - Clínica\nCLINICA SALUD\nSALUD\nCLINICA\nMEDICINA\nODONTOLOGIA\nPSICOLOGIA CLINICA\nENFERMERIA\nF11",
     "lat": 9.855158,
-    "long": -83.909744
+    "long": -83.909744,
+    "photo": "F11.jpg"
   },
   {
     "name": "F2",
@@ -351,7 +378,8 @@
     "name": "F4",
     "tags": "F4 - Corte Láser - Impresión 3D\nCORTE LASER\nIMPRIMIR 3D\nIMPRESION 3D\nIMPRESIONES 3D\nF4",
     "lat": 9.855242,
-    "long": -83.908608
+    "long": -83.908608,
+    "photo": "F4.jpg"
   },
   {
     "name": "F5",
@@ -363,13 +391,15 @@
     "name": "F6",
     "tags": "F6 - Casa Luna\nCASA LUNA\nSODA CASA LUNA\nRESTAURANTE CASA LUNA\nF6",
     "lat": 9.855272,
-    "long": -83.910114
+    "long": -83.910114,
+    "photo": "F6.jpg"
   },
   {
     "name": "F9",
     "tags": "F9 - Ciencias del Lenguaje\nESCUELA CIENCIAS LENGUAJE\nCIENCIAS LENGUAJE\nLENGUAJE\nLENGUAS\nESCUELA LENGUAS\nESCUELA LENGUAJE\nECL\nLABORATORIO INGLES\nINGLES\nF9",
     "lat": 9.854897,
-    "long": -83.907942
+    "long": -83.907942,
+    "photo": "F9.jpg"
   },
   {
     "name": "Fotocopiadora A4",
@@ -423,7 +453,8 @@
     "name": "G18",
     "tags": "G18",
     "lat": 9.854494,
-    "long": -83.909294
+    "long": -83.909294,
+    "photo": "G18.jpg"
   },
   {
     "name": "G19",
@@ -519,7 +550,8 @@
     "name": "I3",
     "tags": "I3 - Producción Industrial\nESCUELA PRODUCCION INDUSTRIAL\nESCUELA PRODU\nESCUELA PRODUCCION\nPRODUCCION INDUSTRIAL\nPRODU\nESCUELA INGENIERIA PRODUCCION INDUSTRIAL\nPRODUCCION\nASOCIACION ESTUDIANTES PRODUCCION INDUSTRIAL\nASOCIA PRODUCCION INDUSTRIAL\nASOCIACION PRODUCCION INDUSTRIAL\nASOCIA PRODU\nAEPITEC\nI3",
     "lat": 9.853792,
-    "long": -83.911544
+    "long": -83.911544,
+    "photo": "I6.jpg"
   },
   {
     "name": "I4",
@@ -561,7 +593,8 @@
     "name": "K1",
     "tags": "K1 - Mecatrónica - Electrónica - SESLab\nMECA\nMECATRONICA\nESCUELA MECATRONICA\nINGENIERIA MECATRONICA\nESCUELA INGENIERIA MECATRONICA\nASOCIACION ESTUDIANTES MECATRONICA\nASOCIA MECATRONICA\nASOCIACION MECATRONICA\nASOCIA MECA\nAEMTEC\nESCUELA INGENIERIA ELECTRONICA\nESCUELA ELECTRONICA\nELECTRONICA\nELECTRO\nASOCIACION ESTUDIANTES ELECTRONICA\nASOCIA ELECTRONICA\nASOCIACION ELECTRONICA\nASOCIA ELECTRO\nAESETEC\nSESLAB\nK1",
     "lat": 9.854908,
-    "long": -83.90717
+    "long": -83.90717,
+    "photo": "K1.jpg"
   },
   {
     "name": "K2",
@@ -657,13 +690,15 @@
     "name": "Pretil",
     "tags": "Pretil\nPRETIL",
     "lat": 9.855669,
-    "long": -83.912839
+    "long": -83.912839,
+    "photo": "PRETIL.jpg"
   },
   {
     "name": "Restaurante La Estación",
     "tags": "Restaurante La Estación\nRESTAURANTE FERROCARRIL\nFERROCARRIL\nESTACION\nRESTAURANTE ESTACION",
     "lat": 9.857338,
-    "long": -83.910859
+    "long": -83.910859,
+    "photo": "RESTAURANTE ESTACION.jpg"
   },
   {
     "name": "Sala de Fuerza",
@@ -693,7 +728,8 @@
     "name": "Soda La Casita Forestal",
     "tags": "Soda La Casita Forestal\nSODA FORESTAL\nCASITA FORESTAL\nSODA CASITA FORESTAL\nSODITA FORESTAL",
     "lat": 9.849587,
-    "long": -83.910394
+    "long": -83.910394,
+    "photo": "SODA CASITA FORESTAL.jpg"
   },
   {
     "name": "Tenis de mesa",
@@ -705,7 +741,8 @@
     "name": "Casa Tropika",
     "tags": "Casa Tropika\nCASA TROPIKA\nCASA TROPICA\nTROPICA\nTROPIKA",
     "lat": 9.853219,
-    "long": -83.905477
+    "long": -83.905477,
+    "photo": "TROPIKA.jpg"
   },
   {
     "name": "Voleibol",

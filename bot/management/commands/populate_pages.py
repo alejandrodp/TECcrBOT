@@ -1,4 +1,4 @@
-import subprocess, json
+import os.path, subprocess, json
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -100,9 +100,14 @@ def load_places():
         page = Page(ty = places.settings.PLACE_PAGES.ty)
         page.save()
 
+        photo = place.get('photo')
+        if photo:
+            photo = os.path.join('contrib/places/photos', photo)
+
         Place(
             id = page.id,
             name = place['name'],
             latitude = place['lat'],
             longitude = place['long'],
+            photo = photo,
         ).save()
