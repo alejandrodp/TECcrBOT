@@ -28,6 +28,3 @@ class Service(Model):
     description = TextField(max_length=5000)
     link = URLField(max_length=500)
     contact = TextField(max_length=5000)
-
-
-

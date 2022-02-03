@@ -15,7 +15,8 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
         text="Seleccione un tipo de transporte:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(vehicle.name, callback_data=f"{apps.TransportConfig.name}:t_type:{vehicle.id}")
+                IKB(vehicle.name,
+                    callback_data=f"{apps.TransportConfig.name}:t_type:{vehicle.id}")
                 for vehicle in Vehicle.objects.all()
             ]
         )
@@ -31,7 +32,8 @@ def _build_travel_list(vehicle: str) -> List[IKB]:
             end=trip.end_location
         )
 
-        trip.append(IKB(text, callback_data=f"{apps.TransportConfig.name}:travel:{trip.id}"))
+        trip.append(
+            IKB(text, callback_data=f"{apps.TransportConfig.name}:travel:{trip.id}"))
 
     return trip
 
@@ -73,9 +75,9 @@ def _build_schedule(travel: Trip):
                             .order_by('time')
                             .all()
                              ]))) if Schedule.objects
-                    .filter(day__in=range(1, 6))
-                    .filter(travel_id=travel.id)
-                    .filter(start_point_id=point.id).exists() else "No hay servicio"
+                .filter(day__in=range(1, 6))
+                .filter(travel_id=travel.id)
+                .filter(start_point_id=point.id).exists() else "No hay servicio"
             )
         )
 
@@ -112,9 +114,9 @@ def _build_time_schedule(day_index, travel_id, start_point_id) -> str:
                 .order_by('time')
                 .all()
                  ])) if Schedule.objects
-            .filter(day=day_index)
-            .filter(travel_id=travel_id)
-            .filter(start_point_id=start_point_id).exists() else "No hay servicio"
+        .filter(day=day_index)
+        .filter(travel_id=travel_id)
+        .filter(start_point_id=start_point_id).exists() else "No hay servicio"
     )
 
 

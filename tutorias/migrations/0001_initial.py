@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Course',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('code', models.TextField(max_length=6, unique=True)),
                 ('name', models.TextField(max_length=500)),
             ],
@@ -23,24 +24,28 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='School',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=500)),
             ],
         ),
         migrations.CreateModel(
             name='Tutoria',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('tutor', models.TextField(max_length=100)),
                 ('schedule', models.TextField(max_length=1000)),
                 ('place', models.TextField(max_length=500)),
                 ('contact', models.TextField(max_length=5000)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='tutorias.course')),
+                ('course', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='tutorias.course')),
             ],
         ),
         migrations.AddField(
             model_name='course',
             name='school',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='tutorias.school'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING, to='tutorias.school'),
         ),
     ]

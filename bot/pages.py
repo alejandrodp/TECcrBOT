@@ -11,6 +11,7 @@ class PageTy:
         self.page_builder = page_builder
         PageTy._tys[ty] = self
 
+
 def read_page_tys():
     #########################################
     # Do not remove, preserves import order #

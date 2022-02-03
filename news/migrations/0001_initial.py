@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Article',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('guid', models.IntegerField(unique=True)),
                 ('title', models.TextField(max_length=500)),
                 ('pub_date', models.DateTimeField()),
@@ -26,7 +27,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tag',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100)),
                 ('description', models.TextField(max_length=1000, null=True)),
                 ('index', models.IntegerField()),
@@ -36,13 +38,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ArticleTagged',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('article', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='news.article')),
-                ('tag', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='news.tag')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('article', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='news.article')),
+                ('tag', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='news.tag')),
             ],
         ),
         migrations.AddConstraint(
             model_name='articletagged',
-            constraint=models.UniqueConstraint(fields=('article', 'tag'), name='articletagged_article_tag_key'),
+            constraint=models.UniqueConstraint(
+                fields=('article', 'tag'), name='articletagged_article_tag_key'),
         ),
     ]

@@ -15,21 +15,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Function',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='Location',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='Person',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100)),
                 ('surname', models.TextField(max_length=100)),
                 ('email', models.TextField(max_length=500)),
@@ -40,39 +43,50 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ty',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='UnitTy',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='Unit',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100, unique=True)),
                 ('url', models.TextField(max_length=1000)),
-                ('location', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.location')),
-                ('ty', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.unitty')),
+                ('location', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.location')),
+                ('ty', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.unitty')),
             ],
         ),
         migrations.CreateModel(
             name='Role',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('department', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.unit')),
-                ('function', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.function')),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.person')),
-                ('ty', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.ty')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('department', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.unit')),
+                ('function', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.function')),
+                ('person', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.person')),
+                ('ty', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='directory.ty')),
             ],
         ),
         migrations.AddConstraint(
             model_name='role',
-            constraint=models.UniqueConstraint(fields=('person', 'department', 'ty', 'function'), name='role_person_department_ty_function_key'),
+            constraint=models.UniqueConstraint(fields=(
+                'person', 'department', 'ty', 'function'), name='role_person_department_ty_function_key'),
         ),
     ]

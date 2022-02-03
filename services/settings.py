@@ -8,7 +8,8 @@ from .util import index_services
 
 HANDLERS = [
     main_menu_entry('Servicios generales \U0001f3eb', main_entry),
-    CallbackQueryHandler(process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
+    CallbackQueryHandler(
+        process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
 ]
 
 PageTy(0, 'Servicios', index_services, None)

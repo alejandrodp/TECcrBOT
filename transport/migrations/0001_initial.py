@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Trip',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('start_location', models.TextField(max_length=100)),
                 ('end_location', models.TextField(max_length=100)),
                 ('price', models.IntegerField()),
@@ -25,42 +26,53 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Vehicle',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='WeekDay',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('day_index', models.IntegerField(unique=True, validators=[django.core.validators.MaxValueValidator(7), django.core.validators.MinValueValidator(1)])),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('day_index', models.IntegerField(unique=True, validators=[
+                 django.core.validators.MaxValueValidator(7), django.core.validators.MinValueValidator(1)])),
             ],
         ),
         migrations.CreateModel(
             name='TripStartPoint',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('description', models.TextField(max_length=1000)),
-                ('trip', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='transport.trip')),
+                ('trip', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='transport.trip')),
             ],
         ),
         migrations.AddField(
             model_name='trip',
             name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='transport.vehicle'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING, to='transport.vehicle'),
         ),
         migrations.CreateModel(
             name='Schedule',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('time', models.TimeField()),
-                ('day', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='transport.weekday')),
-                ('start_point', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='transport.tripstartpoint')),
-                ('travel', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='transport.trip')),
+                ('day', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='transport.weekday')),
+                ('start_point', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='transport.tripstartpoint')),
+                ('travel', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='transport.trip')),
             ],
         ),
         migrations.AddConstraint(
             model_name='tripstartpoint',
-            constraint=models.UniqueConstraint(fields=('description', 'trip'), name='tripstartpoint_description_trip_key'),
+            constraint=models.UniqueConstraint(
+                fields=('description', 'trip'), name='tripstartpoint_description_trip_key'),
         ),
     ]

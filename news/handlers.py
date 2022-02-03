@@ -15,8 +15,10 @@ def main_entry(update: Update, context: CallbackContext) -> None:
              'Seleccione una opción:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB('Ver últimas noticias', callback_data=f'{apps.NewsConfig.name}:category_select:58'),
-                IKB('Ver por categorías', callback_data=f'{apps.NewsConfig.name}:category_list:'),
+                IKB('Ver últimas noticias',
+                    callback_data=f'{apps.NewsConfig.name}:category_select:58'),
+                IKB('Ver por categorías',
+                    callback_data=f'{apps.NewsConfig.name}:category_list:'),
             ]
         )
     )
@@ -30,19 +32,20 @@ def categories_list(update: Update, context: CallbackContext) -> None:
     query.message.edit_text(
         text='Seleccione una categoría:\n\n'
              '{tags}'.format(
-            tags='\n\n'.join(
-                [
-                    f'<b>{t.name}</b>: {t.description}'
-                    for t in categories.all()
-                ]
-            )
-        ),
+                 tags='\n\n'.join(
+                     [
+                         f'<b>{t.name}</b>: {t.description}'
+                         for t in categories.all()
+                     ]
+                 )
+             ),
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(tag.name, callback_data=f'{apps.NewsConfig.name}:category_select:{tag.id}')
+                IKB(tag.name,
+                    callback_data=f'{apps.NewsConfig.name}:category_select:{tag.id}')
                 for tag in categories.all()
             ]
-        )
+             )
     )
 
 
@@ -51,7 +54,8 @@ def news_list(update: Update, context: CallbackContext) -> None:
 
     tag_id = query.data.split(':')[-1]
 
-    articles = Article.objects.filter(articletagged__tag_id=tag_id).order_by('-pub_date').all()
+    articles = Article.objects.filter(
+        articletagged__tag_id=tag_id).order_by('-pub_date').all()
     art_pages = Paginator(articles, 5)
 
     send_page(tag_id, query, 1, art_pages.num_pages, articles[:5])
@@ -65,7 +69,8 @@ def previous_page(update: Update, context: CallbackContext) -> None:
     current_page_index = int(data[-1])
     tag_id = data[-2]
 
-    articles = Article.objects.filter(articletagged__tag_id=tag_id).order_by('-pub_date').all()
+    articles = Article.objects.filter(
+        articletagged__tag_id=tag_id).order_by('-pub_date').all()
     art_pages = Paginator(articles, 5)
 
     current_page = art_pages.get_page(current_page_index)
@@ -85,7 +90,8 @@ def next_page(update: Update, context: CallbackContext) -> None:
     current_page_index = int(data[-1])
     tag_id = data[-2]
 
-    articles = Article.objects.filter(articletagged__tag_id=tag_id).order_by('-pub_date').all()
+    articles = Article.objects.filter(
+        articletagged__tag_id=tag_id).order_by('-pub_date').all()
     art_pages = Paginator(articles, 5)
 
     current_page = art_pages.get_page(current_page_index)
@@ -110,14 +116,19 @@ def send_page(tag_id, query, current_page, total_pages, articles):
         ),
         reply_markup=InlineKeyboardMarkup(
             [
-                [IKB(text=str(i), callback_data=f'{apps.NewsConfig.name}:article:{art.id}')]
+                [IKB(text=str(i),
+                     callback_data=f'{apps.NewsConfig.name}:article:{art.id}')]
                 for i, art in enumerate(articles, 1)
             ] + [[
-                IKB(text='Regresar a categorías️', callback_data=f'{apps.NewsConfig.name}:category_list:'),
+                IKB(text='Regresar a categorías️',
+                    callback_data=f'{apps.NewsConfig.name}:category_list:'),
             ]] + [[
-                IKB(text='◀️', callback_data=f'{apps.NewsConfig.name}:previous_articles:{tag_id}:{current_page}'),
-                IKB(text=f'{current_page}/{total_pages}', callback_data='ferwgr'),
-                IKB(text='▶️', callback_data=f'{apps.NewsConfig.name}:next_articles:{tag_id}:{current_page}'),
+                IKB(text='◀️',
+                    callback_data=f'{apps.NewsConfig.name}:previous_articles:{tag_id}:{current_page}'),
+                IKB(text=f'{current_page}/{total_pages}',
+                    callback_data='ferwgr'),
+                IKB(text='▶️',
+                    callback_data=f'{apps.NewsConfig.name}:next_articles:{tag_id}:{current_page}'),
             ]]
         )
     )

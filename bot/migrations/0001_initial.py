@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='page',
-            constraint=models.UniqueConstraint(fields=('id', 'ty'), name='page_id_type_unique'),
+            constraint=models.UniqueConstraint(
+                fields=('id', 'ty'), name='page_id_type_unique'),
         ),
     ]

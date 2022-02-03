@@ -38,7 +38,7 @@ class Place(Model):
         constraints = [
             CheckConstraint(
                 check=(Q(latitude__isnull=False) & Q(longitude__isnull=False)) |
-                      (Q(latitude__isnull=True) & Q(longitude__isnull=True)),
+                (Q(latitude__isnull=True) & Q(longitude__isnull=True)),
                 name='place_partial_location_not_allowed'
             )
         ]

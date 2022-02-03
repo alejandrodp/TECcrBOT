@@ -49,7 +49,6 @@ INSTALLED_APPS = [
 ] + BOT_APPS
 
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,9 +101,10 @@ LOGGING = {
     },
     # A logger for WARNING which has a handler called 'file'. A logger can have multiple handler
     'loggers': {
-       # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
+        # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
         '': {
-            'handlers': ['info'], #notice how file variable is called in handler which has been defined above
+            # notice how file variable is called in handler which has been defined above
+            'handlers': ['info'],
             'level': 'INFO',
             'propagate': True,
         },

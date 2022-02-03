@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='schedule',
             name='day',
-            field=models.IntegerField(validators=[django.core.validators.MaxValueValidator(7), django.core.validators.MinValueValidator(1)]),
+            field=models.IntegerField(validators=[django.core.validators.MaxValueValidator(
+                7), django.core.validators.MinValueValidator(1)]),
         ),
         migrations.DeleteModel(
             name='WeekDay',

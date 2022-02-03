@@ -14,28 +14,34 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Editor',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('telegram_id', models.BigIntegerField(unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='Edition',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('unique_id', models.UUIDField()),
                 ('field_type', models.CharField(max_length=100)),
                 ('text', models.CharField(max_length=5000)),
-                ('editor', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='places.editor')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='places.place')),
+                ('editor', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='places.editor')),
+                ('place', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='places.place')),
             ],
         ),
         migrations.CreateModel(
             name='Addition',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(max_length=5000)),
                 ('photo', models.CharField(max_length=1000, null=True)),
-                ('editor', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='places.editor')),
+                ('editor', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='places.editor')),
             ],
         ),
     ]

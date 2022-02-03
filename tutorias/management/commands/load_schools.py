@@ -10,10 +10,10 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         schools_data = requests.post(
-                url='https://tec-appsext.itcr.ac.cr/guiahorarios/escuela.aspx/cargaEscuelas',
-                headers={'Content-Type': 'application/json',
-                         'Accept': 'application/json, text/javascript, */*; q=0.01'},
-                verify=False
+            url='https://tec-appsext.itcr.ac.cr/guiahorarios/escuela.aspx/cargaEscuelas',
+            headers={'Content-Type': 'application/json',
+                     'Accept': 'application/json, text/javascript, */*; q=0.01'},
+            verify=False
         )
 
         if schools_data.status_code == 200:
@@ -43,7 +43,8 @@ class Command(BaseCommand):
                         courses = json.loads(courses)
                         print(f"Ingresando {len(courses)} cursos")
                         for i, c in enumerate(courses, 1):
-                            print(f"Ingresando curso {i}/{len(courses)}", end='\r')
+                            print(
+                                f"Ingresando curso {i}/{len(courses)}", end='\r')
                             if Course.objects.filter(code=c['IDE_MATERIA']).exists():
                                 continue
                             Course(
@@ -53,8 +54,10 @@ class Command(BaseCommand):
                             ).save()
                         print()
                     else:
-                        print(f'No hay cursos disponibles para {sc["DSC_DEPTO"]}')
+                        print(
+                            f'No hay cursos disponibles para {sc["DSC_DEPTO"]}')
                 else:
-                    print(f'No se pudo obtener los cursos para {sc["DSC_DEPTO"]}')
+                    print(
+                        f'No se pudo obtener los cursos para {sc["DSC_DEPTO"]}')
         else:
             print('No se pudo obtener las escuelas')

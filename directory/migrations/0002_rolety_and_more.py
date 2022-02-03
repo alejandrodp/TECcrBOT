@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RoleTy',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_function', models.BooleanField()),
             ],
         ),
@@ -73,11 +74,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='rolety',
             name='role',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.role'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING, to='directory.role'),
         ),
         migrations.AddField(
             model_name='rolety',
             name='ty',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='directory.ty'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING, to='directory.ty'),
         ),
     ]

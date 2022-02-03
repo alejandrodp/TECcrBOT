@@ -19,7 +19,8 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
         text="Seleccione una categoría:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(tag.name, callback_data=f"{apps.PlacesConfig.name}:tag_id:{tag.id}")
+                IKB(tag.name,
+                    callback_data=f"{apps.PlacesConfig.name}:tag_id:{tag.id}")
                 for tag in Tag.objects.all()
             ]
         )
@@ -35,7 +36,8 @@ def select_place(update: Update, context: CallbackContext) -> None:
         text="Seleccione un lugar:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(place.name, callback_data=f"{apps.PlacesConfig.name}:place_id:{place.id}")
+                IKB(place.name,
+                    callback_data=f"{apps.PlacesConfig.name}:place_id:{place.id}")
                 for place in Place.objects.filter(placetagged__tag_id=tag_id).all()
             ]
         )
@@ -62,21 +64,25 @@ def get_place(update: Update, context: CallbackContext) -> None:
     main_message_id = query.edit_message_text(
         text=response,
         reply_markup=InlineKeyboardMarkup.from_column([
-            IKB('Sugerir cambio', callback_data=f'{apps.PlacesConfig.name}:select_edit:{place_id}'),
+            IKB('Sugerir cambio',
+                callback_data=f'{apps.PlacesConfig.name}:select_edit:{place_id}'),
         ])
     ).message_id
 
     if place.latitude and place.longitude is None:
-        update.callback_query.message.reply_text("Ubicación no disponible", reply_to_message_id=main_message_id)
+        update.callback_query.message.reply_text(
+            "Ubicación no disponible", reply_to_message_id=main_message_id)
     else:
         update.callback_query.message.reply_location(latitude=place.latitude,
                                                      longitude=place.longitude,
                                                      reply_to_message_id=main_message_id)
 
     if place.photo.name == '':
-        update.callback_query.message.reply_text("Imagen no disponible", reply_to_message_id=main_message_id)
+        update.callback_query.message.reply_text(
+            "Imagen no disponible", reply_to_message_id=main_message_id)
     else:
-        update.callback_query.message.reply_photo(place.photo.open(mode='rb'), reply_to_message_id=main_message_id)
+        update.callback_query.message.reply_photo(
+            place.photo.open(mode='rb'), reply_to_message_id=main_message_id)
 
 
 def select_edit(update: Update, context: CallbackContext) -> None:
@@ -90,11 +96,16 @@ def select_edit(update: Update, context: CallbackContext) -> None:
         text='Seleccione el tipo de sugerencia:',
         reply_to_message_id=query.message.message_id,
         reply_markup=InlineKeyboardMarkup.from_column([
-            IKB('Nombre', callback_data=f'{apps.PlacesConfig.name}:request_edit:0:{place_id}'),
-            IKB('Ubicación', callback_data=f'{apps.PlacesConfig.name}:request_edit:1:{place_id}'),
-            IKB('Información de contacto', callback_data=f'{apps.PlacesConfig.name}:request_edit:2:{place_id}'),
-            IKB('Horario de apertura', callback_data=f'{apps.PlacesConfig.name}:request_edit:3:{place_id}'),
-            IKB('Imagen', callback_data=f'{apps.PlacesConfig.name}:request_edit:4:{place_id}'),
+            IKB('Nombre',
+                callback_data=f'{apps.PlacesConfig.name}:request_edit:0:{place_id}'),
+            IKB('Ubicación',
+                callback_data=f'{apps.PlacesConfig.name}:request_edit:1:{place_id}'),
+            IKB('Información de contacto',
+                callback_data=f'{apps.PlacesConfig.name}:request_edit:2:{place_id}'),
+            IKB('Horario de apertura',
+                callback_data=f'{apps.PlacesConfig.name}:request_edit:3:{place_id}'),
+            IKB('Imagen',
+                callback_data=f'{apps.PlacesConfig.name}:request_edit:4:{place_id}'),
         ])
     )
 
@@ -113,7 +124,8 @@ def request_edit(update: Update, context: CallbackContext) -> None:
         'i': int(place_id)
     }
 
-    data_encoded = base64.b64encode(json.dumps(data).encode('ascii')).decode('ascii')
+    data_encoded = base64.b64encode(
+        json.dumps(data).encode('ascii')).decode('ascii')
 
     title = CONTRIBUTION_TYPE[edit_type]['message']
     foot = CONTRIBUTION_TYPE[edit_type]['foot']
@@ -138,7 +150,8 @@ def _process_edition(ty, ticket, i, editor, update: Update) -> None:
 
     if ty == 1 and location:
         text = text.format(
-            object_data='\n'.join([f'Latitud: {location.latitude}', f'Longitud: {location.longitude}']),
+            object_data='\n'.join(
+                [f'Latitud: {location.latitude}', f'Longitud: {location.longitude}']),
             details='Sin detalles'
         )
     elif ty == 4 and update.message.photo:
@@ -194,5 +207,6 @@ def handle_text_edit(update: Update, context: CallbackContext) -> None:
             )
 
     except (binascii.Error, JSONDecodeError, UnicodeDecodeError, ValueError, KeyError) as e:
-        update.message.reply_text('Hubo un problema procesando su solicitud. Intente de nuevo.')
+        update.message.reply_text(
+            'Hubo un problema procesando su solicitud. Intente de nuevo.')
         raise e

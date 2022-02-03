@@ -10,13 +10,18 @@ from .util import index_places, show_place
 
 HANDLERS = [
     main_menu_entry('Ubicaciones \U0001f4cd', menu_entry),
-    CallbackQueryHandler(select_place, pattern=rf'{apps.PlacesConfig.name}:tag_id:\d*'),
-    CallbackQueryHandler(get_place, pattern=rf'{apps.PlacesConfig.name}:place_id:.*'),
-    CallbackQueryHandler(select_edit, pattern=rf'{apps.PlacesConfig.name}:select_edit:\d+'),
-    CallbackQueryHandler(request_edit, pattern=rf'{apps.PlacesConfig.name}:request_edit:\d+:\d+'),
+    CallbackQueryHandler(
+        select_place, pattern=rf'{apps.PlacesConfig.name}:tag_id:\d*'),
+    CallbackQueryHandler(
+        get_place, pattern=rf'{apps.PlacesConfig.name}:place_id:.*'),
+    CallbackQueryHandler(
+        select_edit, pattern=rf'{apps.PlacesConfig.name}:select_edit:\d+'),
+    CallbackQueryHandler(
+        request_edit, pattern=rf'{apps.PlacesConfig.name}:request_edit:\d+:\d+'),
     MessageHandler(Filters.reply &
                    (Filters.text | Filters.photo | Filters.location) &
-                   RegexReplyMessageFilter(r'(?:^Sugerencia de .* para el lugar .*\n.*\nDatos: )(.*)'),
+                   RegexReplyMessageFilter(
+                       r'(?:^Sugerencia de .* para el lugar .*\n.*\nDatos: )(.*)'),
                    handle_text_edit)
 ]
 

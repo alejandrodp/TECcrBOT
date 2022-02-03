@@ -13,6 +13,7 @@ from bot.pages import read_page_tys
 
 NO_ACCENT_ANALYZER = StandardAnalyzer() | CharsetFilter(accent_map)
 
+
 class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True, unique=True)

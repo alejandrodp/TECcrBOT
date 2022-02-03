@@ -19,7 +19,8 @@ def school_search(update: Update, context: CallbackContext) -> None:
         text='Las siguientes escuelas ofrecen tutorías:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(s.name, callback_data=f'{apps.TutoriasConfig.name}:choosing_school:{s.id}')
+                IKB(s.name,
+                    callback_data=f'{apps.TutoriasConfig.name}:choosing_school:{s.id}')
                 for s in School.objects.all()
             ]
         )
@@ -31,11 +32,13 @@ def process_school_selection(update: Update, context: CallbackContext) -> None:
 
     school_id = query.data.split(':')[-1]
 
-    db = Course.objects.filter(school_id=school_id).filter(tutoria__isnull=False).order_by('code').all()
+    db = Course.objects.filter(school_id=school_id).filter(
+        tutoria__isnull=False).order_by('code').all()
 
     pages = Paginator(db, 5)
 
-    _choose_course(query, pages.get_page(1).object_list, school_id, 1, pages.num_pages)
+    _choose_course(query, pages.get_page(1).object_list,
+                   school_id, 1, pages.num_pages)
 
 
 def process_course_selection(update: Update, context: CallbackContext) -> None:
@@ -63,7 +66,8 @@ def previous_page(update: Update, context: CallbackContext) -> None:
     current_page_index = int(data[-1])
     school_id = data[-2]
 
-    db = Course.objects.filter(school_id=school_id).filter(tutoria__isnull=False).order_by('code').all()
+    db = Course.objects.filter(school_id=school_id).filter(
+        tutoria__isnull=False).order_by('code').all()
     pages = Paginator(db, 5)
 
     current_page = pages.get_page(current_page_index)
@@ -87,7 +91,8 @@ def next_page(update: Update, context: CallbackContext) -> None:
     current_page_index = int(data[-1])
     school_id = data[-2]
 
-    db = Course.objects.filter(school_id=school_id).filter(tutoria__isnull=False).order_by('code').all()
+    db = Course.objects.filter(school_id=school_id).filter(
+        tutoria__isnull=False).order_by('code').all()
     pages = Paginator(db, 5)
 
     current_page = pages.get_page(current_page_index)
@@ -137,9 +142,12 @@ def _choose_course(query, db, school_id, current_page, total_pages):
                 IKB(text='Regresar a escuelas',
                     callback_data=f'{apps.TutoriasConfig.name}:school_search'),
             ]] + [[
-                IKB(text='◀️', callback_data=f'{apps.TutoriasConfig.name}:previous_courses:{school_id}:{current_page}'),
-                IKB(text=f'{current_page}/{total_pages}', callback_data='ferwgr'),
-                IKB(text='▶️', callback_data=f'{apps.TutoriasConfig.name}:next_courses:{school_id}:{current_page}'),
+                IKB(text='◀️',
+                    callback_data=f'{apps.TutoriasConfig.name}:previous_courses:{school_id}:{current_page}'),
+                IKB(text=f'{current_page}/{total_pages}',
+                    callback_data='ferwgr'),
+                IKB(text='▶️',
+                    callback_data=f'{apps.TutoriasConfig.name}:next_courses:{school_id}:{current_page}'),
             ]]
         )
     )

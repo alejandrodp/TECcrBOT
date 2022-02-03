@@ -37,7 +37,8 @@ def search_handler(update: Update, context: CallbackContext) -> None:
                 tys[r['ty']].append(r['id'])
 
         if results.is_empty():
-            update.message.reply_text(f'No se encontraron resultados para <i>{msg}</i>')
+            update.message.reply_text(
+                f'No se encontraron resultados para <i>{msg}</i>')
             return
 
         if len(tys.keys()) > 1:
@@ -77,13 +78,11 @@ def type_handler(update: Update, context: CallbackContext) -> None:
         cq.message.edit_text(
             text=f'Resultados de {read_page_tys()[ty].desc} para <i>{query}</i>',
             reply_markup=InlineKeyboardMarkup.from_column([
-                IKB(r['title'], callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{int(r["id"])}')
+                IKB(r['title'],
+                    callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{int(r["id"])}')
                 for r in results if r['ty'] == ty
             ])
         )
-
-
-
 
 
 def show_page(update: Update, context: CallbackContext) -> None:
@@ -98,5 +97,3 @@ def show_page(update: Update, context: CallbackContext) -> None:
         reply_markup=InlineKeyboardMarkup.from_column(page_buttons)
         if page_buttons else None
     )
-
-

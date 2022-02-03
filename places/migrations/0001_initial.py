@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Place',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=500, unique=True)),
                 ('latitude', models.FloatField(null=True)),
                 ('longitude', models.FloatField(null=True)),
@@ -27,24 +28,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tag',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField(max_length=500, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='PlaceTagged',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='places.place')),
-                ('tag', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='places.tag')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('place', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='places.place')),
+                ('tag', models.ForeignKey(
+                    on_delete=django.db.models.deletion.DO_NOTHING, to='places.tag')),
             ],
         ),
         migrations.AddConstraint(
             model_name='place',
-            constraint=models.CheckConstraint(check=models.Q(models.Q(('latitude__isnull', False), ('longitude__isnull', False)), models.Q(('latitude__isnull', True), ('longitude__isnull', True)), _connector='OR'), name='place_partial_location_not_allowed'),
+            constraint=models.CheckConstraint(check=models.Q(models.Q(('latitude__isnull', False), ('longitude__isnull', False)), models.Q(
+                ('latitude__isnull', True), ('longitude__isnull', True)), _connector='OR'), name='place_partial_location_not_allowed'),
         ),
         migrations.AddConstraint(
             model_name='placetagged',
-            constraint=models.UniqueConstraint(fields=('place', 'tag'), name='placetagged_place_tag_key'),
+            constraint=models.UniqueConstraint(
+                fields=('place', 'tag'), name='placetagged_place_tag_key'),
         ),
     ]

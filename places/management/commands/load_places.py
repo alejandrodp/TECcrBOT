@@ -8,7 +8,8 @@ from places.models import Place, Location
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        data = json.loads(open("/home/alejandro/projects/trcb-old/data/json/AEMTEC_TECCRbot_ubicaciones.json", "r").read())
+        data = json.loads(open(
+            "/home/alejandro/projects/trcb-old/data/json/AEMTEC_TECCRbot_ubicaciones.json", "r").read())
 
         for elm in data:
             ubicacion = elm['ubicacion'].split(", ")
@@ -23,21 +24,12 @@ class Command(BaseCommand):
                 print(f"Ubicación repetida: {elm}")
                 continue
 
-
             try:
                 Place(
                     name=nombre,
-                    location_id=Location.objects.get(latitude=ubicacion[0], longitude=ubicacion[1]).id
+                    location_id=Location.objects.get(
+                        latitude=ubicacion[0], longitude=ubicacion[1]).id
                 ).save()
             except IntegrityError:
                 print(f"Lugar con nombre repetido: {elm}")
                 continue
-
-
-
-
-
-
-
-
-
