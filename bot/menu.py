@@ -1,5 +1,5 @@
 from telegram import InlineKeyboardButton
-from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
+from telegram.ext import MessageHandler, Filters, CallbackQueryHandler, CommandHandler
 
 _main_menu = []
 
@@ -19,6 +19,10 @@ def main_menu_entry(title, handler):
 
 def add_message_handler(filters, callback):
     BotHandler._handlers.append(MessageHandler(filters, callback))
+
+
+def add_command_handler(command, callback):
+    BotHandler._handlers.append(CommandHandler(command, callback))
 
 
 class BotHandler:

@@ -1,15 +1,13 @@
-from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
-from whoosh.query import Query
 from whoosh.searching import Results
 
 from bot import apps
-from bot.menu import read_main_menu
 from bot.index import search, read_index
-from bot.models import Page
+from bot.menu import read_main_menu, BotHandler
 from bot.pages import read_page_tys
 
-IKB = InlineKeyboardButton
+handlers = BotHandler(apps.BotConfig.name)
 
 
 def main_menu(update: Update, context: CallbackContext) -> None:
@@ -44,16 +42,14 @@ def search_handler(update: Update, context: CallbackContext) -> None:
         if len(tys.keys()) > 1:
             text = f'Resultados para <i>{msg}</i>'
             buttons = [
-                IKB(f'{read_page_tys()[ty].desc} ({len(ids)})',
-                    callback_data=f'{apps.BotConfig.name}:get_type_pages:{ty}')
+                handlers.build_inline_button(f'{read_page_tys()[ty].desc} ({len(ids)})', 'get_type_pages', str(ty))
                 for ty, ids in tys.items()
             ]
         else:
             ty = tys.popitem()[0]
             text = f'Resultados de {read_page_tys()[ty].desc} para <i>{msg}</i>'
             buttons = [
-                IKB(f'{r["title"]}',
-                    callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{r["id"]}')
+                handlers.build_inline_button(f'{r["title"]}', 'get_page', str(ty), str(r["id"]))
                 for r in results
             ]
 
@@ -78,8 +74,7 @@ def type_handler(update: Update, context: CallbackContext) -> None:
         cq.message.edit_text(
             text=f'Resultados de {read_page_tys()[ty].desc} para <i>{query}</i>',
             reply_markup=InlineKeyboardMarkup.from_column([
-                IKB(r['title'],
-                    callback_data=f'{apps.BotConfig.name}:get_page:{ty}:{int(r["id"])}')
+                handlers.build_inline_button(r['title'], 'get_page', str(ty), r["id"])
                 for r in results if r['ty'] == ty
             ])
         )
