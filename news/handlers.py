@@ -2,9 +2,11 @@ from django.core.paginator import Paginator
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
+from bot.menu import BotHandler
 from news import apps
 from news.models import Tag, Article
 
+handlers = BotHandler(apps.NewsConfig.name)
 IKB = InlineKeyboardButton
 
 
@@ -15,10 +17,8 @@ def main_entry(update: Update, context: CallbackContext) -> None:
              'Seleccione una opción:',
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB('Ver últimas noticias',
-                    callback_data=f'{apps.NewsConfig.name}:category_select:58'),
-                IKB('Ver por categorías',
-                    callback_data=f'{apps.NewsConfig.name}:category_list:'),
+                handlers.build_inline_button('Ver últimas noticias', 'category_select', '58'),
+                handlers.build_inline_button('Ver por categorías', 'category_list'),
             ]
         )
     )
@@ -32,20 +32,19 @@ def categories_list(update: Update, context: CallbackContext) -> None:
     query.message.edit_text(
         text='Seleccione una categoría:\n\n'
              '{tags}'.format(
-                 tags='\n\n'.join(
-                     [
-                         f'<b>{t.name}</b>: {t.description}'
-                         for t in categories.all()
-                     ]
-                 )
-             ),
+            tags='\n\n'.join(
+                [
+                    f'<b>{t.name}</b>: {t.description}'
+                    for t in categories.all()
+                ]
+            )
+        ),
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(tag.name,
-                    callback_data=f'{apps.NewsConfig.name}:category_select:{tag.id}')
+                handlers.build_inline_button(tag.name, 'category_select', tag.id)
                 for tag in categories.all()
             ]
-             )
+        )
     )
 
 

@@ -4,7 +4,7 @@ import json
 from json import JSONDecodeError
 from uuid import uuid4, UUID
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram import Update, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from bot.menu import BotHandler
@@ -19,7 +19,7 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
         text="Seleccione una categoría:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                handlers.build_inline_button(tag.name, 'tag_id', tag.id)
+                handlers.build_inline_button(tag.name, 'tag_id', str(tag.id))
                 for tag in Tag.objects.all()
             ]
         )
@@ -35,9 +35,8 @@ def select_place(update: Update, context: CallbackContext) -> None:
         text="Seleccione un lugar:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(place.name,
-                    callback_data=f"{apps.PlacesConfig.name}:place_id:{place.id}")
-                for place in Place.objects.filter(placetagged__tag_id=tag_id).all()
+                handlers.build_inline_button(place.name, 'place_id', str(place.id))
+                for place in Place.objects.filter(placetagged__tag_id=int(tag_id)).all()
             ]
         )
     )
@@ -63,8 +62,7 @@ def get_place(update: Update, context: CallbackContext) -> None:
     main_message_id = query.edit_message_text(
         text=response,
         reply_markup=InlineKeyboardMarkup.from_column([
-            IKB('Sugerir cambio',
-                callback_data=f'{apps.PlacesConfig.name}:select_edit:{place_id}'),
+            handlers.build_inline_button('Sugerir cambio', 'select_edit', str(place_id))
         ])
     ).message_id
 
@@ -95,16 +93,11 @@ def select_edit(update: Update, context: CallbackContext) -> None:
         text='Seleccione el tipo de sugerencia:',
         reply_to_message_id=query.message.message_id,
         reply_markup=InlineKeyboardMarkup.from_column([
-            IKB('Nombre',
-                callback_data=f'{apps.PlacesConfig.name}:request_edit:0:{place_id}'),
-            IKB('Ubicación',
-                callback_data=f'{apps.PlacesConfig.name}:request_edit:1:{place_id}'),
-            IKB('Información de contacto',
-                callback_data=f'{apps.PlacesConfig.name}:request_edit:2:{place_id}'),
-            IKB('Horario de apertura',
-                callback_data=f'{apps.PlacesConfig.name}:request_edit:3:{place_id}'),
-            IKB('Imagen',
-                callback_data=f'{apps.PlacesConfig.name}:request_edit:4:{place_id}'),
+            handlers.build_inline_button('Nombre', 'request_edit', '0', str(place_id)),
+            handlers.build_inline_button('Ubicación', 'request_edit', '1', str(place_id)),
+            handlers.build_inline_button('Información de contacto', 'request_edit', '2', str(place_id)),
+            handlers.build_inline_button('Horario de apertura', 'request_edit', '2', str(place_id)),
+            handlers.build_inline_button('Imagen', 'request_edit', '4', str(place_id)),
         ])
     )
 

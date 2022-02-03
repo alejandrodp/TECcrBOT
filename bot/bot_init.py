@@ -34,15 +34,10 @@ def _add_default_handlers(dispatcher: Dispatcher):
 def _init_handlers(dispatcher: Dispatcher) -> None:
     _add_default_handlers(dispatcher)
 
-    import bot.settings
 
+    # import bot.settings
     for handler in BotHandler._handlers:
         dispatcher.add_handler(handler)
-
-    # for config in APP_CONFIGS.values():
-    #     handlers: list = getattr(config, 'HANDLERS', None)
-    #     for hdrl in handlers or ():
-    #         dispatcher.add_handler(hdrl)
 
     dispatcher.add_handler(MessageHandler(
         Filters.text & ~Filters.command, search_handler))
