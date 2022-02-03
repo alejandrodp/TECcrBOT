@@ -1,0 +1,716 @@
+[
+  {
+    "name": "A1",
+    "tags": "A1 - Financiero - Rectoría - Recursos Humanos - Vicerrectoría de Docencia - Vicerrectoría de Investigación y Extensión - Consejo Institucional - Dirección de Cooperación\nFINANCIERO CONTABLE\nFINANCIERO\nCONTABLE\nRECTORIA\nVICERRECTORIA INVESTIGACION EXTENSION\nVICERRECTORIA INVESTIGACION\nVICERRECTORIA EXTENSION\nVICERRECTORIA EXTENSION INVESTIGACION\nVICERRECTORIA DOCENCIA\nRECURSOS HUMANOS\nCONSEJO INSTITUCIONAL\nDIRECCION DE COOPERACION\nA1",
+    "lat": 9.857118,
+    "long": -83.912543
+  },
+  {
+    "name": "A2",
+    "tags": "A2 - Computación - DATIC\nCOMUNICACION MERCADEO\nMERCADEO\nESCUELA COMPUTACION\nCOMPUTACION\nCOMPU\nDATIC\nA2",
+    "lat": 9.856801,
+    "long": -83.912516
+  },
+  {
+    "name": "A3",
+    "tags": "A3 - Registro - VIESA - Orientación y Psicología - Trabajo Social\nBECAS\nBECA\nDAR\nREGISTRO\nADMISION\nADMISION REGISTRO\nTRABAJO SOCIAL\nVIESA\nVICERRECTORIA ESTUDIANTIL\nVICERRECTORIA VIDA ESTUDIANTIL\nVICERRECTORIA VIDA ESTUDIANTIL SERVICIOS ACADEMICOS\nVICERRECTORIA SERVICIOS ACADEMICOS\nORIENTACION PSICOLOGIA\nORIENTACION\nDOP\nA3",
+    "lat": 9.856646,
+    "long": -83.912941
+  },
+  {
+    "name": "A4",
+    "tags": "A4 - Física - Matemática - Ciencias Sociales - Gestión del turismo\nFISICA MATEMATICA CIENCIAS SOCIALES\nESCUELA CIENCIAS SOCIALES\nCIENCIAS SOCIALES\nFISICA\nESCUELA FISICA\nMATEMATICAS\nMATEMATICA\nESCUELA MATEMATICA\nESCUELA MATEMATICAS\nMATE\nESCUELA MATE\nGESTION TURISMO SOSTENIBLE\nGESTION TURISMO\nTURISMO\nA4\nASOCIACION ESTUDIANTES MATEMATICA\nASOCIA MATEMATICA\nASOCIACION ENSENANZA MATEMATICA\nASOCIA MATE\nAEEMAC",
+    "lat": 9.856072,
+    "long": -83.913167
+  },
+  {
+    "name": "A5",
+    "tags": "A5 - CIC\nCIC\nCENTRO INVESTIGACION COMPUTACION\nAUDITORIO CIC\nA5",
+    "lat": 9.856897,
+    "long": -83.912853
+  },
+  {
+    "name": "A8",
+    "tags": "Terminal de buses\nESTACION BUSES TEC\nBUSES TEC\nPARADA BUSES TEC\nTERMINAL BUSES\nA8",
+    "lat": 9.856021,
+    "long": -83.913461
+  },
+  {
+    "name": "A9",
+    "tags": "A9 - Cajero Banco Nacional\nCAJERO BANCO NACIONAL\nBANCO NACIONAL\nBNCR\nBN\nCAJERO BN\nA9",
+    "lat": 9.855867,
+    "long": -83.913285
+  },
+  {
+    "name": "Parada Alajuela-TEC",
+    "tags": "Parada Alajuela - TEC\nPARADA ALAJUELA-TEC\nBUSES ALAJUELA-TEC\nPARADA ALAJUELA TEC\nALAJUELA-TEC\nALAJUELA TEC",
+    "lat": 10.014437,
+    "long": -84.213315
+  },
+  {
+    "name": "Pista de Atletismo",
+    "tags": "Pista de atletismo - Plaza de Fútbol\nPLAZA FUTBOL\nPISTA ATLETISMO\nATLETISMO",
+    "lat": 9.856112,
+    "long": -83.909474
+  },
+  {
+    "name": "B1",
+    "tags": "B1",
+    "lat": 9.855942,
+    "long": -83.912633
+  },
+  {
+    "name": "B10",
+    "tags": "B10",
+    "lat": 9.855827,
+    "long": -83.91233
+  },
+  {
+    "name": "B11",
+    "tags": "B11",
+    "lat": 9.856161,
+    "long": -83.911478
+  },
+  {
+    "name": "B2",
+    "tags": "B2",
+    "lat": 9.856142,
+    "long": -83.912644
+  },
+  {
+    "name": "B3",
+    "tags": "B3 - LAIMI C - Tierra media - Laboratorios H\nLAIMI C\nTERRAMEDIA\nTERRA MEDIA\nASOCIACION ESTUDIANTES COMPUTACION\nASOCIA COMPUTACION\nASOCIACION COMPUTACION\nASOCIA COMPU\nASODEC\nTIERRA MEDIA\nTIERRAMEDIA\nH AZUL\nH ROJO\nLABORATORIO H\nLABORATORIOS H\nLAB H\nLABS H\nB3",
+    "lat": 9.856344,
+    "long": -83.912597
+  },
+  {
+    "name": "B4",
+    "tags": "B4 - FEITEC\nFEITEC\nB4",
+    "lat": 9.855986,
+    "long": -83.912075
+  },
+  {
+    "name": "B5",
+    "tags": "B5 - Cultura y Deporte - Equidad de Genero - TEE\nESCUELA CULTURA DEPORTE\nCULTURA DEPORTE\nESCUELA CULTURA\nESCUELA DEPORTE\nCULTURA\nEQUIDAD\nEQUIDAD GENERO\nB5\nTEE\nTRIBUNAL ELECTORAL ESTUDIANTIL\nTRIBUNAL ESTUDIANTIL",
+    "lat": 9.856328,
+    "long": -83.911753
+  },
+  {
+    "name": "B6",
+    "tags": "B6 - Editorial Tecnológica\nEDITORIAL\nEDITORIAL TECNOLOGICA\nEDITORIAL TEC\nB6",
+    "lat": 9.856561,
+    "long": -83.912008
+  },
+  {
+    "name": "B7",
+    "tags": "B7",
+    "lat": 9.855878,
+    "long": -83.911556
+  },
+  {
+    "name": "B8",
+    "tags": "B8",
+    "lat": 9.856096,
+    "long": -83.911403
+  },
+  {
+    "name": "Cancha de Baloncesto",
+    "tags": "Baloncesto\nBALONCESTO\nBASEKET\nBASEKETBALL\nBasquet\nCancha basquet",
+    "lat": 9.856828,
+    "long": -83.909791
+  },
+  {
+    "name": "Cancha de Beisbol",
+    "tags": "Beisbol\nBASEBALL\nCAMPO BEISBOL\nCANCHA BEISBOL",
+    "lat": 9.855797,
+    "long": -83.907553
+  },
+  {
+    "name": "C1",
+    "tags": "C1 - CEDA - AFITEC\nCEDA\nAFITEC\nC1",
+    "lat": 9.855675,
+    "long": -83.913115
+  },
+  {
+    "name": "C10",
+    "tags": "C10 - Comedor Institucional\nCOMEDOR\nCOMEDOR INSTITUCIONAL\nCOMEDOR ESTUDIANTIL\nRESTAURANTE INSTITUCIONAL\nMICROONDAS\nC10",
+    "lat": 9.855444,
+    "long": -83.912908
+  },
+  {
+    "name": "C3",
+    "tags": "C3 - Biblioteca - Centro de vinculación\nBIBLIOTECA\nBIBLIO\nCENTRO DE VINCULACION\nCENTRO VINCULACION\nVINCULACION\nC3",
+    "lat": 9.854951,
+    "long": -83.91266
+  },
+  {
+    "name": "C4",
+    "tags": "C4 - Laboratorios Química y Física\nLABORATORIO QUIMICA LABORATORIO FISICA\nLABORATORIO QUIMICA\nLABORATORIO FISICA\nLABORATORIOS QUIMICA FISICA\nLAB FISICA\nLAB QUIMICA\nCEQIATEC\nCEQUIATEC\nC4",
+    "lat": 9.855056,
+    "long": -83.913275
+  },
+  {
+    "name": "C9",
+    "tags": "C9 - LAIMI 1\nLAIMI 1\nLAIMI I\nLAIMI1\nC9",
+    "lat": 9.855444,
+    "long": -83.913325
+  },
+  {
+    "name": "A10",
+    "tags": "Cajero Banco Popular\nCAJERO BANCO POPULAR\nBP\nBANCO POPULAR\nCAJERO BP",
+    "lat": 9.855781,
+    "long": -83.913389
+  },
+  {
+    "name": "Cancha Sintética",
+    "tags": "Cancha Sintética\nCANCHA SINTETICA",
+    "lat": 9.855945,
+    "long": -83.90843
+  },
+  {
+    "name": "Cancha de Ténis",
+    "tags": "Cancha de tenis\nCANCHA TENIS",
+    "lat": 9.856699,
+    "long": -83.90914
+  },
+  {
+    "name": "Parada de Bus Cartago-TEC",
+    "tags": "Parada Cartago - TEC\nPARADA CARTAGO-TEC\nBUSES CARTAGO-TEC\nPARADA CARTAGO TEC\nCARTAGO-TEC\nCARTAGO TEC",
+    "lat": 9.863342,
+    "long": -83.920448
+  },
+  {
+    "name": "Casa de la Ciudad",
+    "tags": "Casa de la Ciudad\nCASA CIUDAD",
+    "lat": 9.865243,
+    "long": -83.922934
+  },
+  {
+    "name": "Centro de las Artes",
+    "tags": "Centro de las Artes\nCENTRO ARTES",
+    "lat": 9.857483,
+    "long": -83.911508
+  },
+  {
+    "name": "I5",
+    "tags": "I5 - Colegio Científico\nCOLEGIO\nCOLEGIO CIENTIFICO\nCIENTIFICO\nI5",
+    "lat": 9.853777,
+    "long": -83.911036
+  },
+  {
+    "name": "D1",
+    "tags": "D1 - Administración de Empresas - Laboratorio de Economía Experimental\nADMINISTRACION EMPRESAS\nADMINISTRACION\nESCUELA ADMINISTRACION\nESCUELA ADMINISTRACION EMPRESAS\nLABORATORIO ECONOMIA\nLABORATORIO ECONOMIA EXPERIMENTAL\nLAB ECONOMIA\nLAB ECONOMIA EXPERIMENTAL\nASOCIACION ESTUDIANTES ADMINISTRACION\nASOCIA ADMINISTRACION\nASOCIACION ADMINISTRACION\nASOCIA ADMI\nASOAE\nAUDITORIO AE\nAUDITORIO ADMINISTRACION EMPRESAS\nAUDITORIO ADMI\nD1",
+    "lat": 9.855672,
+    "long": -83.912314
+  },
+  {
+    "name": "D10",
+    "tags": "D10 - Electromecánica\nESCUELA INGENIERIA ELECTROMECANICA\nELECTROMECANICA\nINGENIERIA ELECTROMECANICA\nESCUELA ELECTROMECANICA\nMANTENIMIENTO\nMANTE\nESCUELA MANTENIMIENTO\nESCUELA MANTE\nESCUELA MANTENIMIENTO INDUSTRIAL\nMANTENIMIENTO INDUSTRIAL\nASOCIACION ESTUDIANTES MANTE\nASOCIACION MANTE\nASOCIA MANTE\nASIEM\nD10",
+    "lat": 9.854908,
+    "long": -83.911372
+  },
+  {
+    "name": "D11",
+    "tags": "D11",
+    "lat": 9.854592,
+    "long": -83.911656
+  },
+  {
+    "name": "D2",
+    "tags": "D2 - TEC Digital - SIMTEC - CPI - Monitoreo\nTECDIGITAL\nTEC DIGITAL\nSIMTEC\nSIM TEC\nCPI\nMONITOREO\nOFICINA DE MONITOREO\nD2",
+    "lat": 9.855647,
+    "long": -83.911844
+  },
+  {
+    "name": "D3",
+    "tags": "D3 - Auditorio D3\nAUDITORIO D3\nD3",
+    "lat": 9.855553,
+    "long": -83.911322
+  },
+  {
+    "name": "D4",
+    "tags": "D4 - Proveduría - Aprovisionamiento\nPROVEDURIA\nAPROVISIONAMIENTO\nD4",
+    "lat": 9.855506,
+    "long": -83.910933
+  },
+  {
+    "name": "D5",
+    "tags": "D5 - Librería\nLIBRERIA\nD5",
+    "lat": 9.855439,
+    "long": -83.912239
+  },
+  {
+    "name": "D6",
+    "tags": "D6 - Central Telefónica\nCENTRAL TELEFONICA\nTELEFONOS\nD6",
+    "lat": 9.855386,
+    "long": -83.912022
+  },
+  {
+    "name": "D7",
+    "tags": "D7 - Escuela de ATI\nESCUELA ATI\nATI\nASOCIACION ESTUDIANTES ATI\nASOCIACION ATI\nASOCIA ATI\nASEATI\nD7",
+    "lat": 9.855283,
+    "long": -83.911547
+  },
+  {
+    "name": "D8",
+    "tags": "D8 - AIR - Publicaciones - Banco Crédito Agrícola\nAIR\nSERVICIOS GENERALES\nSERVICIOS INSTITUCIONALES\nPUBLICACIONES\nTALLER PUBLICACIONES\nBANCO CREDITO AGRICOLA\nBANCREDITO\nD8",
+    "lat": 9.855167,
+    "long": -83.910906
+  },
+  {
+    "name": "D9",
+    "tags": "D9",
+    "lat": 9.855264,
+    "long": -83.910656
+  },
+  {
+    "name": "Señor del Carrito",
+    "tags": "Señor del carrito del TEC\nSENOR CARRITO TEC\nSENOR CARRITO\nCARRITO TEC\nDON TONO",
+    "lat": 9.855791,
+    "long": -83.912624
+  },
+  {
+    "name": "E1",
+    "tags": "E1 - Gimnasio TEC\nGIMNASIO TEC\nE1",
+    "lat": 9.856992,
+    "long": -83.910794
+  },
+  {
+    "name": "E11",
+    "tags": "E11 - Gimnasio ASETEC\nGIMNASIO ASETEC\nGIMNASIO\nE11",
+    "lat": 9.856535,
+    "long": -83.910773
+  },
+  {
+    "name": "E2",
+    "tags": "E2 - Piscina\nPISCINAS\nPISCINA\nE2",
+    "lat": 9.856897,
+    "long": -83.910408
+  },
+  {
+    "name": "E6",
+    "tags": "E6 - Unidad Deportiva\nUNIDAD DEPORTIVA\nAJEDREZ\nAULA AJEDREZ\nE6",
+    "lat": 9.856586,
+    "long": -83.910517
+  },
+  {
+    "name": "Entrada Principal",
+    "tags": "Entrada Principal del TEC\nENTRADA AL TEC\nENTRADA\nENTRADA PRINCIPAL TEC\nENTRADA TEC",
+    "lat": 9.857852,
+    "long": -83.913009
+  },
+  {
+    "name": "Estación de Tren de la Basílica",
+    "tags": "Estación de tren de la Basílica\nESTACION TREN BASILICA\nESTACION BASILICA",
+    "lat": 9.864166,
+    "long": -83.911238
+  },
+  {
+    "name": "Estación de Tren de Cartago",
+    "tags": "Estación de tren de Cartago\nESTACION TREN CARTAGO\nESTACION CARTAGO",
+    "lat": 9.866561,
+    "long": -83.922108
+  },
+  {
+    "name": "Estación de Tren del Atlántico",
+    "tags": "Estación de tren del Atlántico\nESTACION TREN ATLANTICO\nESTACION SAN JOSE",
+    "lat": 9.934816,
+    "long": -84.069011
+  },
+  {
+    "name": "F1",
+    "tags": "F1 - Construcción - Biotecnología - Biología\nESCUELA INGENIERIA CONSTRUCCION\nCONSTRUCCION\nESCUELA CONSTRUCCION\nESCUELA BIOTECNOLOGIA\nBIOTECNOLOGIA\nBIOLOGIA\nESCUELA BIOLOGIA\nASOCIACION ESTUDIANTES CONSTRUCCION\nASOCIA CONSTRUCCION\nASOCIACION CONSTRUCCION\nASOCIA CONSTRU\nAEICO\nASOCIACION ESTUDIANTES BIOTECNOLOGIA\nASOCIA BIOTECNOLOGIA\nASOCIACION BIOTECNOLOGIA\nASOCIA BIOTEC\nASEIBIO\nREGIONALIZACION\nF1",
+    "lat": 9.8552,
+    "long": -83.909489
+  },
+  {
+    "name": "F10",
+    "tags": "F10 - LAIMI 2 - Sala de Aplicaciones\nLAIMI 2\nLAIMI II\nLAIMI2\nSALA APLICACIONES\nAPLICACIONES INGENIERIA\nSALA APLICACIONES INGENIERIA\nF10",
+    "lat": 9.855061,
+    "long": -83.908289
+  },
+  {
+    "name": "F11",
+    "tags": "F11 - Clínica\nCLINICA SALUD\nSALUD\nCLINICA\nMEDICINA\nODONTOLOGIA\nPSICOLOGIA CLINICA\nENFERMERIA\nF11",
+    "lat": 9.855158,
+    "long": -83.909744
+  },
+  {
+    "name": "F2",
+    "tags": "F2 - Computadores\nESCUELA INGENIERIA COMPUTADORES\nESCUELA COMPUTADORES\nCOMPUTADORES\nASOCIACION ESTUDIANTES COMPUTADORES\nASOCIACION COMPUTADORES\nASOCIA COMPUTADORES\nASEIC",
+    "lat": 9.855278,
+    "long": -83.909053
+  },
+  {
+    "name": "F3",
+    "tags": "F3 - Laboratorios de Electrónica - LIRA - SIPLAB - DCILAB\nLABORATORIOS ELECTRONICA\nLIRA\nSIPLAB\nDCILAB\nF3",
+    "lat": 9.854956,
+    "long": -83.909081
+  },
+  {
+    "name": "F4",
+    "tags": "F4 - Corte Láser - Impresión 3D\nCORTE LASER\nIMPRIMIR 3D\nIMPRESION 3D\nIMPRESIONES 3D\nF4",
+    "lat": 9.855242,
+    "long": -83.908608
+  },
+  {
+    "name": "F5",
+    "tags": "F5",
+    "lat": 9.854925,
+    "long": -83.908608
+  },
+  {
+    "name": "F6",
+    "tags": "F6 - Casa Luna\nCASA LUNA\nSODA CASA LUNA\nRESTAURANTE CASA LUNA\nF6",
+    "lat": 9.855272,
+    "long": -83.910114
+  },
+  {
+    "name": "F9",
+    "tags": "F9 - Ciencias del Lenguaje\nESCUELA CIENCIAS LENGUAJE\nCIENCIAS LENGUAJE\nLENGUAJE\nLENGUAS\nESCUELA LENGUAS\nESCUELA LENGUAJE\nECL\nLABORATORIO INGLES\nINGLES\nF9",
+    "lat": 9.854897,
+    "long": -83.907942
+  },
+  {
+    "name": "Fotocopiadora A4",
+    "tags": "Fotocopiadora frente al A4\nFOTOCOPIADORA FRENTE A4\nFOTOCOPIADORA A4",
+    "lat": 9.856358,
+    "long": -83.912904
+  },
+  {
+    "name": "Fotocopiadora F1",
+    "tags": "Fotocopiadora frente al F1\nFOTOCOPIADORA FRENTE F1\nFOTOCOPIADORA F1",
+    "lat": 9.854986,
+    "long": -83.909276
+  },
+  {
+    "name": "FUNDATEC",
+    "tags": "FUNDATEC\nFUNDACION TECNOLOGICA\nFUNDACION TECNOLOGICA COSTA RICA\nFUNDATEC",
+    "lat": 9.852842,
+    "long": -83.912167
+  },
+  {
+    "name": "G1",
+    "tags": "G1 - Agronegocios - Agroforestal\nAGRONEGOCIOS\nESCUELA AGRONEGOCIOS\nESCUELA INGENIERIA AGRONEGOCIOS\nAGROFORESTAL\nAGRO\nASOCIACION ESTUDIANTES AGRONEGOCIOS\nASOCIACION AGRONEGOCIOS\nASOCIA AGRONEGOCIOS\nAESIA\nG1",
+    "lat": 9.854406,
+    "long": -83.90917
+  },
+  {
+    "name": "G13",
+    "tags": "G13 - Soda El Lago\nCAFETERIA LAGO\nSODA LAGO\nCAFETERIA\nG13",
+    "lat": 9.854273,
+    "long": -83.910321
+  },
+  {
+    "name": "G14",
+    "tags": "G14 - Unidad de Transporte\nUNIDAD TRANSPORTE\nTRANSPORTE\nG14",
+    "lat": 9.853872,
+    "long": -83.910036
+  },
+  {
+    "name": "G16",
+    "tags": "G16 - TIPTEC\nTIPTEC\nTALLER INFANTIL\nKINDER\nG16",
+    "lat": 9.854647,
+    "long": -83.910039
+  },
+  {
+    "name": "G17",
+    "tags": "G17\nG17",
+    "lat": 9.853644,
+    "long": -83.907881
+  },
+  {
+    "name": "G18",
+    "tags": "G18",
+    "lat": 9.854494,
+    "long": -83.909294
+  },
+  {
+    "name": "G19",
+    "tags": "G19 - Centro de Investigación en Biotecnología\nCIB\nCENTRO INVESTIGACION BIOTECNOLOGIA\nCENTRO DE INVESTIGACION EN BIOTECNOLOGIA\nG19",
+    "lat": 9.853059,
+    "long": -83.907611
+  },
+  {
+    "name": "G2",
+    "tags": "G2",
+    "lat": 9.8545,
+    "long": -83.9088
+  },
+  {
+    "name": "G3",
+    "tags": "G3",
+    "lat": 9.8542,
+    "long": -83.9088
+  },
+  {
+    "name": "G4",
+    "tags": "G4",
+    "lat": 9.8542,
+    "long": -83.908369
+  },
+  {
+    "name": "G5",
+    "tags": "G5",
+    "lat": 9.854147,
+    "long": -83.907914
+  },
+  {
+    "name": "G6",
+    "tags": "G6 - CIVCO\nCENTRO INVESTIGACION VIVIENDA Y CONSTRUCCION\nCENTRO INVESTIGACION VIVIENDA\nCENTRO INVESTIGACION CONSTRUCCION\nCIVCO\nG6",
+    "lat": 9.854364,
+    "long": -83.907503
+  },
+  {
+    "name": "G7",
+    "tags": "G7- Cultivo de tejidos\nG7",
+    "lat": 9.853933,
+    "long": -83.908369
+  },
+  {
+    "name": "G8",
+    "tags": "Departamente de Administración de Mantenimiento\nDEPARTAMENTO DE ADMINISTRACION DE MANTENIMIENTO\nDEPARTAMENTO MANTENIMIENTO\nDAM\nG8",
+    "lat": 9.854414,
+    "long": -83.909689
+  },
+  {
+    "name": "H1",
+    "tags": "H1 - Vivero\nVIVERO\nVIVERO FORESTAL\nH1",
+    "lat": 9.853061,
+    "long": -83.909175
+  },
+  {
+    "name": "H3",
+    "tags": "H3 - Agrícola\nAGRICOLA\nESCUELA AGRICOLA\nESCUELA INGENIERIA AGRICOLA\nASOCIACION ESTUDIANTES AGRICOLA\nASOCIACION AGRICOLA\nASOCIA AGRICOLA\nASOAGRI\nH3",
+    "lat": 9.853492,
+    "long": -83.909683
+  },
+  {
+    "name": "H4",
+    "tags": "H4 - Maquinaria Agrícola\nMAQUINARIA AGRICOLA\nH4",
+    "lat": 9.853203,
+    "long": -83.909661
+  },
+  {
+    "name": "H5",
+    "tags": "H5 - CEPDIA\nCEPDIA\nCAMPO PRACTICAS DOCENTE E INVESTIGACION AGROPECUARIA\nINVESTIGACION AGROPECUARIA\nH5",
+    "lat": 9.853706,
+    "long": -83.910571
+  },
+  {
+    "name": "H6",
+    "tags": "H6",
+    "lat": 9.853458,
+    "long": -83.910516
+  },
+  {
+    "name": "I1",
+    "tags": "I1 - Materiales\nESCUELA INGENIERIA MATERIALES\nMATERIALES\nESCUELA MATERIALES\nI1",
+    "lat": 9.853714,
+    "long": -83.912031
+  },
+  {
+    "name": "I2",
+    "tags": "ASOCIACION ESTUDIANTES MATERIALES\nASOCIACION MATERIALES\nASOCIA MATERIALES\nACIM\nI2",
+    "lat": 9.853653,
+    "long": -83.911769
+  },
+  {
+    "name": "I3",
+    "tags": "I3 - Producción Industrial\nESCUELA PRODUCCION INDUSTRIAL\nESCUELA PRODU\nESCUELA PRODUCCION\nPRODUCCION INDUSTRIAL\nPRODU\nESCUELA INGENIERIA PRODUCCION INDUSTRIAL\nPRODUCCION\nASOCIACION ESTUDIANTES PRODUCCION INDUSTRIAL\nASOCIA PRODUCCION INDUSTRIAL\nASOCIACION PRODUCCION INDUSTRIAL\nASOCIA PRODU\nAEPITEC\nI3",
+    "lat": 9.853792,
+    "long": -83.911544
+  },
+  {
+    "name": "I4",
+    "tags": "I4",
+    "lat": 9.853611,
+    "long": -83.912324
+  },
+  {
+    "name": "I6",
+    "tags": "I6",
+    "lat": 9.853361,
+    "long": -83.912
+  },
+  {
+    "name": "J1",
+    "tags": "J1",
+    "lat": 9.859054,
+    "long": -83.912638
+  },
+  {
+    "name": "J2",
+    "tags": "J2",
+    "lat": 9.85903,
+    "long": -83.912256
+  },
+  {
+    "name": "J5",
+    "tags": "J5",
+    "lat": 9.858632,
+    "long": -83.911262
+  },
+  {
+    "name": "J6",
+    "tags": "J6",
+    "lat": 9.85831,
+    "long": -83.911037
+  },
+  {
+    "name": "K1",
+    "tags": "K1 - Mecatrónica - Electrónica - SESLab\nMECA\nMECATRONICA\nESCUELA MECATRONICA\nINGENIERIA MECATRONICA\nESCUELA INGENIERIA MECATRONICA\nASOCIACION ESTUDIANTES MECATRONICA\nASOCIA MECATRONICA\nASOCIACION MECATRONICA\nASOCIA MECA\nAEMTEC\nESCUELA INGENIERIA ELECTRONICA\nESCUELA ELECTRONICA\nELECTRONICA\nELECTRO\nASOCIACION ESTUDIANTES ELECTRONICA\nASOCIA ELECTRONICA\nASOCIACION ELECTRONICA\nASOCIA ELECTRO\nAESETEC\nSESLAB\nK1",
+    "lat": 9.854908,
+    "long": -83.90717
+  },
+  {
+    "name": "K2",
+    "tags": "K2 - Escuela de Seguridad Laboral e Higiene Ambiental\nESCUELA SEGURIDAD\nSEGURIDAD LABORAL E HIGIENE AMBIENTAL\nSEGURIDAD LABORAL\nESCUELA SEGURIDAD LABORAL\nESCUELA SEGURIDAD LABORAL E HIGIENE AMBIENTAL\nSEGURIDAD OCUPACIONAL\nASOCIACION ESTUDIANTES SEGURIDAD LABORAL\nASOCIA SEGURIDAD LABORAL\nASOCIACION SEGURIDAD LABORAL\nASOCIA SEGURIDAD\nASEISLHA\nK2",
+    "lat": 9.854326,
+    "long": -83.907098
+  },
+  {
+    "name": "K3",
+    "tags": "K3 - Learning Commons\nLEARNING COMMONS\nCOMMONS\nLEARNING\nLEARNING COMMONS\nK3",
+    "lat": 9.854314,
+    "long": -83.906683
+  },
+  {
+    "name": "K4",
+    "tags": "K4 - Comedor estudiantil\nK4",
+    "lat": 9.853941,
+    "long": -83.906925
+  },
+  {
+    "name": "K5",
+    "tags": "K5 - Escuela de Química - Ambiental\nESCUELA QUIMICA\nQUIMICA\nAMBIENTAL\nESCUELA AMBIENTAL\nESCUELA INGENIERIA AMBIENTAL\nK5",
+    "lat": 9.853416,
+    "long": -83.907064
+  },
+  {
+    "name": "K6",
+    "tags": "K6 - Diseño - ASEIDI\nESCUELA DISENO\nDISENO\nESCUELA DISENO INDUSTRIAL\nDISENO INDUSTRIAL\nDISENO\nK6\nASOCIACION ESTUDIANTES DISENO\nASOCIACION DISENO\nASOCIA DISENO\nASEIDI",
+    "lat": 9.853666,
+    "long": -83.905921
+  },
+  {
+    "name": "L1",
+    "tags": "L1",
+    "lat": 9.849934,
+    "long": -83.911083
+  },
+  {
+    "name": "L2",
+    "tags": "L2",
+    "lat": 9.849974,
+    "long": -83.910758
+  },
+  {
+    "name": "L3",
+    "tags": "L3 - Forestal\nFORES\nFORESTAL\nESCUELA FORESTAL\nESCUELA INGENIERIA FORESTAL\nINGENIERIA FORESTAL\nASOCIACION ESTUDIANTES FORESTAL\nASOCIA FORESTAL\nASOCIACION FORESTAL\nASOCIA FORES\nASEFOR\nL3",
+    "lat": 9.849709,
+    "long": -83.910755
+  },
+  {
+    "name": "L4",
+    "tags": "L4 - CIF\nCIF\nL4",
+    "lat": 9.849968,
+    "long": -83.910202
+  },
+  {
+    "name": "Lago",
+    "tags": "Lago\nLAGO",
+    "lat": 9.854514,
+    "long": -83.910606
+  },
+  {
+    "name": "Laboratorio de Economía Experimental (LEXTEC)",
+    "tags": "Laboratorio de economia experimental\nlextec\nlex tec\n",
+    "lat": 9.855672,
+    "long": -83.912314
+  },
+  {
+    "name": "LUMACA",
+    "tags": "LUMACA",
+    "lat": 9.867172,
+    "long": -83.922428
+  },
+  {
+    "name": "Centro de acopio (MADI)",
+    "tags": "MADI\nCENTRO ACOPIO\nACOPIO",
+    "lat": 9.853219,
+    "long": -83.905477
+  },
+  {
+    "name": "Planta de tratamiento",
+    "tags": "planta de tratamiento\nplanta de tratamiento de aguas\ntratamiento de aguas",
+    "lat": 9.852126,
+    "long": -83.906095
+  },
+  {
+    "name": "Laboratorio de Plasmas para Energía de Fusión y Aplicaciones",
+    "tags": "PlasmaTEC\nPLASMA\nPLASMATEC",
+    "lat": 9.854435,
+    "long": -83.908345
+  },
+  {
+    "name": "Pretil",
+    "tags": "Pretil\nPRETIL",
+    "lat": 9.855669,
+    "long": -83.912839
+  },
+  {
+    "name": "Restaurante La Estación",
+    "tags": "Restaurante La Estación\nRESTAURANTE FERROCARRIL\nFERROCARRIL\nESTACION\nRESTAURANTE ESTACION",
+    "lat": 9.857338,
+    "long": -83.910859
+  },
+  {
+    "name": "Sala de Fuerza",
+    "tags": "Sala de fuerza\nSALA FUERZA\nSALON FUERZA",
+    "lat": 9.85705,
+    "long": -83.9109
+  },
+  {
+    "name": "Parada San José-TEC (mañana)",
+    "tags": "Parada San José - TEC mañana\nPARADA SAN JOSE-TEC MANANA\nBUSES SAN JOSE-TEC MANANA\nPARADA SAN JOSE TEC MANANA\nSAN JOSE-TEC MANANA\nSAN JOSE TEC MANANA",
+    "lat": 9.930892,
+    "long": -84.076899
+  },
+  {
+    "name": "Parada San José-TEC (tarde)",
+    "tags": "Parada San José - TEC tarde\nPARADA SAN JOSE-TEC TARDE\nBUSES SAN JOSE-TEC TARDE\nPARADA SAN JOSE TEC TARDE\nSAN JOSE-TEC TARDE\nSAN JOSE TEC TARDE",
+    "lat": 9.934442,
+    "long": -84.074556
+  },
+  {
+    "name": "ASETEC",
+    "tags": "Super ASETEC\nSUPER ASETEC\nSODA ASETEC",
+    "lat": 9.855439,
+    "long": -83.912239
+  },
+  {
+    "name": "Soda La Casita Forestal",
+    "tags": "Soda La Casita Forestal\nSODA FORESTAL\nCASITA FORESTAL\nSODA CASITA FORESTAL\nSODITA FORESTAL",
+    "lat": 9.849587,
+    "long": -83.910394
+  },
+  {
+    "name": "Tenis de mesa",
+    "tags": "Tenis de mesa\nTENIS MESA\nTENIS",
+    "lat": 9.85705,
+    "long": -83.9109
+  },
+  {
+    "name": "Casa Tropika",
+    "tags": "Casa Tropika\nCASA TROPIKA\nCASA TROPICA\nTROPICA\nTROPIKA",
+    "lat": 9.853219,
+    "long": -83.905477
+  },
+  {
+    "name": "Voleibol",
+    "tags": "Voleibol\nVOLEYBALL\nCANCHA VOLEYBALL\nCANCHA DE VOLLEYBALL",
+    "lat": 9.856907,
+    "long": -83.909161
+  }
+]
