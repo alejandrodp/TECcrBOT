@@ -7,20 +7,19 @@ from uuid import uuid4, UUID
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 
+from bot.menu import BotHandler
 from places import apps
 from places.constants import CONTRIBUTION_TYPE
 from places.models import Tag, Place, Editor, Edition
 
-IKB = InlineKeyboardButton
-
+handlers = BotHandler(apps.PlacesConfig.name)
 
 def menu_entry(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
         text="Seleccione una categoría:",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                IKB(tag.name,
-                    callback_data=f"{apps.PlacesConfig.name}:tag_id:{tag.id}")
+                handlers.build_inline_button(tag.name, 'tag_id', tag.id)
                 for tag in Tag.objects.all()
             ]
         )

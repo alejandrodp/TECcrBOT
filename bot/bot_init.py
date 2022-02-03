@@ -7,6 +7,7 @@ from telegram.ext import Updater, Dispatcher, CommandHandler, Defaults, Handler,
     CallbackQueryHandler
 
 from bot import apps
+from bot.menu import BotHandler
 from bot.settings import APP_CONFIGS
 from bot.handlers import main_menu, type_handler, search_handler, show_page
 
@@ -33,10 +34,15 @@ def _add_default_handlers(dispatcher: Dispatcher):
 def _init_handlers(dispatcher: Dispatcher) -> None:
     _add_default_handlers(dispatcher)
 
-    for config in APP_CONFIGS.values():
-        handlers: list = getattr(config, 'HANDLERS', None)
-        for hdrl in handlers or ():
-            dispatcher.add_handler(hdrl)
+    import bot.settings
+
+    for handler in BotHandler._handlers:
+        dispatcher.add_handler(handler)
+
+    # for config in APP_CONFIGS.values():
+    #     handlers: list = getattr(config, 'HANDLERS', None)
+    #     for hdrl in handlers or ():
+    #         dispatcher.add_handler(hdrl)
 
     dispatcher.add_handler(MessageHandler(
         Filters.text & ~Filters.command, search_handler))
