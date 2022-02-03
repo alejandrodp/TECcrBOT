@@ -1,4 +1,4 @@
-import os.path, subprocess, json
+import subprocess, json
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -6,7 +6,9 @@ from django.db import transaction
 
 from bot.models import Page
 from directory.models import Person, Ty, Location, Unit, Role, RoleTy
+from places.models import Place
 import directory.settings
+import places.settings
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
@@ -14,19 +16,23 @@ class Command(BaseCommand):
 
 @transaction.atomic
 def load_all():
-    for clazz in (Page, Person, Ty, Location, Unit, Role, RoleTy):
+    for clazz in (Page, Person, Ty, Location, Unit, Role, RoleTy, Place):
         assert clazz.objects.count() == 0, 'This operation requires a db flush'
 
-    scrap_dir = os.path.join(settings.BASE_DIR, 'contrib/people')
+    load_people()
+    load_places()
+
+def load_people():
+    scrap_dir = settings.BASE_DIR / 'contrib/people'
     scrap = subprocess.run(
         [
-            os.path.join(scrap_dir, 'tag_edit.py'),
+            scrap_dir / 'tag_edit.py',
             '-o',
             '/dev/stdout',
             '-f',
-            os.path.join(scrap_dir, 'tec.json'),
+            scrap_dir / 'tec.json',
             '-l',
-            os.path.join(scrap_dir, 'log.json'),
+            scrap_dir / 'log.json',
             '--role',
             'replay',
         ],
@@ -85,3 +91,18 @@ def load_all():
 
             insert_tys('types', False)
             insert_tys('functions', True)
+
+def load_places():
+    with open(settings.BASE_DIR / 'contrib/places/places.json') as scrap:
+        scrap = json.load(scrap)
+
+    for place in scrap:
+        page = Page(ty = places.settings.PLACE_PAGES.ty)
+        page.save()
+
+        Place(
+            id = page.id,
+            name = place['name'],
+            latitude = place['lat'],
+            longitude = place['long'],
+        ).save()

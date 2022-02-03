@@ -1,8 +1,10 @@
 from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
 
+from bot.pages import PageTy
 from common.util import RegexReplyMessageFilter
 from . import apps
 from .handlers import menu_entry, select_place, get_place, handle_text_edit, select_edit, request_edit
+from .util import index_places, show_place
 
 MAIN_MENU_COMMAND = 'Ubicaciones 📍'
 
@@ -17,3 +19,5 @@ HANDLERS = [
                    RegexReplyMessageFilter(r'(?:^Sugerencia de .* para el lugar .*\n.*\nDatos: )(.*)'),
                    handle_text_edit)
 ]
+
+PLACE_PAGES = PageTy(4, 'Lugares', index_places, show_place)
