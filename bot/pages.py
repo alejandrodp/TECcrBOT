@@ -15,6 +15,5 @@ def read_page_tys():
     #########################################
     # Do not remove, preserves import order #
     #########################################
-    import bot.settings as _ 
-
+    from bot.settings import APP_CONFIGS
     return PageTy._tys
