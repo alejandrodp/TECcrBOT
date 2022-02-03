@@ -17,7 +17,7 @@ def load_all():
     for clazz in (Page, Person, Ty, Location, Unit, Role, RoleTy):
         assert clazz.objects.count() == 0, 'This operation requires a db flush'
 
-    scrap_dir = os.path.join(settings.BASE_DIR, 'webscrap/people')
+    scrap_dir = os.path.join(settings.BASE_DIR, 'contrib/people')
     scrap = subprocess.run(
         [
             os.path.join(scrap_dir, 'tag_edit.py'),

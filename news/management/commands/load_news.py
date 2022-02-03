@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
-        tags = json.load(open(BASE_DIR / 'webscrap' / 'news' / 'scrapped_news.json'))
+        with open(BASE_DIR / 'contrib' / 'news' / 'scrapped_news.json') as tags:
+            tags = json.load(tags)
 
         for key, tag in tags.items():
 
