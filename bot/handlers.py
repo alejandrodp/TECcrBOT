@@ -4,10 +4,10 @@ from whoosh.query import Query
 from whoosh.searching import Results
 
 from bot import apps
+from bot.menu import read_main_menu
 from bot.index import search, read_index
 from bot.models import Page
 from bot.pages import read_page_tys
-from bot.settings import MAIN_MENU
 
 IKB = InlineKeyboardButton
 
@@ -16,7 +16,7 @@ def main_menu(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
         "Seleccione una opción:",
         reply_markup=ReplyKeyboardMarkup(
-            MAIN_MENU,
+            read_main_menu(),
             resize_keyboard=True,
         )
     )
