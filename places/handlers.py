@@ -1,11 +1,11 @@
 from enum import Enum
 
 from django.core.paginator import Paginator
-from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import Update, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
-from telegram_bot_pagination import InlineKeyboardPaginator
 
 from bot.menu import BotHandler
+from common.util import is_int, send_unknown_error
 from places import apps
 from places.models import Tag, Place
 
@@ -29,32 +29,32 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
     )
 
 
-def select_category(update: Update, context: CallbackContext) -> None:
-    current_page = context.match.group(1) if context.match.groups() else None
+def first_category_list(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    query.answer()
+    send_category_list(1, query)
+
+
+def remain_category_list(update: Update, context: CallbackContext) -> None:
+    current_page = context.match.group(1)
     query = update.callback_query
     query.answer()
 
-    if current_page:
-        pages = category_page(int(current_page))
+    if is_int(current_page):
+        current_page = int(current_page)
     else:
-        print('kk')
-        pages = category_page(1)
+        send_unknown_error(update.effective_chat)
 
-    print(pages)
-
-    query.edit_message_text(
-        text="Seleccione una categoría:",
-        reply_markup=pages
-    )
+    send_category_list(current_page, query)
 
 
-def category_page(current_page_num):
+def send_category_list(current_page_num, query):
     pages = Paginator(Tag.objects.order_by('name').all(), 5)
 
     current_pages = pages.get_page(current_page_num)
 
     buttons = [handlers.build_inline_button(tag.name, States.GET_CATEGORY, str(tag.id))
-          for tag in current_pages.object_list]
+               for tag in current_pages.object_list]
 
     paginator = handlers.build_paginator(
         current_page_num,
@@ -63,7 +63,10 @@ def category_page(current_page_num):
         buttons
     )
 
-    return paginator.markup
+    query.edit_message_text(
+        text="Seleccione una categoría:",
+        reply_markup=paginator.markup
+    )
 
 
 def select_place(update: Update, context: CallbackContext) -> None:

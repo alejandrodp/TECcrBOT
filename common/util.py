@@ -1,3 +1,6 @@
+import string
+
+from telegram import Chat
 from telegram.ext import Filters
 from telegram_bot_pagination import InlineKeyboardPaginator
 
@@ -16,3 +19,11 @@ class InlinePaginatorCustom(InlineKeyboardPaginator):
                 }])
 
 
+def is_int(text: str):
+    if all(digit in string.digits for digit in text):
+        return True
+    return False
+
+
+def send_unknown_error(chat: Chat):
+    chat.send_message("Ocurrió un problema desconocido, intente otra vez por favor.")
