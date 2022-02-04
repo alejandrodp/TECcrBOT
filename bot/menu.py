@@ -48,28 +48,34 @@ class BotHandler:
         self.ty = ty
         self.pattern_separator = ':'
 
-    def _build_handler_callback_data(self, sub_type, *data):
+    def _build_handler_callback_data(self, sub_type, ishandler: bool, *data):
         sub_type = _parse_sub_type(sub_type)
-        return self.pattern_separator.join(j
+
+        data = self.pattern_separator.join(j
                                            for i in (self.ty, sub_type, data)
                                            for j in (i if isinstance(i, tuple) else (i,)))
+
+        if ishandler:
+            data = f'^{data}$'
+
+        return data
 
     def add_callback_query_handler(self, callback, sub_type, *patterns):
         BotHandler._handlers.append(CallbackQueryHandler(callback,
                                                          pattern=self._build_handler_callback_data(
-                                                             sub_type, *patterns)))
+                                                             sub_type, True, *patterns)))
 
     def build_inline_button(self, text: str, sub_type: Union[Enum, str], *data, **kwargs):
         return InlineKeyboardButton(
             text=text,
-            callback_data=self._build_handler_callback_data(sub_type, *data),
+            callback_data=self._build_handler_callback_data(sub_type, False, *data),
             **kwargs)
 
     def build_paginator(self, current_page, sub_type, pages: Paginator, buttons: list):
         paginator = InlinePaginatorCustom(
             page_count=pages.num_pages,
             current_page=current_page,
-            data_pattern=self._build_handler_callback_data(sub_type, '{page}')
+            data_pattern=self._build_handler_callback_data(sub_type, False, '{page}')
         )
 
         paginator.add_before(*buttons)
