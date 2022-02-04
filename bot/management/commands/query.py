@@ -1,4 +1,8 @@
+import sys
+
 from django.core.management.base import BaseCommand
+from whoosh.collectors import TimeLimit
+
 from bot.index import read_index, search
 from bot.pages import read_page_tys
 
@@ -10,8 +14,13 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         page_tys = read_page_tys()
         with read_index() as ix:
-            results = search(ix, kwargs['query'])
-            print(results)
+            try:
+                results = search(ix, kwargs['query'])
+            except TimeLimit:
+                print('Error: query timed out', file=sys.stderr)
+                return
+
+            print(results, file=sys.stderr)
 
             docnums = {hit.docnum: hit for hit in results}
             hits = ((ty, [docnums.pop(no) for no in hits])

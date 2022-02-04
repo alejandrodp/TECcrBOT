@@ -8,6 +8,7 @@ from whoosh.qparser import MultifieldParser
 from whoosh.support.charset import accent_map
 from whoosh.lang.stopwords import stoplists
 from whoosh.sorting import FieldFacet
+from whoosh.collectors import TimeLimitCollector
 
 from django.conf import settings
 
@@ -67,8 +68,11 @@ _TY_FACET = FieldFacet('ty')
 
 
 def search(searcher, query):
+    collector = TimeLimitCollector(searcher.collector(groupedby=_TY_FACET), 20e-3)
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
-    return searcher.search(parser.parse(query), groupedby=_TY_FACET)
+
+    searcher.search_with_collector(parser.parse(query), collector)
+    return collector.results()
 
 
 def load_pages():
