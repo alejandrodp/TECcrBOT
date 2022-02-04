@@ -71,7 +71,7 @@ def build_results_menu(results, msg):
         ty, pages = results.popitem()
         text = f'Resultados de {page_tys[ty].desc} para <i>{msg}</i>'
         buttons = [
-            build_page_button(f'{page[1]}', str(ty), str(page[0]))
+            build_page_button(f'{page[1]}', ty, page[0])
             for page in pages
         ]
 
@@ -91,7 +91,7 @@ def type_handler(update: Update, context: CallbackContext) -> None:
 
     if len(results[ty]) == 1:
         page_id, _ = results[ty][0]
-        _show_page(page_id, ty, cq)
+        _show_page(page_id, ty, update)
         return
 
     cq.message.edit_text(
@@ -108,14 +108,8 @@ def show_page(update: Update, context: CallbackContext) -> None:
     page_id = int(context.match.group(2))
     update.callback_query.answer()
 
-    _show_page(page_id, ty, update.callback_query)
+    _show_page(page_id, ty, update)
 
 
-def _show_page(page_id, ty, callback_query):
-    msg, page_buttons = page_tys[ty].page_builder(page_id)
-
-    callback_query.message.edit_text(
-        text=msg,
-        reply_markup=InlineKeyboardMarkup.from_column(page_buttons)
-        if page_buttons else None
-    )
+def _show_page(page_id, ty, update):
+    page_tys[ty].page_builder(page_id, update)

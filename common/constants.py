@@ -7,3 +7,4 @@ DAYS_MAPPING = {
     6: "Sábado",
     7: "Domingo"
 }
+PAGINATION_LIMIT = 5
