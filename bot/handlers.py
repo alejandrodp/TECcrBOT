@@ -6,7 +6,7 @@ from whoosh.searching import Results
 
 from bot import apps
 from bot.index import search, read_index
-from bot.menu import read_main_menu, BotHandler
+from bot.menu import read_main_menu, BotHandler, build_page_button
 from bot.pages import read_page_tys
 
 handlers = BotHandler(apps.BotConfig.name)
@@ -71,7 +71,7 @@ def build_results_menu(results, msg):
         ty, pages = results.popitem()
         text = f'Resultados de {page_tys[ty].desc} para <i>{msg}</i>'
         buttons = [
-            handlers.build_inline_button(f'{page[1]}', 'get_page', str(ty), str(page[0]))
+            build_page_button(f'{page[1]}', str(ty), str(page[0]))
             for page in pages
         ]
 
@@ -97,7 +97,7 @@ def type_handler(update: Update, context: CallbackContext) -> None:
     cq.message.edit_text(
         text=f'Resultados de {page_tys[ty].desc} para <i>{query}</i>',
         reply_markup=InlineKeyboardMarkup.from_column([
-            handlers.build_inline_button(page[1], 'get_page', str(ty), str(page[0]))
+            build_page_button(page[1], str(ty), str(page[0]))
             for page in results[ty]
         ])
     )
