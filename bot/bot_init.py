@@ -5,7 +5,7 @@ from django.conf import settings
 from telegram import ParseMode
 from telegram.ext import Updater, Dispatcher, Defaults
 
-from bot.menu import BotHandler
+from tcrb.core import BotAppConfig
 
 defaults = Defaults(parse_mode=ParseMode.HTML, )
 
@@ -20,7 +20,6 @@ def start_polling() -> Optional[Queue]:
 
 def _init_handlers(dispatcher: Dispatcher) -> None:
 
-    import bot.settings as _
-    for handler in BotHandler._handlers:
+    for handler in BotAppConfig.get_handlers():
         dispatcher.add_handler(handler)
 
