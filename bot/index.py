@@ -7,6 +7,7 @@ from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import MultifieldParser
 from whoosh.support.charset import accent_map
 from whoosh.lang.stopwords import stoplists
+from whoosh.sorting import FieldFacet
 
 from django.conf import settings
 
@@ -62,10 +63,12 @@ def read_index():
 
 
 _SEARCH_KWS = ['title', 'surname', 'name', 'kw']
+_TY_FACET = FieldFacet('ty')
+
 
 def search(searcher, query):
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
-    return searcher.search(parser.parse(query))
+    return searcher.search(parser.parse(query), groupedby=_TY_FACET)
 
 
 def load_pages():
