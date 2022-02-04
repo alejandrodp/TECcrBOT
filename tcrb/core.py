@@ -2,8 +2,11 @@ import importlib
 from enum import Enum
 
 from django.conf import settings
+from django.core.paginator import Paginator
 from telegram import InlineKeyboardButton
 from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
+
+from common.util import InlinePaginatorCustom
 
 
 class BotAppConfig:
@@ -21,8 +24,11 @@ class BotAppConfig:
         BotAppConfig.main_menu[-1].append(self.title)
         BotAppConfig.add_message_handler(Filters.text(self.title), handler)
 
-    def build_inline_button(self, sub_type, *patterns):
-        return BotAppConfig.InlineButton(sub_type, self, patterns)
+    def create_inline_button(self, sub_type, *patterns):
+        return BotAppConfig.InlineButton(sub_type, self, *patterns)
+
+    def create_paginator(self, sub_type, *patterns):
+        return BotAppConfig.InlineButton(sub_type, self, rf"(\d+)", *patterns)
 
     @staticmethod
     def get_handlers():
@@ -42,12 +48,12 @@ class BotAppConfig:
     class InlineButton:
         pattern_separator = ":"
 
-        def __init__(self, sub_type, config, patterns):
+        def __init__(self, sub_type, config, *patterns):
             self.sub_type = sub_type
             self.config = config
             self.patterns = patterns
 
-        def __call__(self, text, *data, **kwargs):
+        def build_button(self, text, *data, **kwargs):
             return InlineKeyboardButton(
                 text=text,
                 callback_data=self._build_handler_callback_data(self.sub_type, False, *data),
@@ -74,4 +80,15 @@ class BotAppConfig:
                                          *self.patterns
                                      ))
             )
+
+        def build_paginator(self, current_page, pages: Paginator, buttons, *data):
+            paginator = InlinePaginatorCustom(
+                page_count=pages.num_pages,
+                current_page=current_page,
+                data_pattern=self._build_handler_callback_data(self.sub_type, False, '{page}', *data)
+            )
+
+            paginator.add_before(*buttons)
+
+            return paginator
 
