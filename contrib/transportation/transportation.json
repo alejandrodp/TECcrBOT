@@ -1,0 +1,819 @@
+[
+  {
+    "src": "SAN JOSÉ",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 750,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "250 mts suroeste de la CCSS",
+        "time": [
+          "06:00",
+          "11:30",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:45",
+          "19:00",
+          "20:00",
+          "21:00"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro",
+        "time": [
+          "06:15"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Zapote",
+        "time": [
+          "06:25"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Saliendo frente a Caja de Ande"
+      },
+      {
+        "terminus": false,
+        "address": "Avenida segunda"
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "SAN JOSÉ",
+    "vehicle": "bus",
+    "price": 750,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "10:35",
+          "12:10",
+          "13:10",
+          "14:10",
+          "15:10",
+          "15:40",
+          "16:10",
+          "16:55",
+          "18:10",
+          "19:10",
+          "20:10",
+          "21:10"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Lima"
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      },
+      {
+        "terminus": false,
+        "address": "Costado Norte Asamblea Legislativa"
+      },
+      {
+        "terminus": false,
+        "address": "Hotel El Rey"
+      }
+    ]
+  },
+  {
+    "src": "TIBÁS",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1100,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Costado Oeste del Parque de Tibás",
+        "time": [
+          "05:55"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Los Colegios de Moravia"
+      },
+      {
+        "terminus": false,
+        "address": "Costado Norte Parque de Moravia"
+      },
+      {
+        "terminus": false,
+        "address": "Novacentro, Detrás de la iglesia católica de Guadalupe"
+      },
+      {
+        "terminus": false,
+        "address": "La Gallito"
+      },
+      {
+        "terminus": false,
+        "address": "Rotonda de la Bandera"
+      }
+    ]
+  },
+  {
+    "src": "GUADALUPE",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1100,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Detrás de la Iglesia Católica de Guadalupe",
+        "time": [
+          "06:00"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro",
+        "time": [
+          "06:20"
+        ]
+      }
+    ]
+  },
+  {
+    "src": "DESAMPARADOS",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1100,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "150m sur del Colegio Nuestra Señora de los Ángeles",
+        "time": "06:00"
+      },
+      {
+        "terminus": false,
+        "address": "Rotonda de la Bandera"
+      },
+      {
+        "terminus": false,
+        "address": "Residencial el Bosque"
+      },
+      {
+        "terminus": false,
+        "address": "San Francisco"
+      },
+      {
+        "terminus": false,
+        "address": "Costado de Iglesia"
+      },
+      {
+        "terminus": false,
+        "address": "La Colina"
+      },
+      {
+        "terminus": false,
+        "address": "San Antonio"
+      },
+      {
+        "terminus": false,
+        "address": "Tirrases (hacienda Vieja)"
+      },
+      {
+        "terminus": false,
+        "address": "Pista"
+      }
+    ]
+  },
+  {
+    "src": "ALAJUELA",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1700,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Costado Sur del Parque Juan Santa María",
+        "time": [
+          "05:40"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Saret"
+      },
+      {
+        "terminus": false,
+        "address": "Firestone"
+      },
+      {
+        "terminus": false,
+        "address": "Real Cariari"
+      },
+      {
+        "terminus": false,
+        "address": "Hospital México"
+      },
+      {
+        "terminus": false,
+        "address": "INA"
+      },
+      {
+        "terminus": false,
+        "address": "Corobicí"
+      },
+      {
+        "terminus": false,
+        "address": "Paseo Colón"
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "ALAJUELA",
+    "vehicle": "bus",
+    "price": 1700,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "05:15"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      },
+      {
+        "terminus": false,
+        "address": "Paseo Colón"
+      },
+      {
+        "terminus": false,
+        "address": "Corobicí"
+      },
+      {
+        "terminus": false,
+        "address": "INA"
+      },
+      {
+        "terminus": false,
+        "address": "Hospital México"
+      },
+      {
+        "terminus": false,
+        "address": "Real Cariari"
+      },
+      {
+        "terminus": false,
+        "address": "Firestone"
+      },
+      {
+        "terminus": false,
+        "address": "Saret"
+      }
+    ]
+  },
+  {
+    "src": "HEREDIA",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1700,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Palí Santa Lucía",
+        "time": [
+          "05:25"
+        ]
+      },
+      {
+        "terminus": true,
+        "address": "Parque Las Embarazadas",
+        "time": [
+          "05:35"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Cruce Universidad Hispanoamericana"
+      },
+      {
+        "terminus": false,
+        "address": "Santo Domingo"
+      },
+      {
+        "terminus": false,
+        "address": "Neon Nieto"
+      },
+      {
+        "terminus": false,
+        "address": "Ladrillera"
+      },
+      {
+        "terminus": false,
+        "address": "Barrio México"
+      },
+      {
+        "terminus": false,
+        "address": "Calle 20"
+      },
+      {
+        "terminus": false,
+        "address": "Paseo Colón"
+      },
+      {
+        "terminus": false,
+        "address": "Parque Central"
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "HEREDIA",
+    "vehicle": "bus",
+    "price": 1700,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "11:35"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      },
+      {
+        "terminus": false,
+        "address": "Parque Central"
+      },
+      {
+        "terminus": false,
+        "address": "Paseo Colón"
+      },
+      {
+        "terminus": false,
+        "address": "Puente Juan Pablo II"
+      },
+      {
+        "terminus": false,
+        "address": "Pozuelo"
+      },
+      {
+        "terminus": false,
+        "address": "Lagos"
+      },
+      {
+        "terminus": false,
+        "address": "Fosforera"
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "CORONADO",
+    "vehicle": "bus",
+    "price": 1200,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "05:00"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Campus Central"
+      },
+      {
+        "terminus": false,
+        "address": "Tres Ríos"
+      },
+      {
+        "terminus": false,
+        "address": "Curridabat"
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro"
+      },
+      {
+        "terminus": false,
+        "address": "Betania (Sabanilla)"
+      },
+      {
+        "terminus": false,
+        "address": "Guadalupe"
+      },
+      {
+        "terminus": false,
+        "address": "Alto de Guadalupe"
+      },
+      {
+        "terminus": false,
+        "address": "Clínica Jerusalén"
+      },
+      {
+        "terminus": false,
+        "address": "Mall Panchos"
+      },
+      {
+        "terminus": false,
+        "address": "San Antonio"
+      },
+      {
+        "terminus": false,
+        "address": "Coronado, Ipís"
+      }
+    ]
+  },
+  {
+    "src": "CORONADO",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 1200,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Costado sur de la Terminal La Mora frente Super Daniela",
+        "time": [
+          "05:35"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Cruce Zetillal y la Facio"
+      },
+      {
+        "terminus": false,
+        "address": "Cruce Ipis"
+      },
+      {
+        "terminus": false,
+        "address": "Cruce Coronado"
+      },
+      {
+        "terminus": false,
+        "address": "Clínica Coronado"
+      },
+      {
+        "terminus": false,
+        "address": "Iglesia de Coronado"
+      },
+      {
+        "terminus": false,
+        "address": "Bomba El Trapiche"
+      },
+      {
+        "terminus": false,
+        "address": "Restaurante La Casona"
+      },
+      {
+        "terminus": false,
+        "address": "Mall Don Panchos"
+      },
+      {
+        "terminus": false,
+        "address": "Jardines de Moravia"
+      },
+      {
+        "terminus": false,
+        "address": "Colegio las Américas"
+      },
+      {
+        "terminus": false,
+        "address": "Clínica Jerusalén"
+      },
+      {
+        "terminus": false,
+        "address": "Alto de Guadalupe"
+      },
+      {
+        "terminus": false,
+        "address": "Colegio Madre del Divino Pastor"
+      },
+      {
+        "terminus": false,
+        "address": "Deportivas UCR"
+      },
+      {
+        "terminus": false,
+        "address": "Colegio de Monterrey"
+      },
+      {
+        "terminus": false,
+        "address": "CIU"
+      },
+      {
+        "terminus": false,
+        "address": "Estación del tren U. Latina"
+      },
+      {
+        "terminus": false,
+        "address": "Muñoz & Nanne"
+      },
+      {
+        "terminus": false,
+        "address": "Plaza del Sol"
+      },
+      {
+        "terminus": false,
+        "address": "Calle Vieja Tres Ríos frente ALDESA"
+      },
+      {
+        "terminus": false,
+        "address": "Banco Nacional"
+      },
+      {
+        "terminus": false,
+        "address": "Saint Gregory"
+      },
+      {
+        "terminus": false,
+        "address": "Frente al cementerio Tres Ríos"
+      },
+      {
+        "terminus": false,
+        "address": "Costado norte Parque Tres Ríos"
+      }
+    ]
+  },
+  {
+    "src": "LUMACA",
+    "dest": "TERMINAL CARTAGO",
+    "vehicle": "bus",
+    "price": 605,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "150m norte del Megasuper",
+        "days": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro",
+        "time": [
+          "04:00",
+          "23:00"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro",
+        "time": [
+          "04:30",
+          "23:59"
+        ],
+        "days": [
+          1,
+          7
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Zapote",
+        "time": [
+          "04:00",
+          "23:00"
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Zapote",
+        "time": [
+          "04:30",
+          "23:59"
+        ],
+        "days": [
+          1,
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "src": "LUMACA",
+    "dest": "TERMINAL SAN JOSÉ",
+    "vehicle": "bus",
+    "price": 555,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "300m sur oficinas centrales de la CCSS, Catedral, San José",
+        "days": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "San Pedro",
+        "time": [
+          "04:45",
+          "23:59"
+        ],
+        "days": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "terminus": false,
+        "address": "Zapote",
+        "time": [
+          "05:15",
+          "22:30"
+        ],
+        "days": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "CARTAGO",
+    "vehicle": "bus",
+    "price": 150,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "08:30",
+          "09:30",
+          "10:30",
+          "11:15",
+          "11:30",
+          "12:00",
+          "12:10",
+          "12:30",
+          "13:10",
+          "14:10",
+          "15:10",
+          "15:40",
+          "16:00",
+          "16:30",
+          "16:40",
+          "17:00",
+          "17:15",
+          "17:30",
+          "18:00",
+          "18:15",
+          "18:30",
+          "18:45",
+          "19:00",
+          "19:35",
+          "20:00",
+          "20:30",
+          "21:00",
+          "21:30"
+        ]
+      },
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "12:00",
+          "12:40",
+          "16:00",
+          "16:40"
+        ],
+        "days": [
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "src": "CARTAGO",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 150,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Costado Sur de las Ruinas frente a la Plaza Domo Central",
+        "time": [
+          "07:00",
+          "07:10",
+          "07:15",
+          "07:20",
+          "07:40",
+          "07:50",
+          "08:00",
+          "09:00",
+          "09:15",
+          "10:00",
+          "11:00",
+          "11:30",
+          "11:40",
+          "12:50",
+          "13:00",
+          "13:50",
+          "14:30",
+          "15:25",
+          "16:10",
+          "16:45",
+          "17:00",
+          "17:15",
+          "17:30",
+          "17:45",
+          "18:00",
+          "18:15",
+          "18:30",
+          "18:45",
+          "19:15",
+          "19:45"
+        ]
+      },
+      {
+        "terminus": true,
+        "address": "Costado Sur de las Ruinas frente a la Plaza Domo Central",
+        "time": [
+          "07:40",
+          "08:00",
+          "11:45"
+        ],
+        "days": [
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "src": "TEC",
+    "dest": "PÉREZ ZELEDÓN",
+    "vehicle": "bus",
+    "price": 3250,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "TEC",
+        "time": [
+          "17:00"
+        ],
+        "days": [
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "src": "PÉREZ ZELEDÓN",
+    "dest": "TEC",
+    "vehicle": "bus",
+    "price": 3250,
+    "stops": [
+      {
+        "terminus": true,
+        "address": "Costado Sur de las Ruinas frente a la Plaza Domo Central",
+        "time": [
+          "18:00"
+        ],
+        "days": [
+          1
+        ]
+      }
+    ]
+  }
+]

@@ -66,9 +66,9 @@ def get_schedule(update: Update, context: CallbackContext) -> None:
 
         response = "La ruta {src} - {dest} cuesta {price}.\n" \
                       "Sale de:\n" \
-                      "{deps}.\n" \
+                      "{deps}\n" \
                       "Pasa por:\n" \
-                      "{stps}.\n".format(
+                      "{stps}\n".format(
                             src=route.source,
                             dest=route.destination,
                             price=route.price,
