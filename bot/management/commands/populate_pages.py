@@ -6,11 +6,15 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.db import transaction
 
+import transportation.settings
 from bot.models import Page
 from directory.models import Person, Ty, Location, Unit, Role, RoleTy
+from transportation.models import Place as T_place, Vehicle, Route, Stop, Schedule
 from places.models import Place
 import directory.settings
 import places.settings
+
+from datetime import time
 
 
 class Command(BaseCommand):
@@ -20,11 +24,12 @@ class Command(BaseCommand):
 
 @transaction.atomic
 def load_all():
-    for clazz in (Page, Person, Ty, Location, Unit, Role, RoleTy, Place):
+    for clazz in (Page, Person, Ty, Location, Unit, Role, RoleTy, Place, T_place, Vehicle, Route, Stop, Schedule):
         assert clazz.objects.count() == 0, 'This operation requires a db flush'
 
     load_people()
     load_places()
+    load_transportation()
 
 
 def load_people():
@@ -120,3 +125,38 @@ def load_places():
             longitude=place['long'],
             photo=photo,
         ).save()
+
+
+def load_transportation():
+    with open(settings.BASE_DIR / 'contrib/transportation/transportation.json') as scrap:
+        scrap = json.load(scrap)
+
+    for route in scrap:
+        page = Page(ty=transportation.settings.ROUTE_PAGES.ty)
+        page.save()
+
+        target_route = Route(
+            id=page.id,
+            source=T_place.objects.get_or_create(name=route["src"].title())[0],
+            destination=T_place.objects.get_or_create(name=route["dest"].title())[0],
+            vehicle=Vehicle.objects.get_or_create(name=route["vehicle"])[0],
+            price=route["price"]
+        )
+
+        target_route.save()
+
+        for stop in route["stops"]:
+            if "time" not in stop:
+                Stop(
+                    route=target_route,
+                    address=stop["address"],
+                    terminus=stop["terminus"]
+                ).save()
+            else:
+                for tm in stop["time"]:
+                    Stop(
+                        route=target_route,
+                        time=tm,
+                        address=stop["address"],
+                        terminus=stop["terminus"]
+                    ).save()

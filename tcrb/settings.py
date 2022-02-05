@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 BOT_APPS = [
     'bot',
     'places',
-    'transport',
+    'transportation',
     'services',
     'tutorias',
     'news',
