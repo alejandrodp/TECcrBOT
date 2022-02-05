@@ -1,0 +1,4 @@
+
+PEOPLE_TY = 1
+DEPT_TY = 2
+LOC_TY = 3

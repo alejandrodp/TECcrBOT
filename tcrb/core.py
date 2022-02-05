@@ -1,7 +1,6 @@
 import importlib
 from enum import Enum
 
-from django.apps import apps
 from django.conf import settings
 from django.core.paginator import Paginator
 from telegram import InlineKeyboardButton
@@ -42,7 +41,6 @@ class BotAppConfig:
 
     @staticmethod
     def load_settings():
-        print(apps.get_app_config("places"))
         _ = {app: importlib.import_module('.settings', app) for app in settings.BOT_APPS}
 
     @staticmethod
