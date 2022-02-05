@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from whoosh.collectors import TimeLimit
 
 from bot.index import read_index, search
+from bot.pages import read_page_tys
 from tcrb.core import PageTy
 
 
@@ -12,7 +13,7 @@ class Command(BaseCommand):
         parser.add_argument('query')
 
     def handle(self, *args, **kwargs):
-        page_tys = PageTy.read_page_tys()
+        page_tys = read_page_tys()
         with read_index() as ix:
             try:
                 results = search(ix, kwargs['query'])
