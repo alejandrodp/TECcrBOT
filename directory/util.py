@@ -1,9 +1,10 @@
 from typing import List, Optional
 
-from telegram import Message, InlineKeyboardButton, Update
+from telegram import Message, InlineKeyboardButton, Update, InlineKeyboardMarkup
 
 from bot.index import LANGUAGE_ANALYZER
 from common.util import send_text
+from .buttons import see_department
 from .models import Person, Unit, Role, RoleTy, Location
 
 
@@ -22,10 +23,11 @@ def index_people():
 
 def person_kws(person):
     return [kw.text
-        for role in Role.objects.filter(person=person)
-        for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
-        for term in source
-        for kw in LANGUAGE_ANALYZER(term.name)]
+            for role in Role.objects.filter(person=person)
+            for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
+            for term in source
+            for kw in LANGUAGE_ANALYZER(term.name)]
+
 
 def index_depts():
     for unit in Unit.objects.all():
@@ -52,16 +54,13 @@ def loc_builder(page: int, update: Update) -> (str, Optional[List[InlineKeyboard
 
 
 def depts_builder(page: int, update: Update) -> (str, Optional[List[InlineKeyboardButton]]):
-
     dept = Unit.objects.get(id=page)
 
     msg = f'Nombre: {dept.name}\n\n<a href="https://www.tec.ac.cr{dept.href}">Ver más información</a>'
     send_text(msg, update)
 
 
-
 def people_builder(page: int, update: Update) -> None:
-
     person = Person.objects.get(id=page)
 
     email = person.email if person.email else 'No disponible'
@@ -69,15 +68,22 @@ def people_builder(page: int, update: Update) -> None:
 
     roles = '\n\n'.join([
         f'Departamento: {r.unit.name}\n'
-        f'Funciones: {", ".join([n.ty.name for n in r.rolety_set.all()])}\n'
+        f'Funciones: {", ".join([n.ty.name for n in r.rolety_set.all()]) if r.rolety_set.exists() else "No disponible"}\n'
         f'Ubicación: {r.location.name if r.location else "No disponible"}\n'
         for r in person.role_set.all()
     ])
 
     msg = f'Nombre: {person.name} {person.surname}\n' \
-          f'Correo electrónico: {email}\n'\
-          f'Teléfono: {tel}\n\n'\
-          f'{roles}\n'\
+          f'Correo electrónico: {email}\n' \
+          f'Teléfono: {tel}\n\n' \
+          f'{roles}\n' \
           f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
 
-    send_text(msg, update)
+    send_text(
+        msg,
+        update,
+        reply_markup=InlineKeyboardMarkup.from_column(list(set((
+            see_department.build_button(f"Ver {r.unit.name}", r.unit.id)
+            for r in person.role_set.all()
+        ))))
+    )
