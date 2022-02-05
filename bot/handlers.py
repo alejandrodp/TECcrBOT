@@ -1,3 +1,5 @@
+import html
+
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 
@@ -30,43 +32,40 @@ def show_page_handler(update: Update, context: CallbackContext) -> None:
 
     PageTy.show_page(page_id, ty, update)
 
-# def _search(query: str):
-#     results_map = {}
-#     with read_index() as ix:
-#         results: Results = search(ix, query)
-#         for r in results:
-#             results_map.setdefault(r['ty'], []).append((r['id'], r['title']))
-#     return results_map
-#
-#
+
 # def search_handler(update: Update, context: CallbackContext) -> None:
 #     msg = html.escape(update.message.text)
 #
 #     results = _search(msg)
 #
+#     if not results:
+#         update.message.reply_text(
+#             "Su búsqueda ha durado demasiado, intente con términos más simples")
+#         return
+#
 #     if len(results) == 0:
 #         update.message.reply_text(
 #             f'No se encontraron resultados para <i>{msg}</i>')
 #         return
-#
-#     if len(results) == 1:
-#         ty, pages = results.popitem()
-#         msg, page_buttons = page_tys[ty].page_builder(pages[0][0])
-#
-#         update.message.reply_text(
-#             text=msg,
-#             reply_markup=InlineKeyboardMarkup.from_column(page_buttons)
-#             if page_buttons else None
-#         )
-#         return
-#
-#     text, buttons = build_results_menu(results, msg)
-#
-#     update.message.reply_text(
-#         text=text,
-#         reply_markup=InlineKeyboardMarkup.from_column(buttons)
-#     )
-#
+
+    # if len(results) == 1:
+    #     ty, pages = results.popitem()
+    #     msg, page_buttons = page_tys[ty].page_builder(pages[0][0])
+    #
+    #     update.message.reply_text(
+    #         text=msg,
+    #         reply_markup=InlineKeyboardMarkup.from_column(page_buttons)
+    #         if page_buttons else None
+    #     )
+    #     return
+    #
+    # text, buttons = build_results_menu(results, msg)
+    #
+    # update.message.reply_text(
+    #     text=text,
+    #     reply_markup=InlineKeyboardMarkup.from_column(buttons)
+    # )
+
 #
 # def build_results_menu(results, msg):
 #     if len(results) > 1:

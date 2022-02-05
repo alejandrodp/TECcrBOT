@@ -1,7 +1,5 @@
-from bot.pages import PageTy
+from tcrb.core import PageTy
 from .util import index_people, index_depts, index_locs, people_builder, depts_builder, loc_builder
-
-HANDLERS = []
 
 PEOPLE_PAGES = PageTy(1, 'Personas', index_people, people_builder)
 DEPT_PAGES = PageTy(2, 'Departamentos', index_depts, depts_builder)

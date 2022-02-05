@@ -1,7 +1,7 @@
 from telegram.ext import CallbackQueryHandler
 
 from bot.menu import main_menu_entry
-from bot.pages import PageTy
+from tcrb.core import PageTy
 from . import apps
 from .handlers import main_entry, process_service
 from .util import index_services
