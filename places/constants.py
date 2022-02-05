@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class States(Enum):
-    SELECT_CATEGORY = "select_location_category"
-    GET_PLACES = "get_places"
+    CHOOSING_CATEGORY = "choosing_category"
+    CHOOSING_PLACE = "choosing_place"
     GET_PLACE = "list_places"
 
 

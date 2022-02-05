@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Aplicactions and it's entry command
 BOT_APPS = [
+    'bot',
     'places',
     'transport',
     'services',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bot',
 ] + BOT_APPS
 
 

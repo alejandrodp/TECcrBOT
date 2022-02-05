@@ -23,16 +23,16 @@ def main_menu_entry(title, handler):
 
 
 def add_message_handler(filters, callback):
-    BotHandler._handlers.append(MessageHandler(filters, callback))
+    HandlerMaster._handlers.append(MessageHandler(filters, callback))
 
 
 def add_command_handler(command, callback):
-    BotHandler._handlers.append(CommandHandler(command, callback))
+    HandlerMaster._handlers.append(CommandHandler(command, callback))
 
 
 def build_page_button(text, ty, page_id):
-    from bot.handlers import handlers
-    return handlers.build_inline_button(text, 'get_page', ty, page_id)
+    from bot.handlers import config
+    return config.create_inline_button(text, 'get_page', ty, page_id)
 
 
 def _parse_sub_type(sub_type):
@@ -41,7 +41,7 @@ def _parse_sub_type(sub_type):
     return sub_type
 
 
-class BotHandler:
+class HandlerMaster:
     _handlers = []
 
     def __init__(self, ty: str):
@@ -60,7 +60,7 @@ class BotHandler:
         return data
 
     def add_callback_query_handler(self, callback, sub_type, *patterns):
-        BotHandler._handlers.append(CallbackQueryHandler(callback,
+        HandlerMaster._handlers.append(CallbackQueryHandler(callback,
                                                          pattern=self._build_handler_callback_data(
                                                              sub_type, True, *patterns)))
 

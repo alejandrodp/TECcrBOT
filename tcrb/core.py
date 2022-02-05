@@ -4,8 +4,9 @@ from enum import Enum
 from django.conf import settings
 from django.core.paginator import Paginator
 from telegram import InlineKeyboardButton
-from telegram.ext import MessageHandler, Filters, CallbackQueryHandler
+from telegram.ext import MessageHandler, Filters, CallbackQueryHandler, CommandHandler
 
+from common.constants import PAGINATION_LIMIT
 from common.util import InlinePaginatorCustom
 
 
@@ -13,9 +14,9 @@ class BotAppConfig:
     handlers = []
     main_menu = []
 
-    def __init__(self, config):
-        self.ty = config.name
-        self.title = config.verbose_name
+    def __init__(self, name, title):
+        self.ty = name
+        self.title = title
 
     def add_main_menu_entry(self, handler):
         if not BotAppConfig.main_menu or len(BotAppConfig.main_menu[-1]) >= 2:
@@ -30,9 +31,25 @@ class BotAppConfig:
     def create_paginator(self, sub_type, *patterns):
         return BotAppConfig.InlineButton(sub_type, self, rf"(\d+)", *patterns)
 
+    def set_page_settings(self, ty, index, page_builder):
+        return PageTy(ty, self.title, index, page_builder)
+
+    @staticmethod
+    def add_command_handler(text, callback):
+        BotAppConfig.handlers.append(CommandHandler(text, callback))
+
+    @staticmethod
+    def get_main_menu():
+        BotAppConfig.load_settings()
+        return BotAppConfig.main_menu
+
+    @staticmethod
+    def load_settings():
+        _ = {app: importlib.import_module('.settings', app) for app in settings.BOT_APPS}
+
     @staticmethod
     def get_handlers():
-        _ = {app: importlib.import_module('.settings', app) for app in settings.BOT_APPS}
+        BotAppConfig.load_settings()
         return BotAppConfig.handlers
 
     @staticmethod
@@ -56,10 +73,10 @@ class BotAppConfig:
         def build_button(self, text, *data, **kwargs):
             return InlineKeyboardButton(
                 text=text,
-                callback_data=self._build_handler_callback_data(self.sub_type, False, *data),
+                callback_data=self._build_callback_data(self.sub_type, False, *data),
                 **kwargs)
 
-        def _build_handler_callback_data(self, sub_type, isHandler: bool, *data):
+        def _build_callback_data(self, sub_type, isHandler: bool, *data):
             sub_type = BotAppConfig._parse_sub_type(sub_type)
 
             data = self.pattern_separator.join(str(j)
@@ -68,27 +85,55 @@ class BotAppConfig:
             if isHandler:
                 data = f'^{data}$'
 
-            print(data)
             return data
 
         def init_handler(self, callback):
             BotAppConfig.handlers.append(
                 CallbackQueryHandler(callback,
-                                     pattern=self._build_handler_callback_data(
+                                     pattern=self._build_callback_data(
                                          self.sub_type,
                                          True,
                                          *self.patterns
                                      ))
             )
 
-        def build_paginator(self, current_page, pages: Paginator, buttons, *data):
+        def build_paginator(self, current_page_index, objects, buttons_factory, *data):
+
+            pages = Paginator(objects, PAGINATION_LIMIT)
+
+            current_page = pages.get_page(current_page_index)
+
+            buttons = buttons_factory(current_page)
+
             paginator = InlinePaginatorCustom(
                 page_count=pages.num_pages,
-                current_page=current_page,
-                data_pattern=self._build_handler_callback_data(self.sub_type, False, '{page}', *data)
+                current_page=current_page_index,
+                data_pattern=self._build_callback_data(self.sub_type, False, '{page}', *data)
             )
 
             paginator.add_before(*buttons)
 
             return paginator
 
+
+class PageTy:
+    _tys = {}
+
+    def __init__(self, ty, desc, index, page_builder):
+        existing = PageTy._tys.get(ty)
+        assert existing is None, f'Page type `{desc}` collides with `{existing.desc}`'
+
+        self.ty = ty
+        self.desc = desc
+        self.index = index
+        self.page_builder = page_builder
+        PageTy._tys[ty] = self
+
+    @staticmethod
+    def read_page_tys():
+        BotAppConfig.load_settings()
+        return PageTy._tys
+
+    @staticmethod
+    def show_page(page_id, ty, update):
+        PageTy._tys[ty].page_builder(page_id, update)

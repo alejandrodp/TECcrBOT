@@ -1,15 +1,14 @@
-from django.core.paginator import Paginator
 from telegram import Update, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
-from bot.menu import build_page_button, BotHandler
-from common.constants import PAGINATION_LIMIT
+from bot.buttons import page_button
+from bot.menu import HandlerMaster
 from common.util import is_int, send_unknown_error
-from places.apps import PlacesConfig
-from places.constants import States, PAGE_TY
+from places.buttons import *
+from places.constants import PAGE_TY
 from places.models import Tag, Place
 
-handlers = BotHandler(PlacesConfig.name)
+handlers = HandlerMaster(PlacesConfig.name)
 
 
 def menu_entry(update: Update, context: CallbackContext) -> None:
@@ -18,7 +17,7 @@ def menu_entry(update: Update, context: CallbackContext) -> None:
              "También puede buscar una ubicación escribiendo el nombre (Ejemplos: A1, fotocopiadora)",
         reply_markup=InlineKeyboardMarkup.from_column(
             [
-                handlers.build_inline_button("Ver categorías", States.SELECT_CATEGORY)
+                list_categories.build_button("Ver categorías")
             ]
         )
     )
@@ -45,18 +44,11 @@ def remain_category_list(update: Update, context: CallbackContext) -> None:
 
 
 def send_category_list(current_page_num, query):
-    pages = Paginator(Tag.objects.order_by('name').all(), PAGINATION_LIMIT)
 
-    current_pages = pages.get_page(current_page_num)
-
-    buttons = [handlers.build_inline_button(tag.name, States.GET_PLACES, tag.id)
-               for tag in current_pages.object_list]
-
-    paginator = handlers.build_paginator(
+    paginator = list_categories_paginator.build_paginator(
         current_page_num,
-        States.SELECT_CATEGORY,
-        pages,
-        buttons
+        Tag.objects.order_by('name').all(),
+        lambda o: (list_places.build_button(tag.name, tag.id) for tag in o)
     )
 
     query.edit_message_text(
@@ -85,7 +77,7 @@ def remain_place_list(update: Update, context: CallbackContext) -> None:
     current_page = context.match.group(1)
     tag_id = context.match.group(2)
 
-    if not (is_int(current_page) and is_int(tag_id)):
+    if not is_int(current_page, tag_id):
         send_unknown_error(update.effective_chat)
         return
 
@@ -95,22 +87,14 @@ def remain_place_list(update: Update, context: CallbackContext) -> None:
     send_page_list(current_page, query, tag_id)
 
 
-def send_page_list(current_page_num, query, tag_id):
-    pages = Paginator(Place.objects
-                      .filter(placetagged__tag_id=tag_id)
-                      .order_by('name').all(),
-                      PAGINATION_LIMIT)
-
-    current_pages = pages.get_page(current_page_num)
-
-    buttons = [build_page_button(place.name, PAGE_TY, place.id)
-               for place in current_pages.object_list]
-
-    paginator = handlers.build_paginator(
-        current_page_num,
-        States.GET_PLACE,
-        pages,
-        buttons,
+def send_page_list(current_page, query, tag_id):
+    paginator = list_places_paginator.build_paginator(
+        current_page,
+        Place.objects
+            .filter(placetagged__tag_id=tag_id)
+            .order_by('name').all(),
+        lambda o:
+        (page_button.build_button(place.name, PAGE_TY, place.id) for place in o),
         tag_id
     )
 

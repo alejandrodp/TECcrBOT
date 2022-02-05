@@ -3,6 +3,7 @@ from typing import List, Optional
 from django.conf import settings
 from telegram import InlineKeyboardButton, Update
 
+from common.util import send_text
 from .models import Place
 
 
@@ -23,11 +24,7 @@ def show_place(page: int, update: Update) -> (str, Optional[List[InlineKeyboardB
           f"Descripción:\n" \
           f"{desc}"
 
-    if update.message:
-        message = update.message
-    else:
-        update.callback_query.edit_message_text(text)
-        message = update.callback_query.message
+    message = send_text(text, update)
 
     if place.latitude and place.longitude:
         message.reply_location(latitude=place.latitude,

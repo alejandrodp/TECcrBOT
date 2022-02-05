@@ -19,7 +19,6 @@ def start_polling() -> Optional[Queue]:
 
 
 def _init_handlers(dispatcher: Dispatcher) -> None:
-
     for handler in BotAppConfig.get_handlers():
         dispatcher.add_handler(handler)
 
