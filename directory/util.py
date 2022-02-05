@@ -103,8 +103,8 @@ def people_builder(page: int, update: Update) -> None:
     send_text(
         msg,
         update,
-        reply_markup=InlineKeyboardMarkup.from_column(list(set((
+        reply_markup=InlineKeyboardMarkup.from_column(list(
             page_button.build_button(f"Ver {r.unit.name}", DEPT_TY, r.unit.id)
             for r in person.role_set.all()
-        ))))
+        ))
     )
