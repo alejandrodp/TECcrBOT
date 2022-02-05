@@ -1,5 +1,5 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import Model, TextField, ForeignKey, DO_NOTHING, IntegerField, TimeField, UniqueConstraint, BooleanField
+from django.db.models import Model, TextField, ForeignKey, DO_NOTHING, IntegerField, TimeField, BooleanField
 
 
 class Place(Model):
