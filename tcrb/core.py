@@ -1,12 +1,12 @@
 import importlib
 from enum import Enum
 
+from django.apps import apps
 from django.conf import settings
 from django.core.paginator import Paginator
 from telegram import InlineKeyboardButton
 from telegram.ext import MessageHandler, Filters, CallbackQueryHandler, CommandHandler
 
-from common.constants import PAGINATION_LIMIT
 from common.util import InlinePaginatorCustom
 
 
@@ -31,9 +31,6 @@ class BotAppConfig:
     def create_paginator(self, sub_type, *patterns):
         return BotAppConfig.InlineButton(sub_type, self, "pages", rf"(\d+)", *patterns)
 
-    def set_page_settings(self, ty, index, page_builder):
-        return PageTy(ty, self.title, index, page_builder)
-
     @staticmethod
     def add_command_handler(text, callback):
         BotAppConfig.handlers.append(CommandHandler(text, callback))
@@ -45,6 +42,7 @@ class BotAppConfig:
 
     @staticmethod
     def load_settings():
+        print(apps.get_app_config("places"))
         _ = {app: importlib.import_module('.settings', app) for app in settings.BOT_APPS}
 
     @staticmethod
@@ -99,7 +97,8 @@ class BotAppConfig:
 
         def build_paginator(self, current_page_index, objects, buttons_factory, *data):
 
-            pages = Paginator(objects, PAGINATION_LIMIT)
+            pages = Paginator(objects, settings.
+                              PAGINATION_LIMIT)
 
             current_page = pages.get_page(current_page_index)
 

@@ -39,6 +39,8 @@ BOT_APPS = [
     'directory'
 ]
 
+PAGINATION_LIMIT = 5
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
