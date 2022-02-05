@@ -1,9 +1,10 @@
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
-import itertools
+
 
 from transportation import apps
 from transportation.models import Vehicle, Route, Stop, Schedule
+from .util import render_route
 
 IKB = InlineKeyboardButton
 
@@ -57,24 +58,7 @@ def get_schedule(update: Update, context: CallbackContext) -> None:
     if Route.objects.filter(id=route_id).exists():
         route = Route.objects.get(id=route_id)
 
-        all_stops = Stop.objects.filter(route_id=route_id).order_by("terminus")
-        departures = []
-        stops = []
-
-        for terminus, stop in itertools.groupby(all_stops, key=lambda stop: stop.terminus):
-            (stops if terminus else departures).extend(stop)
-
-        response = "La ruta {src} - {dest} cuesta {price}.\n" \
-                      "Sale de:\n" \
-                      "{deps}\n" \
-                      "Pasa por:\n" \
-                      "{stps}\n".format(
-                            src=route.source,
-                            dest=route.destination,
-                            price=route.price,
-                            deps="\n".join(f"{dep.address} a las {dep.time}" for dep in departures),
-                            stps="\n".join(f"{stp.address} a las {stp.time}" for stp in stops)
-                        )
+        response = render_route(route)
 
     query.message.edit_text(
         text=response

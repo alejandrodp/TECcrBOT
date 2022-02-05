@@ -21,7 +21,7 @@ class Place(Model):
     El nombre del lugar.
     """
 
-    name = TextField(max_length=100)
+    name = TextField(max_length=100, unique=True)
 
 
 class Vehicle(Model):
@@ -33,7 +33,7 @@ class Vehicle(Model):
     Nombre del vehículo.
     """
 
-    name = TextField(max_length=100)
+    name = TextField(max_length=100, unique=True)
 
 
 class Route(Model):
@@ -52,8 +52,8 @@ class Route(Model):
     Costo del viaje para esa ruta.
     """
 
-    source = ForeignKey(Place, DO_NOTHING)
-    destination = ForeignKey(Place, DO_NOTHING)
+    source = ForeignKey(Place, DO_NOTHING, related_name="source")
+    destination = ForeignKey(Place, DO_NOTHING, related_name="destination")
     vehicle = ForeignKey(Vehicle, DO_NOTHING)
     price = IntegerField()
 
@@ -81,7 +81,7 @@ class Stop(Model):
     """
 
     route = ForeignKey(Route, DO_NOTHING)
-    time = TimeField()
+    time = TimeField(null=True)
     address = TextField(max_length=1000)
     terminus = BooleanField()
 
