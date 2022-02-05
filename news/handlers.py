@@ -2,11 +2,11 @@ from django.core.paginator import Paginator
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
-from bot.menu import BotHandler
+from bot.menu import HandlerMaster
 from news import apps
 from news.models import Tag, Article
 
-handlers = BotHandler(apps.NewsConfig.name)
+handlers = HandlerMaster(apps.NewsConfig.name)
 IKB = InlineKeyboardButton
 
 
