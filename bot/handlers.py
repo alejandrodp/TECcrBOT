@@ -1,11 +1,9 @@
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CallbackContext
 
-from bot.apps import BotConfig
 from common.util import is_int, send_unknown_error
 from tcrb.core import BotAppConfig, PageTy
 
-config = BotAppConfig(BotConfig.name, "")
 page_tys = PageTy.read_page_tys()
 
 

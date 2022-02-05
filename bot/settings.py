@@ -1,5 +1,5 @@
-from bot.buttons import page_button
-from bot.handlers import config, main_menu, show_page_handler
+from bot.buttons import page_button, config
+from bot.handlers import main_menu, show_page_handler
 
 config.add_command_handler("menu", main_menu)
 page_button.init_handler(show_page_handler)

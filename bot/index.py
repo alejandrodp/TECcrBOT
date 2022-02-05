@@ -1,18 +1,16 @@
 import os.path
 
-from environ import ImproperlyConfigured
+from django.conf import settings
 from whoosh.analysis import CharsetFilter, StopFilter, LanguageAnalyzer, StandardAnalyzer
+from whoosh.collectors import TimeLimitCollector
 from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID, KEYWORD
 from whoosh.index import open_dir, exists_in, create_in
-from whoosh.qparser import MultifieldParser
-from whoosh.support.charset import accent_map
 from whoosh.lang.stopwords import stoplists
+from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
-from whoosh.collectors import TimeLimitCollector
+from whoosh.support.charset import accent_map
 
-from django.conf import settings
-
-from bot.pages import read_page_tys
+from tcrb.core import PageTy
 
 LANGUAGE_ANALYZER = LanguageAnalyzer('es')
 NO_ACCENT_ANALYZER = StandardAnalyzer() | StopFilter(stoplists['es']) | CharsetFilter(accent_map)
@@ -76,6 +74,6 @@ def search(searcher, query):
 
 
 def load_pages():
-    for ty, ty_obj in read_page_tys().items():
+    for ty, ty_obj in PageTy.read_page_tys().items():
         for doc in ty_obj.index():
             yield ty, doc
