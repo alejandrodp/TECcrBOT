@@ -66,7 +66,7 @@ _TY_FACET = FieldFacet('ty')
 
 
 def search(searcher, query):
-    collector = TimeLimitCollector(searcher.collector(groupedby=_TY_FACET), 20e-3)
+    collector = TimeLimitCollector(searcher.collector(groupedby=_TY_FACET), 20e-3, use_alarm=False)
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
 
     searcher.search_with_collector(parser.parse(query), collector)

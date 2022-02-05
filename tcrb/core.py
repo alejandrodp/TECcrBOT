@@ -29,7 +29,7 @@ class BotAppConfig:
         return BotAppConfig.InlineButton(sub_type, self, *patterns)
 
     def create_paginator(self, sub_type, *patterns):
-        return BotAppConfig.InlineButton(sub_type, self, rf"(\d+)", *patterns)
+        return BotAppConfig.InlineButton(sub_type, self, "pages", rf"(\d+)", *patterns)
 
     def set_page_settings(self, ty, index, page_builder):
         return PageTy(ty, self.title, index, page_builder)
@@ -80,7 +80,7 @@ class BotAppConfig:
             sub_type = BotAppConfig._parse_sub_type(sub_type)
 
             data = self.pattern_separator.join(str(j)
-                                               for i in (self.config.ty, sub_type, data)
+                                               for i in (self.config.ty, str(sub_type), data)
                                                for j in (i if isinstance(i, tuple) else (i,)))
             if isHandler:
                 data = f'^{data}$'
@@ -108,7 +108,7 @@ class BotAppConfig:
             paginator = InlinePaginatorCustom(
                 page_count=pages.num_pages,
                 current_page=current_page_index,
-                data_pattern=self._build_callback_data(self.sub_type, False, '{page}', *data)
+                data_pattern=self._build_callback_data(self.sub_type, False, "pages", '{page}', *data)
             )
 
             paginator.add_before(*buttons)
@@ -135,5 +135,5 @@ class PageTy:
         return PageTy._tys
 
     @staticmethod
-    def show_page(page_id, ty, update):
-        PageTy._tys[ty].page_builder(page_id, update)
+    def show_page(page, ty, update):
+        PageTy._tys[ty].page_builder(page, update)

@@ -2,6 +2,7 @@ from telegram import Update
 from whoosh.searching import Hit
 from typing import List, Optional
 
+from common.util import send_text
 from .models import Route, Stop
 import itertools
 
@@ -14,11 +15,13 @@ def index_route():
         }
 
 
-def route_builder(page: Hit, update: Update):
+def route_builder(page: int, update: Update):
 
-    route = Route.objects.get(id=page["id"])
+    route = Route.objects.get(id=page)
 
-    render_route(route)
+    text = render_route(route)
+
+    send_text(text, update)
 
 
 def render_route(route):

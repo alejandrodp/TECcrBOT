@@ -16,6 +16,11 @@ def index_places():
 
 
 def show_place(page: int, update: Update) -> (str, Optional[List[InlineKeyboardButton]]):
+
+    if not Place.objects.filter(id=page).exists():
+        send_text("Página no encontrada", update)
+        return
+
     place = Place.objects.get(id=page)
 
     desc = place.description if place.description else "No disponible"

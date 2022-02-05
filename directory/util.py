@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from telegram import Message, InlineKeyboardButton
+from telegram import Message, InlineKeyboardButton, Update
 
 from bot.index import LANGUAGE_ANALYZER
+from common.util import send_text
 from .models import Person, Unit, Role, RoleTy, Location
 
 
@@ -42,24 +43,24 @@ def index_locs():
         }
 
 
-def loc_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
+def loc_builder(page: int, update: Update) -> (str, Optional[List[InlineKeyboardButton]]):
     loc = Location.objects.get(id=page)
 
     msg = f'Nombre: {loc.name}\n\n<a href="https://www.tec.ac.cr{loc.href}">Ver más información</a>'
 
-    return msg, None
+    send_text(msg, update)
 
 
-def depts_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
+def depts_builder(page: int, update: Update) -> (str, Optional[List[InlineKeyboardButton]]):
 
     dept = Unit.objects.get(id=page)
 
     msg = f'Nombre: {dept.name}\n\n<a href="https://www.tec.ac.cr{dept.href}">Ver más información</a>'
+    send_text(msg, update)
 
-    return msg, None
 
 
-def people_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
+def people_builder(page: int, update: Update) -> None:
 
     person = Person.objects.get(id=page)
 
@@ -79,4 +80,4 @@ def people_builder(page: int) -> (str, Optional[List[InlineKeyboardButton]]):
           f'{roles}\n'\
           f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
 
-    return msg, None
+    send_text(msg, update)

@@ -4,7 +4,8 @@ from telegram.ext import CallbackContext
 from bot.buttons import page_button
 from bot.menu import HandlerMaster
 from common.util import is_int, send_unknown_error
-from places.buttons import *
+from places.apps import PlacesConfig
+from places.buttons import list_categories, list_categories_paginator, list_places, list_places_paginator
 from places.constants import PAGE_TY
 from places.models import Tag, Place
 
