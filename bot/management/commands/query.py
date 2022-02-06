@@ -20,7 +20,7 @@ class Command(BaseCommand):
                 print('Error: query timed out', file=sys.stderr)
                 return
 
-            print(results, file=sys.stderr)
+            print(results)
 
             docnums = {hit.docnum: hit for hit in results}
             hits = ((ty, [docnums.pop(no) for no in hits])
