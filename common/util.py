@@ -80,6 +80,10 @@ class Reply:
         if not condition:
             self.bad_request()
 
+    def user_first_name(self):
+        update = self._read_update()
+        return update.effective_user.first_name
+
     def expect_int(self, maybe_int):
         try:
             return int(maybe_int)
