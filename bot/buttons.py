@@ -10,7 +10,7 @@ class States(Enum):
     MULTIPLE_TYPE_RESULTS = "multi_type_results"
 
 
-config = BotAppConfig(BotConfig.name, BotConfig.verbose_name)
+config = BotAppConfig(BotConfig.name, "Info️ \U00002139")
 page_button = config.create_inline_button(States.GET_PAGE, r"(\d+)", r"(\d+)")
 
 one_type_paginator = config.create_paginator(States.ONE_TYPE_RESULTS, rf"(\d+)")

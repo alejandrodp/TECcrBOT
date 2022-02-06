@@ -23,6 +23,18 @@ def main_menu(reply: Reply, context: CallbackContext) -> None:
     )
 
 
+def info_message_handler(reply: Reply, context: CallbackContext) -> None:
+    response = f"Este bot fue inicialmente creado por Esteban Sánchez Trejos, " \
+               f"quien lo mantuvo desde 2017 hasta 2021, en conjunto con " \
+               f"la asociación de estudiantes de la carrera de Mecatrónica (AEMTEC).\n\n" \
+               f"A partir del 2021 cluster451 se incorporó en el desarrollo del proyecto.\n\n" \
+               f"Cluster451 es un grupo enfocado en el software libre y la autonomía de datos, " \
+               f"conformado actualmente por estudiantes del TEC de múltiples carreras.\n\n" \
+               f"Si desea contribuir al proyecto, hacer sugerencias o comentarios, comunicarse con Fabián Montero (@fabianmv)."
+
+    reply.text(response)
+
+
 def greetings_message_handler(reply: Reply, context: CallbackContext) -> None:
     response = f"¡Hola {reply.user_first_name()}!\n" \
                f"Puede preguntar a través de:\n" \
