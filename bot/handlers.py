@@ -33,15 +33,15 @@ def show_page_handler(update: Update, context: CallbackContext) -> None:
 
 def search_handler(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        return search_query(reply.text_query(), reply_results, search_time_limit_error, reply)
+        return search_query(reply.text_query(), reply_results, reply)
 
 
-def search_query(query: str, callback, error_callback, reply):
+def search_query(query: str, callback, reply):
     with read_index() as ix:
         try:
             results = search(ix, query)
         except TimeLimit:
-            error_callback(reply)
+            reply.text("Su búsqueda ha tardado demasiado, intente una búsqueda más simple")
             return
 
         docnums = {hit.docnum: hit for hit in results}
@@ -50,10 +50,6 @@ def search_query(query: str, callback, error_callback, reply):
 
         groups = sorted(hits, key=lambda e: e[1][0].score, reverse=True)
         return callback(groups, reply, query)
-
-
-def search_time_limit_error(reply: Reply):
-    reply.text("Su búsqueda ha tardado demasiado, intente una búsqueda más simple")
 
 
 def build_multiple_type_results(results, reply, query, current_page):
@@ -78,7 +74,7 @@ def send_multiple_type_pages_handler(update: Update, context: CallbackContext) -
             current_page = int(context.match.group(1))
             build_multiple_type_results(results, up, qu, current_page)
 
-        search_query(query, process_query, search_time_limit_error, reply)
+        search_query(query, process_query, reply)
 
 
 def type_selection_handler(update: Update, context: CallbackContext) -> None:
@@ -91,8 +87,7 @@ def type_selection_handler(update: Update, context: CallbackContext) -> None:
                 if r_ty == ty:
                     build_one_type_results(ty, pages, up, qu, 1)
 
-        search_query(query, process_one_time_results,
-                     search_time_limit_error, reply)
+        search_query(query, process_one_time_results, reply)
 
 
 def reply_results(results, reply, query):
@@ -120,7 +115,7 @@ def send_one_type_page_handler(update: Update, context: CallbackContext) -> None
                 if r_ty == ty:
                     build_one_type_results(ty, pages, up, qu, current_page)
 
-        search_query(query, process_query, search_time_limit_error, reply)
+        search_query(query, process_query, reply)
 
 
 def get_query(cq: CallbackQuery):
