@@ -125,14 +125,15 @@ class BotAppConfig:
 class PageTy:
     _tys = {}
 
-    def __init__(self, ty, desc, index, page_builder):
+    def __init__(self, *, ty, model, desc, index, build):
         existing = PageTy._tys.get(ty)
         assert existing is None, f'Page type `{desc}` collides with `{existing.desc}`'
 
         self.ty = ty
         self.desc = desc
+        self.model = model
         self.index = index
-        self.page_builder = page_builder
+        self.builder = build
         PageTy._tys[ty] = self
 
     @staticmethod

@@ -5,7 +5,8 @@ from transportation import apps
 from transportation.handlers import menu_entry, get_routes, get_schedule
 
 from tcrb.core import PageTy
-from transportation.util import index_route, route_builder
+from .util import index_route, route_builder
+from .models import Route
 
 HANDLERS = [
     main_menu_entry('Servicios de transporte \U0001f68c', menu_entry),
@@ -15,4 +16,5 @@ HANDLERS = [
         get_schedule, pattern=rf"{apps.TransportationConfig.name}:route:\d+"),
 ]
 
-ROUTE_PAGES = PageTy(5, 'Rutas', index_route, route_builder)
+ROUTE_PAGES = PageTy(ty=5, model=Route, desc='Rutas',
+                     index=index_route, build=route_builder)

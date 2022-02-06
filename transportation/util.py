@@ -15,7 +15,7 @@ def index_route():
         }
 
 
-def route_builder(page: int, reply: Reply):
+def route_builder(route: Route, reply: Reply):
     reply.text(render_route(Route.objects.get(id=page)))
 
 

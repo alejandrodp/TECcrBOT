@@ -78,10 +78,6 @@ class Reply:
         except ValueError:
             self.expect(False)
 
-    def expect_idx(self, lst, index):
-        self.expect(0 <= index < len(lst))
-        return lst[index]
-
     def _read_update(self):
         assert self._update is not None
         return self._update

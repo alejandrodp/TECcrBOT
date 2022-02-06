@@ -26,7 +26,7 @@ def show_page_handler(reply: Reply, context: CallbackContext) -> None:
     ty = reply.expect_int(context.match.group(1))
     page_id = reply.expect_int(context.match.group(2))
 
-    reply.expect_idx(page_tys, ty).page_builder(page_id, reply)
+    show_page(ty, page_id, reply)
 
 
 def search_handler(reply: Reply, context: CallbackContext) -> None:
@@ -38,13 +38,26 @@ def search_handler(reply: Reply, context: CallbackContext) -> None:
                 reply.text(
                     f'No se encontraron resultados para <i>{html.escape(query)}</i>')
             case [(ty, [page])]:
-                reply.expect_idx(page_tys, ty).page_builder(page["id"], reply)
+                show_page(ty, page['id'], reply)
             case [(ty, pages)]:
                 build_one_type_results(ty, pages, reply, query, 1)
             case _:
                 build_multiple_type_results(results, reply, query, 1)
 
     return search_query(query, reply_results, reply)
+
+
+def show_page(ty, page_id, reply):
+    page_ty = page_tys.get(ty)
+    reply.expect(page_ty is not None)
+
+    model = page_ty.model
+    try:
+        obj = model.objects.get(id=page_id)
+    except model.DoesNotExist:
+        reply.bad_request()
+
+    page_ty.builder(obj, reply)
 
 
 def search_query(query: str, callback, reply):

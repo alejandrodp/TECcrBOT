@@ -15,10 +15,8 @@ def index_places():
         }
 
 
-def show_place(page: int, reply: Reply):
-    place = Place.objects.get(id=page)
+def show_place(place: Place, reply: Reply):
     desc = place.description if place.description else "No disponible"
-
     text = f"<b>Nombre: {place.name}</b>\n\n" \
         f"Descripción:\n" \
         f"{desc}"

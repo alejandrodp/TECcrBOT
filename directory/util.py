@@ -47,15 +47,12 @@ def index_locs():
         }
 
 
-def loc_builder(page: int, reply: Reply):
-    loc = Location.objects.get(id=page)
+def loc_builder(loc: Location, reply: Reply):
     msg = f'Nombre: {loc.name}\n\n<a href="https://www.tec.ac.cr{loc.href}">Ver más información</a>'
-
     reply.text(msg)
 
 
-def depts_page_builder(page: int, reply: Reply):
-    dept = Unit.objects.get(id=page)
+def depts_page_builder(dept: Unit, reply: Reply):
     msg = dept_text_builder(dept)
     paginator = dept_people_paginator_builder(1, dept)
 
@@ -78,9 +75,7 @@ def dept_people_paginator_builder(current_page, dept):
                                                        dept.id)
 
 
-def people_builder(page: int, reply: Reply) -> None:
-    person = Person.objects.get(id=page)
-
+def people_builder(person: Person, reply: Reply) -> None:
     email = person.email if person.email else 'No disponible'
     tel = person.phone if person.phone else 'No disponible'
 
