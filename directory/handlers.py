@@ -8,14 +8,14 @@ from directory.util import depts_page_builder, dept_text_builder, dept_people_pa
 
 def show_department(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        unit_id = int(context.match.group(1))
+        unit_id = reply.expect_int(context.match.group(1))
         depts_page_builder(unit_id, reply)
 
 
 def depts_people_pagination(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        current_page = int(context.match.group(1))
-        unit_id = int(context.match.group(2))
+        current_page = reply.expect_int(context.match.group(1))
+        unit_id = reply.expect_int(context.match.group(2))
 
         dept = Unit.objects.get(id=unit_id)
         msg = dept_text_builder(dept)

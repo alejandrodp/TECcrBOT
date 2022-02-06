@@ -32,7 +32,11 @@ class Reply:
 
     def __exit__(self, exc_type, exc_value, traceback):
         if exc_value is not None:
-            self.unknown_error()
+            suppress = isinstance(exc_value, ReplyExit)
+            if not suppress:
+                self.fail("Ocurrió un problema, intente nuevamente.", exit_now=False)
+
+            return suppress
 
     def text_query(self):
         message = self._read_update().message
@@ -44,13 +48,15 @@ class Reply:
         assert cq, "This update lacks a callback_query"
         return cq
 
-    def unknown_error(self):
+    def fail(self, error, *, exit_now=True):
         if not self._has_failed:
             self._has_failed = True
 
-            MSG = "Ocurrió un problema, intente nuevamente."
-            self._update.effective_chat.send_message(MSG)
+            self._update.effective_chat.send_message(error)
             self._update = None
+
+        if exit_now:
+            raise ReplyExit()
 
     def text(self, text, **kwargs) -> Message:
         update = self._read_update()
@@ -59,10 +65,27 @@ class Reply:
         else:
             return update.callback_query.edit_message_text(text, **kwargs)
 
+    def bad_request(self):
+        self.fail('Error de formato de solicitud, favor reporte este incidente.')
+
+    def expect(self, condition):
+        if not condition:
+            self.bad_request()
+
+    def expect_int(self, maybe_int):
+        try:
+            return int(maybe_int)
+        except ValueError:
+            self.expect(False)
+
+    def expect_idx(self, lst, index):
+        self.expect(0 <= index < len(lst))
+        return lst[index]
+
     def _read_update(self):
         assert self._update is not None
         return self._update
 
 
-def is_int(*text: str):
-    return all(s in string.digits for elm in text for s in elm)
+class ReplyExit(Exception):
+    pass

@@ -32,7 +32,7 @@ def first_category_list(update: Update, context: CallbackContext) -> None:
 
 def remain_category_list(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        current_page = int(context.match.group(1))
+        current_page = reply.expect_int(context.match.group(1))
         send_category_list(current_page, reply.callback_query())
 
 
@@ -51,14 +51,14 @@ def send_category_list(current_page_num, query):
 
 def first_place_list(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        tag_id = int(context.match.group(1))
+        tag_id = reply.expect_int(context.match.group(1))
         send_page_list(1, reply.callback_query(), tag_id)
 
 
 def remain_place_list(update: Update, context: CallbackContext) -> None:
     with Reply(update) as reply:
-        current_page = int(context.match.group(1))
-        tag_id = int(context.match.group(2))
+        current_page = reply.expect_int(context.match.group(1))
+        tag_id = reply.expect_int(context.match.group(2))
         send_page_list(current_page, reply.callback_query(), tag_id)
 
 

@@ -130,7 +130,3 @@ class PageTy:
     def read_page_tys():
         BotAppConfig.load_settings()
         return PageTy._tys
-
-    @staticmethod
-    def show_page(page, ty, reply):
-        PageTy._tys[ty].page_builder(page, reply)
