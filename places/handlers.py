@@ -1,4 +1,4 @@
-from telegram import Update, InlineKeyboardMarkup
+from telegram import InlineKeyboardMarkup
 from telegram.ext import CallbackContext
 
 from bot.buttons import page_button
@@ -12,28 +12,25 @@ from places.models import Tag, Place
 handlers = HandlerMaster(PlacesConfig.name)
 
 
-def menu_entry(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        reply.text(
-            "En esta sección puede ver todas las ubicaciones disponibles por categorías.\n"
-            "También puede buscar una ubicación escribiendo el nombre (Ejemplos: A1, fotocopiadora)",
-            reply_markup=InlineKeyboardMarkup.from_column(
-                [
-                    list_categories.build_button("Ver categorías")
-                ]
-            )
+def menu_entry(reply: Reply, context: CallbackContext) -> None:
+    reply.text(
+        "En esta sección puede ver todas las ubicaciones disponibles por categorías.\n"
+        "También puede buscar una ubicación escribiendo el nombre (Ejemplos: A1, fotocopiadora)",
+        reply_markup=InlineKeyboardMarkup.from_column(
+            [
+                list_categories.build_button("Ver categorías")
+            ]
         )
+    )
 
 
-def first_category_list(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        send_category_list(1, reply.callback_query())
+def first_category_list(reply: Reply, context: CallbackContext) -> None:
+    send_category_list(1, reply.callback_query())
 
 
-def remain_category_list(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        current_page = reply.expect_int(context.match.group(1))
-        send_category_list(current_page, reply.callback_query())
+def remain_category_list(reply: Reply, context: CallbackContext) -> None:
+    current_page = reply.expect_int(context.match.group(1))
+    send_category_list(current_page, reply.callback_query())
 
 
 def send_category_list(current_page_num, query):
@@ -49,17 +46,15 @@ def send_category_list(current_page_num, query):
     )
 
 
-def first_place_list(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        tag_id = reply.expect_int(context.match.group(1))
-        send_page_list(1, reply.callback_query(), tag_id)
+def first_place_list(reply: Reply, context: CallbackContext) -> None:
+    tag_id = reply.expect_int(context.match.group(1))
+    send_page_list(1, reply.callback_query(), tag_id)
 
 
-def remain_place_list(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        current_page = reply.expect_int(context.match.group(1))
-        tag_id = reply.expect_int(context.match.group(2))
-        send_page_list(current_page, reply.callback_query(), tag_id)
+def remain_place_list(reply: Reply, context: CallbackContext) -> None:
+    current_page = reply.expect_int(context.match.group(1))
+    tag_id = reply.expect_int(context.match.group(2))
+    send_page_list(current_page, reply.callback_query(), tag_id)
 
 
 def send_page_list(current_page, query, tag_id):

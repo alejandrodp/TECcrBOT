@@ -1,6 +1,6 @@
 import html
 
-from telegram import Update, ReplyKeyboardMarkup, CallbackQuery
+from telegram import ReplyKeyboardMarkup, CallbackQuery
 from telegram.ext import CallbackContext
 from whoosh.searching import TimeLimit
 
@@ -12,41 +12,39 @@ from tcrb.core import BotAppConfig, PageTy
 page_tys = PageTy.read_page_tys()
 
 
-def main_menu(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        reply.text(
-            "Seleccione una opción:",
-            reply_markup=ReplyKeyboardMarkup(
-                BotAppConfig.get_main_menu(),
-                resize_keyboard=True,
-            )
+def main_menu(reply: Reply, context: CallbackContext) -> None:
+    reply.text(
+        "Seleccione una opción:",
+        reply_markup=ReplyKeyboardMarkup(
+            BotAppConfig.get_main_menu(),
+            resize_keyboard=True,
         )
+    )
 
 
-def show_page_handler(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        ty = reply.expect_int(context.match.group(1))
-        page_id = reply.expect_int(context.match.group(2))
+def show_page_handler(reply: Reply, context: CallbackContext) -> None:
+    ty = reply.expect_int(context.match.group(1))
+    page_id = reply.expect_int(context.match.group(2))
 
-        reply.expect_idx(page_tys, ty).page_builder(page_id, reply)
+    reply.expect_idx(page_tys, ty).page_builder(page_id, reply)
 
 
-def search_handler(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        query = reply.text_query()
-        def reply_results(results):
-            match results:
-                case []:
-                    reply.text(
-                        f'No se encontraron resultados para <i>{html.escape(query)}</i>')
-                case [(ty, [page])]:
-                    reply.expect_idx(page_tys, ty).page_builder(page["id"], reply)
-                case [(ty, pages)]:
-                    build_one_type_results(ty, pages, reply, query, 1)
-                case _:
-                    build_multiple_type_results(results, reply, query, 1)
+def search_handler(reply: Reply, context: CallbackContext) -> None:
+    query = reply.text_query()
 
-        return search_query(query, reply_results, reply)
+    def reply_results(results):
+        match results:
+            case []:
+                reply.text(
+                    f'No se encontraron resultados para <i>{html.escape(query)}</i>')
+            case [(ty, [page])]:
+                reply.expect_idx(page_tys, ty).page_builder(page["id"], reply)
+            case [(ty, pages)]:
+                build_one_type_results(ty, pages, reply, query, 1)
+            case _:
+                build_multiple_type_results(results, reply, query, 1)
+
+    return search_query(query, reply_results, reply)
 
 
 def search_query(query: str, callback, reply):
@@ -54,7 +52,8 @@ def search_query(query: str, callback, reply):
         try:
             results = search(ix, query)
         except TimeLimit:
-            reply.fail("Su búsqueda ha tardado demasiado, intente una búsqueda más simple")
+            reply.fail(
+                "Su búsqueda ha tardado demasiado, intente una búsqueda más simple")
 
         docnums = {hit.docnum: hit for hit in results}
         hits = ((ty, [docnums.pop(no) for no in hits])
@@ -78,43 +77,40 @@ def build_multiple_type_results(results, reply, query, current_page):
     )
 
 
-def send_multiple_type_pages_handler(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        query = get_query(reply.callback_query())
-        current_page = reply.expect_int(context.match.group(1))
+def send_multiple_type_pages_handler(reply: Reply, context: CallbackContext) -> None:
+    query = get_query(reply.callback_query())
+    current_page = reply.expect_int(context.match.group(1))
 
-        def process_query(results: list):
-            build_multiple_type_results(results, reply, query, current_page)
+    def process_query(results: list):
+        build_multiple_type_results(results, reply, query, current_page)
 
-        search_query(query, process_query, reply)
-
-
-def type_selection_handler(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        query = get_query(reply.callback_query())
-        ty = reply.expect_int(context.match.group(1))
-
-        def process_one_time_results(results: list):
-            for r_ty, pages in results:
-                if r_ty == ty:
-                    build_one_type_results(ty, pages, reply, query, 1)
-
-        search_query(query, process_one_time_results, reply)
+    search_query(query, process_query, reply)
 
 
-def send_one_type_page_handler(update: Update, context: CallbackContext) -> None:
-    with Reply(update) as reply:
-        query = get_query(reply.callback_query())
+def type_selection_handler(reply: Reply, context: CallbackContext) -> None:
+    query = get_query(reply.callback_query())
+    ty = reply.expect_int(context.match.group(1))
 
-        current_page = reply.expect_int(context.match.group(1))
-        ty = reply.expect_int(context.match.group(2))
+    def process_one_time_results(results: list):
+        for r_ty, pages in results:
+            if r_ty == ty:
+                build_one_type_results(ty, pages, reply, query, 1)
 
-        def process_query(results: list):
-            for r_ty, pages in results:
-                if r_ty == ty:
-                    build_one_type_results(ty, pages, reply, query, current_page)
+    search_query(query, process_one_time_results, reply)
 
-        search_query(query, process_query, reply)
+
+def send_one_type_page_handler(reply: Reply, context: CallbackContext) -> None:
+    query = get_query(reply.callback_query())
+
+    current_page = reply.expect_int(context.match.group(1))
+    ty = reply.expect_int(context.match.group(2))
+
+    def process_query(results: list):
+        for r_ty, pages in results:
+            if r_ty == ty:
+                build_one_type_results(ty, pages, reply, query, current_page)
+
+    search_query(query, process_query, reply)
 
 
 def get_query(cq: CallbackQuery):
