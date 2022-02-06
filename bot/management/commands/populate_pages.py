@@ -45,6 +45,7 @@ def load_people():
             scrap_dir / 'log.json',
             '--role',
             'replay',
+            '--compact'
         ],
         capture_output=True
     ).stdout

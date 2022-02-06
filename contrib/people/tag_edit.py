@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+#
+# Algunas de las operaciones que realiza este script parecen ser poco
+# eficientes a primera vista. Sin embargo, es importante que todo cambio
+# realizado por este script sea totalmente determinístico en la salida. Es
+# decir, no debe perderse nunca el orden de elementos de lista o similares.
 
 import sys
 import json
@@ -38,7 +43,6 @@ save = False
 
 
 def update(store, args, updater):
-    global save
     for contact in store['staff']:
         if args.is_dept:
             update_dept(contact, updater)
@@ -51,6 +55,7 @@ def update(store, args, updater):
             if functions:
                 update_role_ty(functions, updater)
 
+    global save
     save = True
 
     if args.log is not None:
@@ -148,6 +153,53 @@ def merge_tag(store, args):
           'into', repr(args.dest), file=sys.stderr)
 
 
+def compact(store):
+    def update_lst(cont, key, callback):
+        lst = cont.get(key)
+        present = lst is not None
+        lst = lst if present else []
+
+        callback(lst)
+        if lst:
+            cont[key] = lst
+        elif present:
+            del cont[key]
+
+    def merge_dup_roles(roles):
+        idx = 1
+        while idx < len(roles):
+            role = roles[idx]
+            dept = role['dept']
+
+            for prev in range(idx):
+                prev = roles[prev]
+
+                if prev['dept'] == dept:
+                    prev.setdefault('types', []).extend(role.get('types', ()))
+                    prev.setdefault('functions', []).extend(role.get('functions', ()))
+
+                    del roles[idx]
+                    break
+            else:
+                idx += 1
+
+    def remove_dup_tys(tys):
+        # 'tys' will always be a very short list, so this is ok
+        idx = 1
+        while idx < len(tys):
+            for prev in (prev for prev in range(idx) if tys[prev] == tys[idx]):
+                del tys[idx]
+                break
+            else:
+                idx += 1
+
+    for contact in store['staff']:
+        update_lst(contact, 'roles', merge_dup_roles)
+        for role in contact.get('roles', ()):
+            update_lst(role, 'types', remove_dup_tys)
+            update_lst(role, 'functions', remove_dup_tys)
+
+
 def replay_log(store, args):
     with open(args.log) as log:
         cmds = json.load(log)
@@ -162,6 +214,9 @@ def replay_log(store, args):
 
         dispatch(store, ns)
 
+    if args.compact:
+        print('Compact all references', file=sys.stderr)
+        compact(store)
 
 def dispatch(store, args):
     if args.cmd == 'delete':
@@ -198,7 +253,9 @@ merge = sub.add_parser('merge')
 merge.add_argument('src')
 merge.add_argument('dest')
 
-sub.add_parser('replay')
+replay = sub.add_parser('replay')
+replay.add_argument('--compact', dest='compact', action='store_true')
+replay.set_defaults(compact=False)
 
 args = parser.parse_args()
 with open(args.file) as file:
