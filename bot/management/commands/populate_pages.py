@@ -55,24 +55,26 @@ def load_people():
 
     locations = []
     for location in scrap['locations']:
-        id = new_page(LOC_PAGES)
+        name = location['name']
+        id = new_page(LOC_PAGES, title=name)
 
         locations.append(id)
-        Location(id=id, name=location['name'],
-                 href=location['href']).save()
+        Location(id=id, name=name, href=location['href']).save()
 
     depts = []
     for unit in scrap['depts']:
-        id = new_page(DEPT_PAGES)
+        name = unit['name']
+        id = new_page(DEPT_PAGES, title=name)
 
         depts.append(id)
-        Unit(id=id, name=unit['name'], href=unit['href']).save()
+        Unit(id=id, name=name, href=unit['href']).save()
 
     for person in scrap['staff']:
+        name, surname = person['name'], person['surname']
         person_obj = Person(
-            id=new_page(PEOPLE_PAGES),
-            name=person['name'],
-            surname=person['surname'],
+            id=new_page(PEOPLE_PAGES, title=f'{surname}, {name}'),
+            name=name,
+            surname=surname,
             email=person.get('email'),
             phone=person.get('tel'),
             href=person['href'],
@@ -105,13 +107,14 @@ def load_places():
         scrap = json.load(scrap)
 
     for place in scrap:
+        name = place['name']
         photo = place.get('photo')
         if photo:
             photo = os.path.join('contrib/places/photos', photo)
 
         Place(
-            id=new_page(PLACE_PAGES),
-            name=place['name'],
+            id=new_page(PLACE_PAGES, title=name),
+            name=name,
             latitude=place['lat'],
             longitude=place['long'],
             photo=photo,
@@ -123,11 +126,16 @@ def load_transportation():
         scrap = json.load(scrap)
 
     for route in scrap:
+        source, destination, vehicle = route['src'].title(), route['dest'].title(), route['vehicle']
+
+        mtime = datetime.date.fromisoformat(route['mtime'])
+        title = f'Ruta en {vehicle}: {source} - {destination}'
+
         target_route = Route(
-            id=new_page(ROUTE_PAGES, mtime=datetime.date.fromisoformat(route['mtime'])),
-            source=T_place.objects.get_or_create(name=route["src"].title())[0],
-            destination=T_place.objects.get_or_create(name=route["dest"].title())[0],
-            vehicle=Vehicle.objects.get_or_create(name=route["vehicle"])[0],
+            id=new_page(ROUTE_PAGES, title=title, mtime=mtime),
+            source=T_place.objects.get_or_create(name=source)[0],
+            destination=T_place.objects.get_or_create(name=destination)[0],
+            vehicle=Vehicle.objects.get_or_create(name=vehicle)[0],
             price=route["price"]
         )
 
@@ -149,8 +157,8 @@ def load_transportation():
                         terminus=stop["terminus"]
                     ).save()
 
-def new_page(page_ty, *, mtime=None):
-    page = Page(ty=page_ty.ty, mtime=mtime)
+def new_page(page_ty, *, title, mtime=None):
+    page = Page(ty=page_ty.ty, title=title, mtime=mtime)
     page.save()
 
     return page.id

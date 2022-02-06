@@ -7,14 +7,6 @@ from .models import Route, Stop
 import itertools
 
 
-def index_route():
-    for route in Route.objects.all():
-        yield {
-            'id': route.id,
-            'title': f'Ruta en {route.vehicle.name}: {route.source.name} - {route.destination.name}'
-        }
-
-
 def route_builder(route: Route, reply: Reply):
     reply.text(render_route(route))
 

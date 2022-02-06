@@ -7,14 +7,6 @@ from common.util import Reply
 from .models import Place
 
 
-def index_places():
-    for place in Place.objects.all():
-        yield {
-            'id': place.id,
-            'title': place.name,
-        }
-
-
 def show_place(place: Place, reply: Reply):
     desc = place.description if place.description else "No disponible"
     text = f"<b>Nombre: {place.name}</b>\n\n" \

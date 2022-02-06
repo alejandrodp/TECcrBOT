@@ -10,6 +10,6 @@ class Command(BaseCommand):
 def index_all():
     reset_index()
     with write_index() as ix:
-        for ty, page in load_pages():
-            assert 'id' in page and 'title' in page
-            ix.add_document(ty=ty, **page)
+        for ty, page, doc in load_pages():
+            assert not any(key in doc for key in ('ty', 'id', 'title'))
+            ix.add_document(ty=ty, id=page.id, title=page.title, **doc)

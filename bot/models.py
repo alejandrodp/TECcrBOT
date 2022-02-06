@@ -1,4 +1,4 @@
-from django.db.models import Model, IntegerField, DateField
+from django.db.models import Model, IntegerField, DateField, TextField
 
 
 class Page(Model):
@@ -15,4 +15,5 @@ class Page(Model):
     """
 
     ty = IntegerField()
+    title = TextField(max_length=512)
     mtime = DateField(null=True)

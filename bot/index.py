@@ -11,6 +11,7 @@ from whoosh.sorting import FieldFacet
 from whoosh.support.charset import accent_map
 
 from tcrb.core import PageTy
+from .models import Page
 
 LANGUAGE_ANALYZER = LanguageAnalyzer('es')
 NO_ACCENT_ANALYZER = StandardAnalyzer() | StopFilter(stoplists['es']) | CharsetFilter(accent_map)
@@ -75,5 +76,6 @@ def search(searcher, query):
 
 def load_pages():
     for ty, ty_obj in PageTy.read_page_tys().items():
-        for doc in ty_obj.index():
-            yield ty, doc
+        index = ty_obj.index or (lambda _: {})
+        for obj in ty_obj.model.objects.all():
+            yield ty, Page.objects.get(id=obj.id), index(obj)

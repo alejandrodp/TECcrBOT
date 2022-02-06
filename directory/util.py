@@ -11,17 +11,14 @@ from .constants import PEOPLE_TY, DEPT_TY
 from .models import Person, Unit, Role, RoleTy, Location
 
 
-def index_people():
-    for person in Person.objects.all():
-        yield {
-            'id': person.id,
-            'title': f'{person.surname}, {person.name}',
-            'kw': person_kws(person),
-            'name': person.name,
-            'surname': person.surname,
-            'tel': person.phone,
-            'email': person.email,
-        }
+def index_people(person: Person):
+    return {
+        'kw': person_kws(person),
+        'name': person.name,
+        'surname': person.surname,
+        'tel': person.phone,
+        'email': person.email,
+    }
 
 
 def person_kws(person):
@@ -30,22 +27,6 @@ def person_kws(person):
             for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
             for term in source
             for kw in LANGUAGE_ANALYZER(term.name)]
-
-
-def index_depts():
-    for unit in Unit.objects.all():
-        yield {
-            'id': unit.id,
-            'title': unit.name,
-        }
-
-
-def index_locs():
-    for location in Location.objects.all():
-        yield {
-            'id': location.id,
-            'title': location.name,
-        }
 
 
 def loc_builder(loc: Location, reply: Reply):
