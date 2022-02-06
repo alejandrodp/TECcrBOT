@@ -132,5 +132,5 @@ class PageTy:
         return PageTy._tys
 
     @staticmethod
-    def show_page(page, ty, update):
-        PageTy._tys[ty].page_builder(page, update)
+    def show_page(page, ty, reply):
+        PageTy._tys[ty].page_builder(page, reply)
