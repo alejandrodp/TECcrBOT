@@ -86,7 +86,7 @@ def show_page(ty, page_id, reply):
     except Page.DoesNotExist:
         reply.bad_request()
 
-    mtime = f' ({page.mtime})' if page.mtime else ''
+    mtime = f' (última modificación {page.mtime})' if page.mtime else ''
     reply.buffer_text(f'#{page_id:05}{mtime}\n\n')
 
     page_ty.builder(obj, reply)
