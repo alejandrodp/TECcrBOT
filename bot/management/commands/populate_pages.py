@@ -6,13 +6,13 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.db import transaction
 
-import transportation.settings
 from bot.models import Page
 from directory.models import Person, Ty, Location, Unit, Role, RoleTy
 from transportation.models import Place as T_place, Vehicle, Route, Stop, Schedule
 from places.models import Place
-import directory.settings
-import places.settings
+from directory.settings import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
+from places.settings import PLACE_PAGES
+from transportation.settings import ROUTE_PAGES
 
 from datetime import time
 
@@ -57,27 +57,22 @@ def load_people():
 
     locations = []
     for location in scrap['locations']:
-        page = Page(ty=directory.settings.LOC_PAGES.ty)
-        page.save()
-        locations.append(page.id)
+        id = new_page(LOC_PAGES)
 
-        Location(id=page.id, name=location['name'],
+        locations.append(id)
+        Location(id=id, name=location['name'],
                  href=location['href']).save()
 
     depts = []
     for unit in scrap['depts']:
-        page = Page(ty=directory.settings.DEPT_PAGES.ty)
-        page.save()
-        depts.append(page.id)
+        id = new_page(DEPT_PAGES)
 
-        Unit(id=page.id, name=unit['name'], href=unit['href']).save()
+        depts.append(id)
+        Unit(id=id, name=unit['name'], href=unit['href']).save()
 
     for person in scrap['staff']:
-        page = Page(ty=directory.settings.PEOPLE_PAGES.ty)
-        page.save()
-
         person_obj = Person(
-            id=page.id,
+            id=new_page(PEOPLE_PAGES),
             name=person['name'],
             surname=person['surname'],
             email=person.get('email'),
@@ -112,15 +107,12 @@ def load_places():
         scrap = json.load(scrap)
 
     for place in scrap:
-        page = Page(ty=places.settings.PLACE_PAGES.ty)
-        page.save()
-
         photo = place.get('photo')
         if photo:
             photo = os.path.join('contrib/places/photos', photo)
 
         Place(
-            id=page.id,
+            id=new_page(PLACE_PAGES),
             name=place['name'],
             latitude=place['lat'],
             longitude=place['long'],
@@ -133,11 +125,8 @@ def load_transportation():
         scrap = json.load(scrap)
 
     for route in scrap:
-        page = Page(ty=transportation.settings.ROUTE_PAGES.ty)
-        page.save()
-
         target_route = Route(
-            id=page.id,
+            id=new_page(ROUTE_PAGES),
             source=T_place.objects.get_or_create(name=route["src"].title())[0],
             destination=T_place.objects.get_or_create(name=route["dest"].title())[0],
             vehicle=Vehicle.objects.get_or_create(name=route["vehicle"])[0],
@@ -161,3 +150,9 @@ def load_transportation():
                         address=stop["address"],
                         terminus=stop["terminus"]
                     ).save()
+
+def new_page(page_ty, *, mtime=None):
+    page = Page(ty=page_ty.ty, mtime=mtime)
+    page.save()
+
+    return page.id

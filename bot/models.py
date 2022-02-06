@@ -1,4 +1,4 @@
-from django.db.models import Model, IntegerField, UniqueConstraint
+from django.db.models import Model, IntegerField, DateField
 
 
 class Page(Model):
@@ -11,7 +11,8 @@ class Page(Model):
         - Entre otros...
 
     ty:
-    Tipo de página al que pertenece este identificador.
+    Tipo de página
     """
 
     ty = IntegerField()
+    mtime = DateField(null=True)
