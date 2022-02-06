@@ -27,7 +27,7 @@ def load_all():
 
     load_people()
     load_places()
-    load_transportation()
+    # load_transportation()
 
 
 def load_people():
