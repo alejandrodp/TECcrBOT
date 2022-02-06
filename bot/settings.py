@@ -1,9 +1,11 @@
 from telegram.ext import Filters
 from bot.buttons import page_button, config, one_type_paginator, type_selection_button, multiple_types_paginator
-from bot.handlers import main_menu, show_page_handler, search_handler, send_one_type_page_handler, type_selection_handler, \
-    send_multiple_type_pages_handler
+from bot.handlers import main_menu, show_page_handler, search_handler, send_one_type_page_handler, \
+    type_selection_handler, \
+    send_multiple_type_pages_handler, greetings_message_handler
 
 config.add_command_handler("menu", main_menu)
+config.add_command_handler("start", greetings_message_handler)
 page_button.init_handler(show_page_handler)
 config.add_message_handler(Filters.text & ~Filters.command, search_handler)
 
