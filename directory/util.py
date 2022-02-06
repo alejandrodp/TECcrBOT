@@ -1,3 +1,4 @@
+import itertools
 from typing import List, Optional
 
 from telegram import InlineKeyboardButton, Update, InlineKeyboardMarkup
@@ -76,26 +77,43 @@ def dept_people_paginator_builder(current_page, dept):
 
 
 def people_builder(person: Person, reply: Reply) -> None:
-    email = person.email if person.email else 'No disponible'
-    tel = person.phone if person.phone else 'No disponible'
+    def role_msg(role):
+        functions, types = '', ''
+        groups = itertools.groupby(role.rolety_set.all(), lambda role_ty: role_ty.is_function)
+        for is_function, group in groups:
+            group = ', '.join(role_ty.ty.name for role_ty in group)
+            if is_function:
+                functions = group
+            else:
+                types = f' ({group})'
 
-    roles = '\n\n'.join([
-        f'Departamento: {r.unit.name}\n'
-        f'Funciones: {", ".join([n.ty.name for n in r.rolety_set.all()]) if r.rolety_set.exists() else "No disponible"}\n'
-        f'Ubicación: {r.location.name if r.location else "No disponible"}\n'
-        for r in person.role_set.all()
-    ])
+        yield f'<u>{role.unit.name}</u>{types}'
+        if functions:
+            yield functions
 
-    msg = f'Nombre: {person.name} {person.surname}\n' \
-          f'Correo electrónico: {email}\n' \
-          f'Teléfono: {tel}\n\n' \
-          f'{roles}\n' \
-          f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
+        location = or_unavailable(role.location, key=lambda loc: loc.name)
+        yield f'Ubicación: {location}'
+
+    def msg():
+        yield f'<b>{person.name} {person.surname}</b>\n'
+        yield f'Correo electrónico: {or_unavailable(person.email)}'
+        yield f'Teléfono: {or_unavailable(person.phone)}'
+
+        for role in person.role_set.all():
+            yield ''
+            yield from role_msg(role)
+
+        yield ''
+        yield f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
 
     reply.text(
-        msg,
+        '\n'.join(msg()),
         reply_markup=InlineKeyboardMarkup.from_column(list(
-            page_button.build_button(f"Ver {r.unit.name}", DEPT_TY, r.unit.id)
-            for r in person.role_set.all()
+            page_button.build_button(f"Ver {role.unit.name}", DEPT_TY, role.unit.id)
+            for role in person.role_set.all()
         ))
     )
+
+
+def or_unavailable(text, *, key=lambda x: x):
+    return key(text) if text else 'No disponible'

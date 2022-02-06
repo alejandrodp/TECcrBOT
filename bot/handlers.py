@@ -87,7 +87,7 @@ def show_page(ty, page_id, reply):
         reply.bad_request()
 
     mtime = f' (última modificación {page.mtime})' if page.mtime else ''
-    reply.buffer_text(f'#{page_id:05}{mtime}\n\n')
+    reply.buffer_text(f'<code>#{page_id:05}</code>{mtime}\n\n')
 
     page_ty.builder(obj, reply)
 
