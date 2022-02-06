@@ -119,7 +119,7 @@ def build_multiple_type_results(results, reply, query, current_page):
     )
 
     reply.text(
-        f"Se encontraron los siguientes resultadoss para <i>{html.escape(query)}</i>",
+        f"Se encontraron los siguientes resultados para <i>{html.escape(query)}</i>",
         reply_markup=paginator.markup
     )
 
