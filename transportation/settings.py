@@ -1,4 +1,3 @@
-from bot.menu import main_menu_entry
-from transportation.handlers import config
+from transportation.handlers import config, menu_entry
 
-config.add_main_menu_entry(main_menu_entry)
+config.add_main_menu_entry(menu_entry)
