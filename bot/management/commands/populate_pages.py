@@ -1,6 +1,4 @@
-import os.path
-import subprocess
-import json
+import os.path, datetime, subprocess, json
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -126,7 +124,7 @@ def load_transportation():
 
     for route in scrap:
         target_route = Route(
-            id=new_page(ROUTE_PAGES),
+            id=new_page(ROUTE_PAGES, mtime=datetime.date.fromisoformat(route['mtime'])),
             source=T_place.objects.get_or_create(name=route["src"].title())[0],
             destination=T_place.objects.get_or_create(name=route["dest"].title())[0],
             vehicle=Vehicle.objects.get_or_create(name=route["vehicle"])[0],

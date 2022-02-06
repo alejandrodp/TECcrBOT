@@ -4,6 +4,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 750,
+	"mtime": "2020-02-13",
     "stops": [
       {
         "terminus": true,
@@ -52,6 +53,7 @@
     "dest": "SAN JOSÉ",
     "vehicle": "bus",
     "price": 750,
+	"mtime": "2020-02-13",
     "stops": [
       {
         "terminus": true,
@@ -94,6 +96,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1100,
+	"mtime": "2020-02-13",
     "stops": [
       {
         "terminus": true,
@@ -129,6 +132,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1100,
+	"mtime": "2020-02-13",
     "stops": [
       {
         "terminus": true,
@@ -151,6 +155,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1100,
+	"mtime": "2020-02-13",
     "stops": [
       {
         "terminus": true,
@@ -196,6 +201,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1700,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -243,6 +249,7 @@
     "dest": "ALAJUELA",
     "vehicle": "bus",
     "price": 1700,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -290,6 +297,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1700,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -348,6 +356,7 @@
     "dest": "HEREDIA",
     "vehicle": "bus",
     "price": 1700,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -391,6 +400,7 @@
     "dest": "CORONADO",
     "vehicle": "bus",
     "price": 1200,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -450,6 +460,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 1200,
+	"mtime": "2020-02-20",
     "stops": [
       {
         "terminus": true,
@@ -561,6 +572,7 @@
     "dest": "TERMINAL CARTAGO",
     "vehicle": "bus",
     "price": 605,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
@@ -622,6 +634,7 @@
     "dest": "TERMINAL SAN JOSÉ",
     "vehicle": "bus",
     "price": 555,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
@@ -674,6 +687,7 @@
     "dest": "CARTAGO",
     "vehicle": "bus",
     "price": 150,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
@@ -729,6 +743,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 150,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
@@ -785,6 +800,7 @@
     "dest": "PÉREZ ZELEDÓN",
     "vehicle": "bus",
     "price": 3250,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
@@ -803,6 +819,7 @@
     "dest": "TEC",
     "vehicle": "bus",
     "price": 3250,
+	"mtime": "2018-09-25",
     "stops": [
       {
         "terminus": true,
