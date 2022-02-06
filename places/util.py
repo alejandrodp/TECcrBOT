@@ -8,12 +8,7 @@ from .models import Place
 
 
 def show_place(place: Place, reply: Reply):
-    desc = place.description if place.description else "No disponible"
-    text = f"<b>Nombre: {place.name}</b>\n\n" \
-        f"Descripción:\n" \
-        f"{desc}"
-
-    message = reply.text(text)
+    message = reply.text(place.description or '')
 
     if place.latitude and place.longitude:
         message.reply_location(latitude=place.latitude,

@@ -29,20 +29,17 @@ def person_kws(person):
             for kw in LANGUAGE_ANALYZER(term.name)]
 
 
-def loc_builder(loc: Location, reply: Reply):
-    msg = f'Nombre: {loc.name}\n\n<a href="https://www.tec.ac.cr{loc.href}">Ver más información</a>'
-    reply.text(msg)
+def loc_builder(location: Location, reply: Reply):
+    reply.text(href(location))
 
 
 def depts_page_builder(dept: Unit, reply: Reply):
-    msg = dept_text_builder(dept)
     paginator = dept_people_paginator_builder(1, dept)
+    reply.text(dept_text_builder(dept), reply_markup=paginator.markup)
 
-    reply.text(msg, reply_markup=paginator.markup)
 
-
-def dept_text_builder(dept):
-    return f'Nombre: {dept.name}\n\n<a href="https://www.tec.ac.cr{dept.href}">Ver más información</a>'
+def dept_text_builder(dept: Unit):
+    return href(dept)
 
 
 def dept_people_paginator_builder(current_page, dept):
@@ -76,7 +73,6 @@ def people_builder(person: Person, reply: Reply) -> None:
         yield f'Ubicación: {location}'
 
     def msg():
-        yield f'<b>{person.name} {person.surname}</b>\n'
         yield f'Correo electrónico: {or_unavailable(person.email)}'
         yield f'Teléfono: {or_unavailable(person.phone)}'
 
@@ -85,7 +81,7 @@ def people_builder(person: Person, reply: Reply) -> None:
             yield from role_msg(role)
 
         yield ''
-        yield f'<a href="https://www.tec.ac.cr{person.href}">Ver más información</a>'
+        yield href(person)
 
     reply.text(
         '\n'.join(msg()),
@@ -98,3 +94,7 @@ def people_builder(person: Person, reply: Reply) -> None:
 
 def or_unavailable(text, *, key=lambda x: x):
     return key(text) if text else 'No disponible'
+
+
+def href(obj):
+    return f'<a href="https://www.tec.ac.cr{obj.href}">Ver más información</a>'

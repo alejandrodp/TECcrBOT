@@ -13,4 +13,4 @@ HANDLERS = [
         process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
 ]
 
-PageTy(ty=0, model=Service, desc='Servicios', index=index_services, build=None)
+PageTy(ty=0, model=Service, desc='servicios', index=index_services, build=None)

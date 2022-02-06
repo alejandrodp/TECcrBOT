@@ -13,4 +13,4 @@ list_places.init_handler(first_place_list)
 list_places_paginator.init_handler(remain_place_list)
 
 
-PLACE_PAGES = PageTy(ty=PAGE_TY, model=Place, desc=PlacesConfig.verbose_name, build=show_place)
+PLACE_PAGES = PageTy(ty=PAGE_TY, model=Place, desc='ubicaciones', build=show_place)

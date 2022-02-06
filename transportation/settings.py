@@ -16,4 +16,4 @@ HANDLERS = [
         get_schedule, pattern=rf"{apps.TransportationConfig.name}:route:\d+"),
 ]
 
-ROUTE_PAGES = PageTy(ty=5, model=Route, desc='Rutas', build=route_builder)
+ROUTE_PAGES = PageTy(ty=5, model=Route, desc='rutas', build=route_builder)

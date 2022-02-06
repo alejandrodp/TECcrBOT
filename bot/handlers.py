@@ -87,8 +87,10 @@ def show_page(ty, page_id, reply):
         reply.bad_request()
 
     mtime = f' (última modificación {page.mtime})' if page.mtime else ''
-    reply.buffer_text(f'<code>#{page_id:05}</code>{mtime}\n\n')
+    header = f'<code>#{page_id:05}</code>{mtime}\n' \
+             f'<b>{html.escape(page.title)}</b> en {page_ty.desc}\n\n'
 
+    reply.buffer_text(header)
     page_ty.builder(obj, reply)
 
 
@@ -112,7 +114,7 @@ def build_multiple_type_results(results, reply, query, current_page):
     paginator = multiple_types_paginator.build_paginator(
         current_page,
         results,
-        lambda pgs: (type_selection_button.build_button(f"{page_tys[ty].desc} ({len(pages)})", ty) for ty, pages in
+        lambda pgs: (type_selection_button.build_button(f"{page_tys[ty].desc.title()} ({len(pages)})", ty) for ty, pages in
                      pgs),
     )
 
@@ -175,6 +177,6 @@ def build_one_type_results(ty, pages, reply, query, current_page):
     )
 
     desc = page_tys.get(ty).desc
-    text = f"Se encontraron los siguientes resultados de {desc} para <i>{html.escape(query)}</i>"
+    text = f"Se encontraron los siguientes resultados en {desc} para <i>{html.escape(query)}</i>"
 
     reply.text(text, reply_markup=paginator.markup)

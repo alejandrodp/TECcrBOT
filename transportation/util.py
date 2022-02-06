@@ -24,8 +24,8 @@ def render_route(route):
         "{deps}\n" \
         "De Lunes a Viernes pasa por:\n" \
         "{stps}\n".format(
-            src=route.source,
-            dest=route.destination,
+            src=route.source.name,
+            dest=route.destination.name,
             price=route.price,
             deps="\n".join(
                 f"{dep.address} a las {dep.time}" for dep in departures),

@@ -65,7 +65,7 @@ class Reply:
     def text(self, text, **kwargs) -> Message:
         update = self._read_update()
         if self._buffered:
-            text = self._buffered + text
+            text = (self._buffered + text).strip()
             self._buffered = ''
 
         if update.message:
