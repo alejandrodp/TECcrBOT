@@ -16,7 +16,7 @@ def index_route():
 
 
 def route_builder(route: Route, reply: Reply):
-    reply.text(render_route(Route.objects.get(id=page)))
+    reply.text(render_route(route))
 
 
 def render_route(route):

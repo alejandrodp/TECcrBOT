@@ -23,6 +23,7 @@ class Reply:
     def __init__(self, update: Update):
         self._update = update
         self._has_failed = False
+        self._buffered = ''
 
     def __enter__(self):
         if self._update.callback_query:
@@ -58,8 +59,15 @@ class Reply:
         if exit_now:
             raise ReplyExit()
 
+    def buffer_text(self, text):
+        self._buffered += text
+
     def text(self, text, **kwargs) -> Message:
         update = self._read_update()
+        if self._buffered:
+            text = self._buffered + text
+            self._buffered = ''
+
         if update.message:
             return update.message.reply_text(text, **kwargs)
         else:

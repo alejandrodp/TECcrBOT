@@ -5,6 +5,7 @@ from telegram.ext import CallbackContext
 from whoosh.searching import TimeLimit
 
 from bot.buttons import page_button, one_type_paginator, type_selection_button, multiple_types_paginator
+from bot.models import Page
 from bot.index import read_index, search
 from common.util import Reply
 from tcrb.core import BotAppConfig, PageTy
@@ -53,9 +54,14 @@ def show_page(ty, page_id, reply):
 
     model = page_ty.model
     try:
+        page = Page.objects.get(id=page_id)
         obj = model.objects.get(id=page_id)
-    except model.DoesNotExist:
+    # model.DoesNotExist no debe ser posible
+    except Page.DoesNotExist:
         reply.bad_request()
+
+    mtime = f' ({page.mtime})' if page.mtime else ''
+    reply.buffer_text(f'#{page_id:05}{mtime}\n\n')
 
     page_ty.builder(obj, reply)
 
