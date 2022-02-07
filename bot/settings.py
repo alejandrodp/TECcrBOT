@@ -9,7 +9,7 @@ config.add_command_handler("menu", main_menu)
 config.add_command_handler("start", greetings_message_handler)
 config.add_command_handler("help", greetings_message_handler)
 page_button.init_handler(show_page_handler)
-config.add_message_handler(Filters.text & ~Filters.command, search_handler)
+config.add_message_handler(Filters.text & ~Filters.command & ~Filters.update.edited_message, search_handler)
 
 one_type_paginator.init_handler(send_one_type_page_handler)
 
