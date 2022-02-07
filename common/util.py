@@ -81,8 +81,9 @@ class Reply:
             self.bad_request()
 
     def user_first_name(self):
-        update = self._read_update()
-        return update.effective_user.first_name
+        effective_user = self._read_update().effective_user
+        assert effective_user, "This update has no user"
+        return effective_user.first_name
 
     def expect_int(self, maybe_int):
         try:
