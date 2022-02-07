@@ -1,3 +1,4 @@
+import datetime
 import json
 import os.path
 import subprocess
@@ -11,6 +12,8 @@ from directory.models import Person, Ty, Location, Unit, Role, RoleTy
 from directory.settings import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
 from places.models import Place
 from places.settings import PLACE_PAGES
+from services.models import Service
+from services.settings import SERVICES_PAGE
 
 
 class Command(BaseCommand):
@@ -25,6 +28,7 @@ def load_all():
 
     load_people()
     load_places()
+    load_services()
 
 
 def load_people():
@@ -116,6 +120,27 @@ def load_places():
             longitude=place['long'],
             photo=photo,
         ).save()
+
+
+def load_services():
+    with open(settings.BASE_DIR / 'contrib/services/services.json') as scrap:
+        scrap = json.load(scrap)
+
+        for service in scrap:
+            name = service["name"]
+            desc = service["desc"]
+            link = service["link"]
+            contact = service["contact"]
+            mtime = datetime.date.fromisoformat(service["mtime"])
+
+            Service(
+                id=new_page(SERVICES_PAGE, title=name, mtime=mtime),
+                name=name,
+                description=desc if desc != "" else None,
+                link=link if link != "" else None,
+                contact=contact if contact != "" else None,
+
+            ).save()
 
 
 def new_page(page_ty, *, title, mtime=None):

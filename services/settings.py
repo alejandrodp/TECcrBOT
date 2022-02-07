@@ -1,16 +1,12 @@
-from telegram.ext import CallbackQueryHandler
-
-from bot.menu import main_menu_entry
-from tcrb.core import PageTy
+from tcrb.core import PageTy, BotAppConfig
 from . import apps
+from .handlers import main_entry
 from .models import Service
-from .handlers import main_entry, process_service
-from .util import index_services
+from .util import service_builder
 
-HANDLERS = [
-    main_menu_entry('Servicios generales \U0001f3eb', main_entry),
-    CallbackQueryHandler(
-        process_service, pattern=rf'{apps.ServicesConfig.name}:selecting_service:\d*')
-]
 
-PageTy(ty=0, model=Service, desc='servicios', index=index_services, build=None)
+config = BotAppConfig(apps.ServicesConfig.name, apps.ServicesConfig.verbose_name)
+
+config.add_main_menu_entry(main_entry)
+
+SERVICES_PAGE = PageTy(ty=0, model=Service, desc=apps.ServicesConfig.verbose_name, build=service_builder)

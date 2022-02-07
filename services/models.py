@@ -25,6 +25,6 @@ class Service(Model):
 
     id = BigIntegerField(primary_key=True)
     name = CharField(max_length=500, unique=True)
-    description = TextField(max_length=5000)
-    link = URLField(max_length=500)
-    contact = CharField(max_length=5000)
+    description = TextField(max_length=5000, null=True)
+    link = URLField(max_length=500, null=True)
+    contact = CharField(max_length=5000, null=True)
