@@ -7,6 +7,7 @@ from bot.handlers import main_menu, show_page_handler, search_handler, send_one_
 config.add_main_menu_entry(info_message_handler)
 config.add_command_handler("menu", main_menu)
 config.add_command_handler("start", greetings_message_handler)
+config.add_command_handler("help", greetings_message_handler)
 page_button.init_handler(show_page_handler)
 config.add_message_handler(Filters.text & ~Filters.command, search_handler)
 
