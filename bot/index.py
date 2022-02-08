@@ -1,11 +1,11 @@
 import os.path
 
 from django.conf import settings
-from whoosh.analysis import CharsetFilter, StopFilter, LanguageAnalyzer, StandardAnalyzer
+from whoosh.analysis import CharsetFilter, LowercaseFilter, StopFilter, \
+    StemFilter, RegexTokenizer, StandardAnalyzer, default_pattern
 from whoosh.collectors import TimeLimitCollector
 from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID, KEYWORD
 from whoosh.index import open_dir, exists_in, create_in
-from whoosh.lang.stopwords import stoplists
 from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
 from whoosh.support.charset import accent_map
@@ -13,17 +13,20 @@ from whoosh.support.charset import accent_map
 from tcrb.core import PageTy
 from .models import Page
 
-LANGUAGE_ANALYZER = LanguageAnalyzer('es')
-NO_ACCENT_ANALYZER = StandardAnalyzer() | StopFilter(stoplists['es']) | CharsetFilter(accent_map)
+ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')
+
+EXACT_ANALYZER = StandardAnalyzer() | STOP_FILTER | ACCENT_FILTER
+HINT_ANALYZER = RegexTokenizer(default_pattern) | LowercaseFilter() | \
+    STOP_FILTER | ACCENT_FILTER | StemFilter(lang='es')
 
 
 class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True, unique=True)
-    title = TEXT(stored=True, analyzer=LANGUAGE_ANALYZER, field_boost=1.5)
-    kw = KEYWORD(scorable=True, analyzer=LANGUAGE_ANALYZER)
-    name = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.0)
-    surname = TEXT(analyzer=NO_ACCENT_ANALYZER, field_boost=2.5)
+    title = TEXT(stored=True, analyzer=HINT_ANALYZER, field_boost=1.5)
+    kw = KEYWORD(scorable=True, analyzer=HINT_ANALYZER)
+    name = TEXT(analyzer=EXACT_ANALYZER, field_boost=2.0)
+    surname = TEXT(analyzer=EXACT_ANALYZER, field_boost=2.5)
     email = ID
     tel = ID
 
@@ -67,7 +70,8 @@ _TY_FACET = FieldFacet('ty')
 
 
 def search(searcher, query):
-    collector = TimeLimitCollector(searcher.collector(groupedby=_TY_FACET), 20e-3, use_alarm=False)
+    collector = TimeLimitCollector(searcher.collector(
+        groupedby=_TY_FACET), 20e-3, use_alarm=False)
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
 
     searcher.search_with_collector(parser.parse(query), collector)

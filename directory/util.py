@@ -4,7 +4,7 @@ from typing import List, Optional
 from telegram import InlineKeyboardButton, Update, InlineKeyboardMarkup
 
 from bot.buttons import page_button
-from bot.index import LANGUAGE_ANALYZER
+from bot.index import HINT_ANALYZER
 from common.util import Reply
 from .buttons import department_people_paginator
 from .constants import PEOPLE_TY, DEPT_TY
@@ -26,7 +26,7 @@ def person_kws(person):
             for role in Role.objects.filter(person=person)
             for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
             for term in source
-            for kw in LANGUAGE_ANALYZER(term.name)]
+            for kw in HINT_ANALYZER(term.name)]
 
 
 def loc_builder(location: Location, reply: Reply):
