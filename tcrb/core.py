@@ -1,4 +1,3 @@
-import importlib
 from enum import Enum
 
 from django.conf import settings
@@ -6,7 +5,7 @@ from django.core.paginator import Paginator
 from telegram import Update, InlineKeyboardButton
 from telegram.ext import CallbackContext, MessageHandler, Filters, CallbackQueryHandler, CommandHandler
 
-from common.util import InlinePaginatorCustom, Reply
+from .common.util import InlinePaginatorCustom, Reply
 
 
 class BotAppConfig:
@@ -37,8 +36,7 @@ class BotAppConfig:
 
     @staticmethod
     def load_settings():
-        _ = {app: importlib.import_module(
-            '.settings', app) for app in settings.BOT_APPS}
+        from . import toplevel as _
 
     @staticmethod
     def get_handlers():

@@ -30,13 +30,13 @@ ALLOWED_HOSTS = []
 
 # Aplicactions and it's entry command
 BOT_APPS = [
-    'bot',
-    'places',
-    'transportation',
-    'services',
-    'tutorias',
-    'news',
-    'directory'
+    'tcrb',
+    'tcrb.places',
+    'tcrb.transportation',
+    'tcrb.services',
+    'tcrb.tutorias',
+    'tcrb.news',
+    'tcrb.directory'
 ]
 
 PAGINATION_LIMIT = 5
