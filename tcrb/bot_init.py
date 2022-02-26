@@ -5,7 +5,7 @@ from django.conf import settings
 from telegram import ParseMode
 from telegram.ext import Updater, Dispatcher, Defaults
 
-from .core import BotAppConfig
+from tcrb.app.config import BotAppConfig
 
 defaults = Defaults(parse_mode=ParseMode.HTML, )
 

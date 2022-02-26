@@ -1,4 +1,4 @@
-from tcrb.core import PageTy
+from tcrb.app.config import PageTy
 from .buttons import see_department, department_people_paginator
 from .constants import PEOPLE_TY, DEPT_TY, LOC_TY
 from .handlers import show_department, depts_people_pagination

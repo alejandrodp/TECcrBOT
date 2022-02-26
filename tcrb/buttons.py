@@ -1,7 +1,7 @@
 from enum import Enum
 
 from .apps import BotConfig
-from .core import BotAppConfig
+from tcrb.app.config import BotAppConfig
 
 
 class States(Enum):

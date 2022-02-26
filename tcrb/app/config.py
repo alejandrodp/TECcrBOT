@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from telegram import Update, InlineKeyboardButton
 from telegram.ext import CallbackContext, MessageHandler, Filters, CallbackQueryHandler, CommandHandler
 
-from .common.util import InlinePaginatorCustom, Reply
+from tcrb.common.util import InlinePaginatorCustom, Reply
 
 
 class BotAppConfig:
@@ -36,7 +36,7 @@ class BotAppConfig:
 
     @staticmethod
     def load_settings():
-        from . import toplevel as _
+        from tcrb import toplevel as _
 
     @staticmethod
     def get_handlers():

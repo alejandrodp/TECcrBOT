@@ -10,7 +10,7 @@ from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
 from whoosh.support.charset import accent_map
 
-from .core import PageTy
+from tcrb.app.config import PageTy
 from .models import Page
 
 ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')

@@ -1,6 +1,6 @@
 from enum import Enum
 
-from tcrb.core import BotAppConfig
+from tcrb.app.config import BotAppConfig
 from . import apps
 
 

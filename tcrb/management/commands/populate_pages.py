@@ -8,12 +8,12 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from tcrb.models import Page
-from tcrb.directory.models import Person, Ty, Location, Unit, Role, RoleTy
-from tcrb.directory.settings import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
-from tcrb.places.models import Place
-from tcrb.places.settings import PLACE_PAGES
-from tcrb.services.models import Service
-from tcrb.services.settings import SERVICES_PAGE
+from tcrb.app.directory import Person, Ty, Location, Unit, Role, RoleTy
+from tcrb.app.directory import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
+from tcrb.app.places import Place
+from tcrb.app.places import PLACE_PAGES
+from tcrb.app.services import Service
+from tcrb.app.services.settings import SERVICES_PAGE
 
 
 class Command(BaseCommand):

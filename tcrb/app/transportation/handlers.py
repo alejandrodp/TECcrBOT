@@ -1,7 +1,6 @@
-from telegram import InlineKeyboardButton as IKB
 from telegram.ext import CallbackContext
 
-from tcrb.core import BotAppConfig
+from tcrb.app.config import BotAppConfig
 from tcrb.common.util import Reply
 from . import apps
 
