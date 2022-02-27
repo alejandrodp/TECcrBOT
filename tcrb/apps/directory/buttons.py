@@ -1,6 +1,6 @@
 from enum import Enum
 
-from tcrb.apps.config import AppConfig
+from tcrb.apps.admin.config import AppConfig
 from . import apps
 
 

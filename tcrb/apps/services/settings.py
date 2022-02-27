@@ -1,4 +1,4 @@
-from tcrb.apps.config import PageTy, AppConfig
+from tcrb.apps.admin.config import PageTy, AppConfig
 from . import apps
 from .handlers import main_entry
 from .models import Service

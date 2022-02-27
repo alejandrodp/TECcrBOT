@@ -1,4 +1,4 @@
-from tcrb.apps.config import PageTy
+from tcrb.apps.admin.config import PageTy
 from .buttons import config
 from .constants import PAGE_TY
 from .handlers import menu_entry

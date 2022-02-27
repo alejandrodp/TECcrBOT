@@ -120,6 +120,7 @@ class AppConfig:
             return paginator
 
 
+
 class PageTy:
     _tys = {}
 
