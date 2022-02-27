@@ -1,10 +1,10 @@
 from telegram.ext import CallbackContext
 
-from tcrb.apps.config import BotAppConfig
+from tcrb.apps.config import AppConfig
 from tcrb.common.util import Reply
 from . import apps
 
-config = BotAppConfig(apps.TransportationConfig.name, apps.TransportationConfig.verbose_name)
+config = AppConfig(apps.TransportationConfig.name, apps.TransportationConfig.verbose_name)
 
 
 def menu_entry(reply: Reply, context: CallbackContext) -> None:

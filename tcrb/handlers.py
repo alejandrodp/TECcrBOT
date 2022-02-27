@@ -8,7 +8,7 @@ from .buttons import page_button, one_type_paginator, type_selection_button, mul
 from .models import Page
 from .index import read_index, search
 from .common.util import Reply
-from tcrb.apps.config import BotAppConfig, PageTy
+from tcrb.apps.config import AppConfig, PageTy
 
 page_tys = PageTy.read_page_tys()
 
@@ -17,7 +17,7 @@ def main_menu(reply: Reply, context: CallbackContext) -> None:
     reply.text(
         "Seleccione una opción:",
         reply_markup=ReplyKeyboardMarkup(
-            BotAppConfig.get_main_menu(),
+            AppConfig.get_main_menu(),
             resize_keyboard=True,
         )
     )
@@ -56,7 +56,7 @@ def greetings_message_handler(reply: Reply, context: CallbackContext) -> None:
 
     reply.text(response,
                reply_markup=ReplyKeyboardMarkup(
-                   BotAppConfig.get_main_menu(),
+                   AppConfig.get_main_menu(),
                    resize_keyboard=True,
                ))
 

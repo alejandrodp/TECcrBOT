@@ -8,7 +8,7 @@ from telegram.ext import CallbackContext, MessageHandler, Filters, CallbackQuery
 from tcrb.common.util import InlinePaginatorCustom, Reply
 
 
-class BotAppConfig:
+class AppConfig:
     _handlers = []
     _main_menu = []
 
@@ -17,22 +17,22 @@ class BotAppConfig:
         self.title = title
 
     def add_main_menu_entry(self, handler):
-        if not BotAppConfig._main_menu or len(BotAppConfig._main_menu[-1]) >= 2:
-            BotAppConfig._main_menu.append([])
+        if not AppConfig._main_menu or len(AppConfig._main_menu[-1]) >= 2:
+            AppConfig._main_menu.append([])
 
-        BotAppConfig._main_menu[-1].append(self.title)
-        BotAppConfig.add_message_handler(Filters.text(self.title), handler)
+        AppConfig._main_menu[-1].append(self.title)
+        AppConfig.add_message_handler(Filters.text(self.title), handler)
 
     def create_inline_button(self, sub_type, *patterns):
-        return BotAppConfig.InlineButton(sub_type, self, *patterns)
+        return AppConfig.InlineButton(sub_type, self, *patterns)
 
     def create_paginator(self, sub_type, *patterns):
-        return BotAppConfig.InlineButton(sub_type, self, "pages", rf"(\d+)", *patterns)
+        return AppConfig.InlineButton(sub_type, self, "pages", rf"(\d+)", *patterns)
 
     @staticmethod
     def get_main_menu():
-        BotAppConfig.load_settings()
-        return BotAppConfig._main_menu
+        AppConfig.load_settings()
+        return AppConfig._main_menu
 
     @staticmethod
     def load_settings():
@@ -40,17 +40,17 @@ class BotAppConfig:
 
     @staticmethod
     def get_handlers():
-        BotAppConfig.load_settings()
-        return BotAppConfig._handlers
+        AppConfig.load_settings()
+        return AppConfig._handlers
 
     @staticmethod
     def add_command_handler(text, callback):
-        BotAppConfig._add_handler(
+        AppConfig._add_handler(
             callback, lambda cb: CommandHandler(text, cb))
 
     @staticmethod
     def add_message_handler(filters, callback):
-        BotAppConfig._add_handler(
+        AppConfig._add_handler(
             callback, lambda cb: MessageHandler(filters, cb))
 
     @staticmethod
@@ -65,7 +65,7 @@ class BotAppConfig:
             with Reply(update) as reply:
                 callback(reply, context)
 
-        BotAppConfig._handlers.append(make_handler(wrapped))
+        AppConfig._handlers.append(make_handler(wrapped))
 
     class InlineButton:
         pattern_separator = ":"
@@ -83,7 +83,7 @@ class BotAppConfig:
                 **kwargs)
 
         def _build_callback_data(self, sub_type, isHandler: bool, *data):
-            sub_type = BotAppConfig._parse_sub_type(sub_type)
+            sub_type = AppConfig._parse_sub_type(sub_type)
 
             data = self.pattern_separator.join(str(j)
                                                for i in (self.config.ty, str(sub_type), data)
@@ -96,7 +96,7 @@ class BotAppConfig:
         def init_handler(self, callback):
             pattern = self._build_callback_data(
                 self.sub_type, True, *self.patterns)
-            BotAppConfig._add_handler(
+            AppConfig._add_handler(
                 callback, lambda cb: CallbackQueryHandler(cb, pattern=pattern))
 
         def build_paginator(self, current_page_index, objects, buttons_factory, *data):
@@ -136,5 +136,5 @@ class PageTy:
 
     @staticmethod
     def read_page_tys():
-        BotAppConfig.load_settings()
+        AppConfig.load_settings()
         return PageTy._tys

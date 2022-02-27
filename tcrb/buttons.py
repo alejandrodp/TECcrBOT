@@ -1,5 +1,5 @@
 from enum import Enum
-from tcrb.apps.config import BotAppConfig
+from tcrb.apps.config import AppConfig
 
 
 class States(Enum):
@@ -8,7 +8,7 @@ class States(Enum):
     MULTIPLE_TYPE_RESULTS = "multi_type_results"
 
 
-config = BotAppConfig("tcrb", "Info️ \U00002139")
+config = AppConfig("tcrb", "Info️ \U00002139")
 page_button = config.create_inline_button(States.GET_PAGE, r"(\d+)", r"(\d+)")
 
 one_type_paginator = config.create_paginator(States.ONE_TYPE_RESULTS, rf"(\d+)")
