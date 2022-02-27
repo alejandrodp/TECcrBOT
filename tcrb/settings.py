@@ -31,12 +31,12 @@ ALLOWED_HOSTS = []
 # Aplicactions and it's entry command
 BOT_APPS = [
     'tcrb',
-    'tcrb.app.places',
-    'tcrb.app.transportation',
-    'tcrb.app.services',
-    'tcrb.app.tutorias',
-    'tcrb.app.news',
-    'tcrb.app.directory'
+    'tcrb.apps.places',
+    'tcrb.apps.transportation',
+    'tcrb.apps.services',
+    'tcrb.apps.tutorias',
+    'tcrb.apps.news',
+    'tcrb.apps.directory'
 ]
 
 PAGINATION_LIMIT = 5
@@ -60,8 +60,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'tcrb.urls'
 
 TEMPLATES = [
     {

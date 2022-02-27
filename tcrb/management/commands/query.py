@@ -3,7 +3,7 @@ import sys
 from django.core.management.base import BaseCommand
 from whoosh.collectors import TimeLimit
 
-from tcrb.app.core import PageTy
+from tcrb.apps.core import PageTy
 from tcrb.index import read_index, search
 
 

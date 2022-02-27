@@ -1,6 +1,6 @@
 from telegram.ext import CallbackContext
 
-from tcrb.app.config import BotAppConfig
+from tcrb.apps.config import BotAppConfig
 from tcrb.common.util import Reply
 from . import apps
 

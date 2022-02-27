@@ -1,4 +1,4 @@
-from tcrb.app.config import PageTy, BotAppConfig
+from tcrb.apps.config import PageTy, BotAppConfig
 from . import apps
 from .handlers import main_entry
 from .models import Service

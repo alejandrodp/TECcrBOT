@@ -8,7 +8,7 @@ from .buttons import page_button, one_type_paginator, type_selection_button, mul
 from .models import Page
 from .index import read_index, search
 from .common.util import Reply
-from tcrb.app.config import BotAppConfig, PageTy
+from tcrb.apps.config import BotAppConfig, PageTy
 
 page_tys = PageTy.read_page_tys()
 

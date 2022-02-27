@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class NewsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'tcrb.app.news'
+    name = 'tcrb.apps.news'
