@@ -1,4 +1,5 @@
 from tcrb.apps import main_menu
+from tcrb.apps.directory.settings import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES
 from tcrb.apps.pages.settings import PAGE_HANDLER_CONFIGS
 from tcrb.apps.places.settings import PLACES_PAGE
 from tcrb.apps.search.settings import SEARCH_HANDLERS
@@ -8,7 +9,10 @@ from tcrb.apps.config import Pages
 
 pages = Pages([
     SERVICES_PAGE,
-    PLACES_PAGE
+    PLACES_PAGE,
+    PEOPLE_PAGES,
+    DEPT_PAGES,
+    LOC_PAGES,
 ])
 
 apps = Handlers([

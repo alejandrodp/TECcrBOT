@@ -1,7 +1,7 @@
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import CallbackContext, Filters
 
-from tcrb.apps.config.handlers.base import Reply
+from .config.handlers.base import Reply
 from .config.handlers import HandlerConfig, MessageHandler, CommandHandler
 from .places.handlers import main_menu_handler as places_main_menu
 from .places.settings import PLACES_DESC

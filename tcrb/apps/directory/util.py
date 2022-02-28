@@ -27,26 +27,8 @@ def loc_builder(location: Location, reply: Reply):
     reply.text(href(location))
 
 
-def depts_page_builder(dept: Unit, reply: Reply):
-    paginator = dept_people_paginator_builder(1, dept)
-    reply.text(dept_text_builder(dept), reply_markup=paginator.markup)
-
-
-def dept_text_builder(dept: Unit):
-    return href(dept)
-
-
-def dept_people_paginator_builder(current_page, dept):
-    pass
-    # def build_person_buttons(pages):
-    #     return list(page_button.build_button(f"{p.name} {p.surname}", PEOPLE_TY, p.id)
-    #                 for p in pages)
-    #
-    # return department_people_paginator.build_paginator(current_page,
-    #                                                    list(
-    #                                                        r.person for r in dept.role_set.all()),
-    #                                                    build_person_buttons,
-    #                                                    dept.id)
+def dept_builder(dept: Unit, reply: Reply):
+    reply.text(href(dept))
 
 
 def people_builder(person: Person, reply: Reply) -> None:
@@ -78,13 +60,7 @@ def people_builder(person: Person, reply: Reply) -> None:
         yield ''
         yield href(person)
 
-    # reply.text(
-    #     '\n'.join(msg()),
-    #     reply_markup=InlineKeyboardMarkup.from_column(list(
-    #         page_button.build_button(f"Ver {role.unit.name}", DEPT_TY, role.unit.id)
-    #         for role in person.role_set.all()
-    #     ))
-    # )
+    reply.text('\n'.join(msg()))
 
 
 def or_unavailable(text, *, key=lambda x: x):
