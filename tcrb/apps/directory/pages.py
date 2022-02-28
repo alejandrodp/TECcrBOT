@@ -35,7 +35,7 @@ def dept_builder(dept: Unit, reply):
     reply.text(href(dept),
                reply_markup=dept_people_paginator(1,
                                                   [role.person for role in dept.role_set.all()],
-                                                  dept.id))
+                                                  dept.id).markup)
 
 
 def people_builder(person: Person, reply) -> None:
