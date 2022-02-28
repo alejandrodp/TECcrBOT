@@ -14,7 +14,7 @@ def search_query(query: str, callback, reply):
             results = index.search(ix, query)
         except TimeLimit:
             reply.fail(
-                "Su búsqueda ha tardado demasiado, intente una búsqueda más simple")
+                "Su búsqueda ha tardado demasiado, intente una más simple")
 
         docnums = {hit.docnum: hit for hit in results}
         hits = ((ty, [docnums.pop(no) for no in hits])

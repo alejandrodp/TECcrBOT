@@ -13,13 +13,17 @@ from .tutorias.settings import TUTORIAS_DESC
 
 
 def info_message_handler(reply, context) -> None:
-    response = f"Este bot fue inicialmente creado por Esteban Sánchez Trejos, " \
-               f"quien lo mantuvo desde 2017 hasta 2021, en conjunto con " \
-               f"la asociación de estudiantes de la carrera de Mecatrónica (AEMTEC).\n\n" \
-               f"A partir del 2021 cluster451 se incorporó en el desarrollo del proyecto.\n\n" \
-               f"Cluster451 es un grupo enfocado en el software libre y la autonomía de datos, " \
+    response = f"TECcrBot (TCRB) es un bot dedicado a proporcionar información y " \
+               f"utilidades a los integrantes de la comunidad del ITCR.\n\n" \
+               f"Creado por Esteban Sánchez Trejos, quién en conjunto con la asociación " \
+               f"de estudiantes de la carrera de mecatrónica (AEMTEC) " \
+               f"lo desarrolló durante 2017-2021.\n" \
+               f"Actualmente Cluster451 mantiene el proyecto.\n\n" \
+               f"<a href='https://www.cluster451.org/'>Cluster451</a> es un grupo enfocado en el software libre y " \
+               f"la autonomía de datos, " \
                f"conformado actualmente por estudiantes del TEC de múltiples carreras.\n\n" \
-               f"Si desea contribuir al proyecto, hacer sugerencias o comentarios, comunicarse con Fabián Montero (@fabianmv)."
+               f"Si desea contribuir al proyecto, hacer sugerencias o comentarios, puede contactar a @adiazp.\n" \
+               f"Puede encontrar el código de este bot <a href='https://git.cluster451.org/cluster451/tcrb'>aquí</a>"
 
     reply.text(response)
 
