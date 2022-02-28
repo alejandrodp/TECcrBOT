@@ -4,6 +4,7 @@ from telegram import InlineKeyboardMarkup
 
 from tcrb.apps.search import index
 from . import settings
+from .buttons import dept_people_paginator
 from .models import Person, Unit, Role, RoleTy, Location
 from ..pages.handlers import build_show_page_button
 
@@ -31,7 +32,10 @@ def loc_builder(location: Location, reply):
 
 
 def dept_builder(dept: Unit, reply):
-    reply.text(href(dept))
+    reply.text(href(dept),
+               reply_markup=dept_people_paginator(1,
+                                                  [role.person for role in dept.role_set.all()],
+                                                  dept.id))
 
 
 def people_builder(person: Person, reply) -> None:

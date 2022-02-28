@@ -1,5 +1,5 @@
 from tcrb.apps import main_menu
-from tcrb.apps.directory.settings import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES
+from tcrb.apps.directory.settings import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES, DIRECTORY_HANDLERS
 from tcrb.apps.pages.settings import PAGE_HANDLER_CONFIGS
 from tcrb.apps.places.settings import PLACES_PAGE
 from tcrb.apps.search.settings import SEARCH_HANDLERS
@@ -23,6 +23,7 @@ apps = Handlers([
     PAGE_HANDLER_CONFIGS,
     TRACKING_HANDLERS,
     TRANSPORTATION_HANDLERS,
+    DIRECTORY_HANDLERS,
     # Mantener handlers de búsqueda de último, son los que reciben el texto no reconocido anteriormente.
     SEARCH_HANDLERS,
 ])
