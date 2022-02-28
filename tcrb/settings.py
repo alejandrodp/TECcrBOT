@@ -99,14 +99,20 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'default',
         },
+        'debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'default',
+            'filename': BASE_DIR / 'debug.log'
+        },
     },
     # A logger for WARNING which has a handler called 'file'. A logger can have multiple handler
     'loggers': {
         # notice the blank '', Usually you would put built in loggers like django or root here based on your needs
         '': {
             # notice how file variable is called in handler which has been defined above
-            'handlers': ['info'],
-            'level': 'INFO',
+            'handlers': ['info', 'debug'],
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True,
         },
     },
