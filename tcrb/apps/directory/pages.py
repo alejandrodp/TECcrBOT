@@ -45,9 +45,6 @@ def people_builder(person: Person, reply) -> None:
         if functions:
             yield functions
 
-        location = or_unavailable(role.location, key=lambda loc: loc.name)
-        yield f'Ubicación: {location}'
-
     def msg():
         yield f'Correo electrónico: {or_unavailable(person.email)}'
         yield f'Teléfono: {or_unavailable(person.phone)}'
