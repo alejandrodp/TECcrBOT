@@ -11,7 +11,7 @@ from tcrb.apps.directory.models import Person, Ty, Location, Unit, Role, RoleTy
 from tcrb.apps.directory.settings import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
 from tcrb.apps.pages.models import Page
 from tcrb.apps.places.models import Place
-from tcrb.apps.places.settings import PLACE_PAGES
+from tcrb.apps.places.settings import PLACES_PAGE
 from tcrb.apps.services.models import Service
 from tcrb.apps.services.settings import SERVICES_PAGE
 
@@ -114,7 +114,7 @@ def load_places():
             photo = os.path.join('contrib/places/photos', photo)
 
         Place(
-            id=new_page(PLACE_PAGES, title=name),
+            id=new_page(PLACES_PAGE, title=name),
             name=name,
             latitude=place['lat'],
             longitude=place['long'],
