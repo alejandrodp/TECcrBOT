@@ -1,12 +1,7 @@
-from tcrb.apps.admin.config import PageTy, AppConfig
-from . import apps
-from .handlers import main_entry
 from .models import Service
-from .util import service_builder
+from .page import service_builder
+from ...core.apps.pages import PageTy
 
+SERVICES_DESC = "Servicios generales \U0001f3eb"
 
-config = AppConfig(apps.ServicesConfig.name, apps.ServicesConfig.verbose_name)
-
-config.add_main_menu_entry(main_entry)
-
-SERVICES_PAGE = PageTy(ty=0, model=Service, desc=apps.ServicesConfig.verbose_name, build=service_builder)
+SERVICES_PAGE = PageTy(ty=0, model=Service, desc=SERVICES_DESC, build=service_builder)

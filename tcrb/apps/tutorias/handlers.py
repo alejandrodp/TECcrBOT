@@ -1,10 +1,6 @@
 from telegram.ext import CallbackContext
 
-from tcrb.apps.admin.config import AppConfig
-from tcrb.common.util import Reply
-from . import apps
-
-config = AppConfig(apps.TutoriasConfig.name, apps.TutoriasConfig.verbose_name)
+from tcrb.core.apps.handlers.base import Reply
 
 
 def main_menu_handler(reply: Reply, context: CallbackContext) -> None:

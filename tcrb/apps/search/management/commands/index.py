@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from tcrb.index import Schema, reset_index, write_index, load_pages
+from tcrb.apps.search.index import reset_index, write_index, load_pages
 
 
 class Command(BaseCommand):

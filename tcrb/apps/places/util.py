@@ -1,10 +1,7 @@
-from typing import List, Optional
-
 from django.conf import settings
-from telegram import InlineKeyboardButton, Update
 
-from tcrb.common.util import Reply
 from .models import Place
+from ...core.apps.handlers.base import Reply
 
 
 def show_place(place: Place, reply: Reply):

@@ -1,8 +1,8 @@
 from telegram.ext import CallbackContext
 
-from tcrb.common.util import Reply
 from .models import Unit
 from .util import depts_page_builder, dept_text_builder, dept_people_paginator_builder
+from ...core.apps.handlers.base import Reply
 
 
 def show_department(reply: Reply, context: CallbackContext) -> None:

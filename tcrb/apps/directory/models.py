@@ -1,5 +1,5 @@
 from django.db.models import \
-    Model, BooleanField, TextField, ForeignKey, DO_NOTHING, UniqueConstraint
+    Model, BooleanField, TextField, ForeignKey, DO_NOTHING
 
 
 class Person(Model):

@@ -7,12 +7,12 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from tcrb.models import Page
-from tcrb.apps.directory import Person, Ty, Location, Unit, Role, RoleTy
-from tcrb.apps.directory import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
-from tcrb.apps.places import Place
-from tcrb.apps.places import PLACE_PAGES
-from tcrb.apps.services import Service
+from tcrb.apps.directory.models import Person, Ty, Location, Unit, Role, RoleTy
+from tcrb.apps.directory.settings import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
+from tcrb.apps.pages.models import Page
+from tcrb.apps.places.models import Place
+from tcrb.apps.places.settings import PLACE_PAGES
+from tcrb.apps.services.models import Service
 from tcrb.apps.services.settings import SERVICES_PAGE
 
 
@@ -51,24 +51,24 @@ def load_people():
 
     scrap = json.loads(str(scrap, 'utf-8'))
 
-    for id, ty in enumerate(scrap['staff_types']):
-        Ty(id=id, name=ty).save()
+    for id_, ty in enumerate(scrap['staff_types']):
+        Ty(id=id_, name=ty).save()
 
     locations = []
     for location in scrap['locations']:
         name = location['name']
-        id = new_page(LOC_PAGES, title=name)
+        id_ = new_page(LOC_PAGES, title=name)
 
-        locations.append(id)
-        Location(id=id, name=name, href=location['href']).save()
+        locations.append(id_)
+        Location(id=id_, name=name, href=location['href']).save()
 
     depts = []
     for unit in scrap['depts']:
         name = unit['name']
-        id = new_page(DEPT_PAGES, title=name)
+        id_ = new_page(DEPT_PAGES, title=name)
 
-        depts.append(id)
-        Unit(id=id, name=name, href=unit['href']).save()
+        depts.append(id_)
+        Unit(id=id_, name=name, href=unit['href']).save()
 
     for person in scrap['staff']:
         name, surname = person['name'], person['surname']

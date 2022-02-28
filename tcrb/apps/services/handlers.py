@@ -1,10 +1,9 @@
-from telegram import InlineKeyboardButton as IKB
 from telegram.ext import CallbackContext
 
-from tcrb.common.util import Reply
+from tcrb.core.apps.handlers.base import Reply
 
 
-def main_entry(reply: Reply, context: CallbackContext) -> None:
+def main_menu_handler(reply: Reply, context: CallbackContext) -> None:
     response = "Para buscar servicios escriba el nombre, " \
                "actualmente puede encontrar servicios de becas, " \
                "bibliotecarios, matrícula, servicios médicos o del DOP, entre otros.\n\n" \

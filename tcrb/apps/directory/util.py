@@ -1,14 +1,8 @@
 import itertools
-from typing import List, Optional
 
-from telegram import InlineKeyboardButton, Update, InlineKeyboardMarkup
-
-from tcrb.buttons import page_button
-from tcrb.index import HINT_ANALYZER
-from tcrb.common.util import Reply
-from .buttons import department_people_paginator
-from .constants import PEOPLE_TY, DEPT_TY
+from tcrb.apps.search import index
 from .models import Person, Unit, Role, RoleTy, Location
+from ...core.apps.handlers.base import Reply
 
 
 def index_people(person: Person):
@@ -26,7 +20,7 @@ def person_kws(person):
             for role in Role.objects.filter(person=person)
             for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))
             for term in source
-            for kw in HINT_ANALYZER(term.name)]
+            for kw in index.HINT_ANALYZER(term.name)]
 
 
 def loc_builder(location: Location, reply: Reply):
@@ -43,15 +37,16 @@ def dept_text_builder(dept: Unit):
 
 
 def dept_people_paginator_builder(current_page, dept):
-    def build_person_buttons(pages):
-        return list(page_button.build_button(f"{p.name} {p.surname}", PEOPLE_TY, p.id)
-                    for p in pages)
-
-    return department_people_paginator.build_paginator(current_page,
-                                                       list(
-                                                           r.person for r in dept.role_set.all()),
-                                                       build_person_buttons,
-                                                       dept.id)
+    pass
+    # def build_person_buttons(pages):
+    #     return list(page_button.build_button(f"{p.name} {p.surname}", PEOPLE_TY, p.id)
+    #                 for p in pages)
+    #
+    # return department_people_paginator.build_paginator(current_page,
+    #                                                    list(
+    #                                                        r.person for r in dept.role_set.all()),
+    #                                                    build_person_buttons,
+    #                                                    dept.id)
 
 
 def people_builder(person: Person, reply: Reply) -> None:
@@ -83,13 +78,13 @@ def people_builder(person: Person, reply: Reply) -> None:
         yield ''
         yield href(person)
 
-    reply.text(
-        '\n'.join(msg()),
-        reply_markup=InlineKeyboardMarkup.from_column(list(
-            page_button.build_button(f"Ver {role.unit.name}", DEPT_TY, role.unit.id)
-            for role in person.role_set.all()
-        ))
-    )
+    # reply.text(
+    #     '\n'.join(msg()),
+    #     reply_markup=InlineKeyboardMarkup.from_column(list(
+    #         page_button.build_button(f"Ver {role.unit.name}", DEPT_TY, role.unit.id)
+    #         for role in person.role_set.all()
+    #     ))
+    # )
 
 
 def or_unavailable(text, *, key=lambda x: x):

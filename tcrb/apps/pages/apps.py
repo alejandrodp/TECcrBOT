@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ServicesConfig(AppConfig):
+class PagesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'tcrb.apps.services'
+    name = 'tcrb.apps.pages'
