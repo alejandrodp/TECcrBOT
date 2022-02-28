@@ -1,5 +1,7 @@
 from telegram import Update, Message
 
+from tcrb.apps.main_menu import MAIN_MENU_HANDLERS
+
 
 class BaseHandler:
     def __init__(self, callback, make_handler):
@@ -59,16 +61,26 @@ class Reply:
     def buffer_text(self, text):
         self._buffered += text
 
-    def text(self, text, **kwargs) -> Message:
+    def text(self, text, reply_markup=MAIN_MENU_HANDLERS.keyboard_markup(), **kwargs):
+        # No utlizar con actualizaciones del tipo InlineQuery
         update = self._read_update()
         if self._buffered:
             text = (self._buffered + text).strip()
             self._buffered = ''
-
         if update.message:
-            return update.message.reply_text(text, **kwargs)
+            message = update.message
+        elif update.edited_message:
+            message = update.edited_message
+        elif update.channel_post:
+            message = update.channel_post
+        elif update.edited_channel_post:
+            message = update.edited_channel_post
+        elif update.callback_query and update.callback_query.message:
+            message = update.callback_query.message
         else:
-            return update.callback_query.edit_message_text(text, **kwargs)
+            raise ValueError("There is no message to reply in this update")
+
+        return message.reply_text(text, reply_markup=reply_markup, **kwargs)
 
     def bad_request(self):
         self.fail('Error de formato de solicitud, favor reporte este incidente.')
