@@ -1,6 +1,6 @@
 from telegram.ext.dispatcher import DEFAULT_GROUP
 
-from tcrb.core.apps.handlers.base import BaseHandler
+from tcrb.apps.config.handlers.base import BaseHandler
 
 
 class HandlerConfig:

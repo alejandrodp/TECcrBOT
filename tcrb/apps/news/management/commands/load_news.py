@@ -4,8 +4,8 @@ import logging
 from dateutil import parser
 from django.core.management.base import BaseCommand
 
+from tcrb.apps.news.models import Tag, Article, ArticleTagged
 from tcrb.settings import BASE_DIR
-from news.models import Tag, Article, ArticleTagged
 
 logger = logging.getLogger(__name__)
 

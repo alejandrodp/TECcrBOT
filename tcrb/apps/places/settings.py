@@ -1,6 +1,6 @@
 from .models import Place
 from .util import show_place
-from ...core.apps.pages import PageTy
+from tcrb.apps.config.pages import PageTy
 
 PLACES_DESC = "Ubicaciones \U0001f4cd"
 

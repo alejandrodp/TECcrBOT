@@ -2,9 +2,9 @@ from enum import Enum
 
 from telegram.ext import CallbackContext
 
-from tcrb.core.apps.buttons import InlineButton
-from tcrb.core.apps.handlers.base import Reply
-from tcrb.core.apps.pages import show_page
+from tcrb.apps.config import InlineButton
+from tcrb.apps.config.handlers import Reply
+from tcrb.apps.config.pages import show_page
 
 
 class States(Enum):

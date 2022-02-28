@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from .models import Place
-from ...core.apps.handlers.base import Reply
+from tcrb.apps.config.handlers import Reply
 
 
 def show_place(place: Place, reply: Reply):

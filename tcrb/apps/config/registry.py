@@ -1,7 +1,7 @@
-from tcrb.core.apps.handlers.config import HandlerConfig
+from tcrb.apps.config.handlers import HandlerConfig
 
 
-class Apps:
+class Handlers:
     def __init__(self, handler_configs):
 
         self._handlers = {}

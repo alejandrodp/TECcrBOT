@@ -1,6 +1,6 @@
 from .models import Service
 from .page import service_builder
-from ...core.apps.pages import PageTy
+from tcrb.apps.config.pages import PageTy
 
 SERVICES_DESC = "Servicios generales \U0001f3eb"
 

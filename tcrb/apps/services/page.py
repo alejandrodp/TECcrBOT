@@ -1,7 +1,7 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 from .models import Service
-from ...core.apps.handlers.base import Reply
+from tcrb.apps.config.handlers import Reply
 
 
 def index_services(service: Service):

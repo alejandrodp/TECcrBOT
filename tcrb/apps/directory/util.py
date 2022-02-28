@@ -2,7 +2,7 @@ import itertools
 
 from tcrb.apps.search import index
 from .models import Person, Unit, Role, RoleTy, Location
-from ...core.apps.handlers.base import Reply
+from tcrb.apps.config.handlers import Reply
 
 
 def index_people(person: Person):

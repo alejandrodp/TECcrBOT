@@ -3,8 +3,8 @@ import html
 from telegram.ext import CallbackContext
 
 from tcrb.apps.search.queries import search_query, clean_query
-from tcrb.core.apps.handlers.base import Reply
-from tcrb.core.apps.pages import show_page
+from tcrb.apps.config.handlers.base import Reply
+from tcrb.apps.config.pages import show_page
 
 
 def search_handler(reply: Reply, context: CallbackContext) -> None:
