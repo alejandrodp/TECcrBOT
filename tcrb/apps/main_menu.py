@@ -5,10 +5,13 @@ from tcrb.core.apps import HandlerConfig
 from tcrb.core.apps.handlers import MessageHandler, CommandHandler
 from tcrb.core.apps.handlers.base import Reply
 from .places.handlers import main_menu_handler as places_main_menu
+from .places.settings import PLACES_DESC
 from .services.settings import SERVICES_DESC
 from .transportation.handlers import main_menu_handler as transportation_main_menu
+from .transportation.settings import TRANSPORTATION_DESC
 from .tutorias.handlers import main_menu_handler as tutorias_main_menu
 from .services.handlers import main_menu_handler as services_main_menu
+from .tutorias.settings import TUTORIAS_DESC
 
 
 def info_message_handler(reply: Reply, context: CallbackContext) -> None:
@@ -76,10 +79,10 @@ class MainMenuConfig(HandlerConfig):
 
 
 MAIN_MENU_HANDLERS = MainMenuConfig({
-    "Ubicaciones \U0001f4cd": places_main_menu,
-    "Servicios de transporte \U0001f68c": transportation_main_menu,
+    PLACES_DESC: places_main_menu,
+    TRANSPORTATION_DESC: transportation_main_menu,
     SERVICES_DESC: services_main_menu,
-    "Tutorías \U0001f4d6": tutorias_main_menu,
+    TUTORIAS_DESC: tutorias_main_menu,
     "Info️ \U00002139": info_message_handler,
 })
 
