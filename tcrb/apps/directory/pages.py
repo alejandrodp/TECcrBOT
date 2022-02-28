@@ -1,7 +1,11 @@
 import itertools
 
+from telegram import InlineKeyboardMarkup
+
 from tcrb.apps.search import index
+from . import settings
 from .models import Person, Unit, Role, RoleTy, Location
+from ..pages.handlers import build_show_page_button
 
 
 def index_people(person: Person):
@@ -55,8 +59,13 @@ def people_builder(person: Person, reply) -> None:
 
         yield ''
         yield href(person)
-
-    reply.text('\n'.join(msg()))
+    # TODO: Cambiar por sistema de enlazado general
+    reply.text('\n'.join(msg()),
+               reply_markup=InlineKeyboardMarkup.from_column(list(
+                   build_show_page_button(f"Ver {role.unit.name}", settings.DEPT_PAGES.ty, role.unit.id)
+                   for role in person.role_set.all()
+               ))
+               )
 
 
 def or_unavailable(text, *, key=lambda x: x):
