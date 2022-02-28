@@ -39,8 +39,7 @@ class Reply:
             return suppress
 
     def text_query(self):
-        message = self._read_update().message
-        assert message, "This update has no message.text"
+        message = self._message()
         return message.text
 
     def callback_query(self):
@@ -67,6 +66,11 @@ class Reply:
         if self._buffered:
             text = (self._buffered + text).strip()
             self._buffered = ''
+        message = self._message()
+        return message.reply_text(text, reply_markup=reply_markup, **kwargs)
+
+    def _message(self):
+        update = self._read_update()
         if update.message:
             message = update.message
         elif update.edited_message:
@@ -78,9 +82,9 @@ class Reply:
         elif update.callback_query and update.callback_query.message:
             message = update.callback_query.message
         else:
-            raise ValueError("There is no message to reply in this update")
+            raise AttributeError("There is no message in this update")
 
-        return message.reply_text(text, reply_markup=reply_markup, **kwargs)
+        return message
 
     def bad_request(self):
         self.fail('Error de formato de solicitud, favor reporte este incidente.')
