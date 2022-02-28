@@ -39,20 +39,16 @@ def greetings_message_handler(reply, context) -> None:
     response = f"¡Hola {reply.user_first_name()}!\n" \
                f"Puede preguntar a través de:\n" \
                f"\U0001f539 Mensajes\n" \
-               f"\U0001f539 Menú principal\n\n" \
+               f"\U0001f539 Menú principal (presione aquí /menu)\n\n" \
                f"En este bot puede encontrar información acerca del TEC y sus servicios.\n" \
                f"Para realizar una consulta puede escribir términos como los siguientes:\n" \
-               f"\U0001f68c Obtener información de buses:\n" \
-               f"- buses\n" \
-               f"- buses tec\n" \
-               f"- buses san jose\n" \
                f"\U0001f4cd Obtener información de un lugar:\n" \
                f"- D3\n" \
                f"- F2\n" \
                f"- admision y registro\n" \
                f"\U0001f4d6 Obtener información de contacto:\n" \
                f"- secretaria quimica\n" \
-               f"- docente <i>nombre o apellido del profesor</i>"
+               f"- nombre y/o apellido del profesor"
 
     reply.text(response,
                reply_markup=MAIN_MENU_HANDLERS.keyboard_markup()
