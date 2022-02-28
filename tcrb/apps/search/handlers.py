@@ -45,6 +45,9 @@ def page_ty_result_handler(reply, context: CallbackContext) -> None:
     def process_query(results: list):
         for r_ty, pages in results:
             if r_ty == ty:
+                if len(pages) == 1:
+                    show_page(r_ty, pages[0]["id"], reply)
+                    return
                 show_one_type_results(r_ty, pages, query, reply)
 
     search_query(query, process_query, reply)
