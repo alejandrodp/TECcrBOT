@@ -7,6 +7,7 @@ from tcrb.apps.services.settings import SERVICES_PAGE
 from tcrb.apps.config import Handlers
 from tcrb.apps.config import Pages
 from tcrb.apps.tracking.settings import TRACKING_HANDLERS
+from tcrb.apps.transportation.settings import TRANSPORTATION_HANDLERS
 
 all_pages = Pages([
     SERVICES_PAGE,
@@ -21,5 +22,7 @@ apps = Handlers([
     main_menu.COMMAND_HANDLERS,
     PAGE_HANDLER_CONFIGS,
     TRACKING_HANDLERS,
+    TRANSPORTATION_HANDLERS,
+    # Mantener handlers de búsqueda de último, son los que reciben el texto no reconocido anteriormente.
     SEARCH_HANDLERS,
 ])
