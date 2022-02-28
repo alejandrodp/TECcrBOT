@@ -96,9 +96,15 @@ class Reply:
             self.bad_request()
 
     def user_first_name(self):
+        return self._effective_user().first_name
+
+    def user_id(self):
+        return self._effective_user().id
+
+    def _effective_user(self):
         effective_user = self._read_update().effective_user
         assert effective_user, "This update has no user"
-        return effective_user.first_name
+        return effective_user
 
     def expect_int(self, maybe_int):
         try:

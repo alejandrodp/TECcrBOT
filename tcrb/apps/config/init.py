@@ -6,6 +6,7 @@ from tcrb.apps.search.settings import SEARCH_HANDLERS
 from tcrb.apps.services.settings import SERVICES_PAGE
 from tcrb.apps.config import Handlers
 from tcrb.apps.config import Pages
+from tcrb.apps.tracking.settings import TRACKING_HANDLERS
 
 all_pages = Pages([
     SERVICES_PAGE,
@@ -19,5 +20,6 @@ apps = Handlers([
     main_menu.MAIN_MENU_HANDLERS,
     main_menu.COMMAND_HANDLERS,
     PAGE_HANDLER_CONFIGS,
+    TRACKING_HANDLERS,
     SEARCH_HANDLERS,
 ])

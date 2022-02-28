@@ -38,6 +38,7 @@ BOT_APPS = [
     'tcrb.apps.directory',
     'tcrb.apps.pages',
     'tcrb.apps.search',
+    'tcrb.apps.tracking',
     'tcrb',
 ]
 
