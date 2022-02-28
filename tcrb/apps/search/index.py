@@ -10,7 +10,6 @@ from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
 from whoosh.support.charset import accent_map
 
-from tcrb.apps import config
 from tcrb.apps.pages.models import Page
 
 ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')
@@ -79,7 +78,8 @@ def search(searcher, query):
 
 
 def load_pages():
-    for ty, ty_obj in config.all_pages.page_tys.items():
+    from tcrb.apps.config.init import all_pages
+    for ty, ty_obj in all_pages.page_tys.items():
         index = ty_obj.index or (lambda _: {})
         for obj in ty_obj.model.objects.all():
             yield ty, Page.objects.get(id=obj.id), index(obj)

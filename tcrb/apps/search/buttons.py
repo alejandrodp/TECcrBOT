@@ -1,6 +1,6 @@
 from enum import Enum
 
-from tcrb.apps.config import InlinePaginator, InlineButton
+from tcrb.apps.config.buttons import InlinePaginator, InlineButton
 from tcrb.apps.pages.handlers import build_show_page_button
 
 
