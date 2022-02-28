@@ -4,6 +4,7 @@ from tcrb.apps.config.pages import show_page
 from tcrb.apps.search.buttons import one_type_results_paginator
 from tcrb.apps.search.queries import search_query, clean_query, build_query, get_query
 from tcrb.apps.search.results import show_one_type_results, show_multiple_results
+from tcrb.core import beta_msg
 
 
 def search_handler(reply, context: CallbackContext) -> None:
@@ -12,7 +13,8 @@ def search_handler(reply, context: CallbackContext) -> None:
     def reply_results(results):
         match results:
             case []:
-                reply.text(f'No se encontraron resultados para {build_query(query)}')
+                reply.text(f'No se encontraron resultados para {build_query(query)}\n\n'
+                           f'{beta_msg}')
             case [(ty, [result])]:
                 show_page(ty, result['id'], reply)
             case [(ty, results)]:
