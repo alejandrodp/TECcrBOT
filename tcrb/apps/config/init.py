@@ -7,7 +7,7 @@ from tcrb.apps.services.settings import SERVICES_PAGE
 from tcrb.apps.config import Handlers
 from tcrb.apps.config import Pages
 
-pages = Pages([
+all_pages = Pages([
     SERVICES_PAGE,
     PLACES_PAGE,
     PEOPLE_PAGES,

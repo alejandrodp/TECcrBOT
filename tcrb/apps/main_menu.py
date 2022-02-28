@@ -1,19 +1,18 @@
 from telegram import ReplyKeyboardMarkup
-from telegram.ext import CallbackContext, Filters
+from telegram.ext import Filters
 
-from .config.handlers.base import Reply
 from .config.handlers import HandlerConfig, MessageHandler, CommandHandler
 from .places.handlers import main_menu_handler as places_main_menu
 from .places.settings import PLACES_DESC
+from .services.handlers import main_menu_handler as services_main_menu
 from .services.settings import SERVICES_DESC
 from .transportation.handlers import main_menu_handler as transportation_main_menu
 from .transportation.settings import TRANSPORTATION_DESC
 from .tutorias.handlers import main_menu_handler as tutorias_main_menu
-from .services.handlers import main_menu_handler as services_main_menu
 from .tutorias.settings import TUTORIAS_DESC
 
 
-def info_message_handler(reply: Reply, context: CallbackContext) -> None:
+def info_message_handler(reply, context) -> None:
     response = f"Este bot fue inicialmente creado por Esteban Sánchez Trejos, " \
                f"quien lo mantuvo desde 2017 hasta 2021, en conjunto con " \
                f"la asociación de estudiantes de la carrera de Mecatrónica (AEMTEC).\n\n" \
@@ -25,14 +24,14 @@ def info_message_handler(reply: Reply, context: CallbackContext) -> None:
     reply.text(response)
 
 
-def main_menu_keyboard_handler(reply: Reply, context: CallbackContext) -> None:
+def main_menu_keyboard_handler(reply, context) -> None:
     reply.text(
         "Seleccione una opción:",
         reply_markup=MAIN_MENU_HANDLERS.keyboard_markup()
     )
 
 
-def greetings_message_handler(reply: Reply, context: CallbackContext) -> None:
+def greetings_message_handler(reply, context) -> None:
     response = f"¡Hola {reply.user_first_name()}!\n" \
                f"Puede preguntar a través de:\n" \
                f"\U0001f539 Mensajes\n" \

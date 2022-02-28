@@ -13,8 +13,9 @@ class InlinePaginatorCustom(InlineKeyboardPaginator):
 
 
 class Inline:
-    def __init__(self, app, *patterns):
+    def __init__(self, app, sub_type, *patterns):
         self.app = app
+        self.sub_type = sub_type
         self.patterns = patterns
         self.pattern_separator = ":"
 
@@ -24,7 +25,7 @@ class Inline:
 
     def _build_callback_pattern(self, isHandler: bool, *data):
         data = self.pattern_separator.join(str(j)
-                                           for i in (self.app, data)
+                                           for i in (self.app, self.sub_type, data)
                                            for j in (i if isinstance(i, tuple) else (i,)))
         if isHandler:
             data = f'^{data}$'
@@ -34,8 +35,8 @@ class Inline:
 
 class InlineButton(Inline):
 
-    def __init__(self, app, *patterns):
-        super().__init__(app, *patterns)
+    def __init__(self, app, sub_type, *patterns):
+        super().__init__(app, sub_type, *patterns)
 
     def __call__(self, text, *data, **kwargs):
         return InlineKeyboardButton(
@@ -46,14 +47,14 @@ class InlineButton(Inline):
 
 class InlinePaginator(Inline):
 
-    def __init__(self, app, make_buttons, *patterns):
-        super().__init__(app, "pages", rf"(\d+)", *patterns)
+    def __init__(self, app, sub_type, make_buttons, *patterns):
+        super().__init__(app, sub_type, "pages", rf"(\d+)", *patterns)
         self._make_buttons = make_buttons
 
     def __call__(self, page_index, objects, *data, **kwargs):
         pages = Paginator(objects, 5)
         current_page = pages.get_page(page_index)
-        buttons = self._make_buttons(current_page)
+        buttons = self._make_buttons(current_page.object_list)
 
         paginator = InlinePaginatorCustom(
             page_count=pages.num_pages,
@@ -64,3 +65,5 @@ class InlinePaginator(Inline):
         )
 
         paginator.add_before(*buttons)
+
+        return paginator

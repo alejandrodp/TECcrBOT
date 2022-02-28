@@ -1,7 +1,6 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 from .models import Service
-from tcrb.apps.config.handlers import Reply
 
 
 def index_services(service: Service):
@@ -11,7 +10,7 @@ def index_services(service: Service):
     }
 
 
-def service_builder(service: Service, reply: Reply):
+def service_builder(service: Service, reply):
     response = "\n\n".join((
         f"<i>Descripción:</i> \n{service.description if service.description else 'No disponible'}",
         f"<i>Contacto:</i> \n{service.contact if service.contact else 'No disponible'}"

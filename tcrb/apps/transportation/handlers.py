@@ -1,9 +1,7 @@
 from telegram.ext import CallbackContext
 
-from tcrb.apps.config.handlers.base import Reply
 
-
-def main_menu_handler(reply: Reply, context: CallbackContext) -> None:
+def main_menu_handler(reply, context: CallbackContext) -> None:
     response = "(Última modificación: 06-02-2022)\n\n" \
                "El servicio de bus del TEC no se encuentra disponible en este momento, " \
                "solo se está ofreciendo el siguiente servicio:\n\n" \

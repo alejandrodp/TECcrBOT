@@ -1,10 +1,9 @@
 from django.conf import settings
 
 from .models import Place
-from tcrb.apps.config.handlers import Reply
 
 
-def show_place(place: Place, reply: Reply):
+def show_place(place: Place, reply):
     message = reply.text(place.description or '')
 
     if place.latitude and place.longitude:

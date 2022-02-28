@@ -1,7 +1,7 @@
 from . import handlers
 from .buttons import InlineButton, InlinePaginator
 from .registry import Handlers, Pages
-from .init import apps, pages
+from .init import apps, all_pages
 
 __all__ = [
     "handlers",
@@ -10,5 +10,5 @@ __all__ = [
     "Handlers",
     "Pages",
     "apps",
-    "pages"
+    "all_pages"
 ]

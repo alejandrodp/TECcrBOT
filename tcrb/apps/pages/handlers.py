@@ -3,7 +3,6 @@ from enum import Enum
 from telegram.ext import CallbackContext
 
 from tcrb.apps.config import InlineButton
-from tcrb.apps.config.handlers import Reply
 from tcrb.apps.config.pages import show_page
 
 
@@ -14,7 +13,11 @@ class States(Enum):
 show_page_button = InlineButton("pages", States.GET_PAGE.value, r"(\d+)", r"(\d+)")
 
 
-def show_page_handler(reply: Reply, context: CallbackContext) -> None:
+def build_show_page_button(text, ty, page_id):
+    return show_page_button(text, ty, page_id)
+
+
+def show_page_handler(reply, context: CallbackContext) -> None:
     ty = reply.expect_int(context.match.group(1))
     page_id = reply.expect_int(context.match.group(2))
     show_page(ty, page_id, reply)

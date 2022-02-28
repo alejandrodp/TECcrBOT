@@ -1,3 +1,4 @@
+import html
 import re
 
 from whoosh.searching import TimeLimit
@@ -34,3 +35,7 @@ def get_query(text: str):
         raise AttributeError("Query not found.")
     else:
         return query
+
+
+def build_query(text):
+    return f"{QUERY_DELIMITER}{html.escape(text)}{QUERY_DELIMITER}"

@@ -1,5 +1,5 @@
 from .models import Person, Unit, Location
-from .util import index_people, people_builder, dept_builder, loc_builder
+from .pages import index_people, people_builder, dept_builder, loc_builder
 from tcrb.apps.config.pages import PageTy
 
 PEOPLE_PAGES = PageTy(ty=1, model=Person,

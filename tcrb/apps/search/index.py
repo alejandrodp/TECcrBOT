@@ -79,7 +79,7 @@ def search(searcher, query):
 
 
 def load_pages():
-    for ty, ty_obj in config.pages.page_tys.items():
+    for ty, ty_obj in config.all_pages.page_tys.items():
         index = ty_obj.index or (lambda _: {})
         for obj in ty_obj.model.objects.all():
             yield ty, Page.objects.get(id=obj.id), index(obj)

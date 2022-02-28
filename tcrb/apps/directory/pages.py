@@ -2,7 +2,6 @@ import itertools
 
 from tcrb.apps.search import index
 from .models import Person, Unit, Role, RoleTy, Location
-from tcrb.apps.config.handlers import Reply
 
 
 def index_people(person: Person):
@@ -23,15 +22,15 @@ def person_kws(person):
             for kw in index.HINT_ANALYZER(term.name)]
 
 
-def loc_builder(location: Location, reply: Reply):
+def loc_builder(location: Location, reply):
     reply.text(href(location))
 
 
-def dept_builder(dept: Unit, reply: Reply):
+def dept_builder(dept: Unit, reply):
     reply.text(href(dept))
 
 
-def people_builder(person: Person, reply: Reply) -> None:
+def people_builder(person: Person, reply) -> None:
     def role_msg(role):
         functions, types = '', ''
         groups = itertools.groupby(role.rolety_set.all(), lambda role_ty: role_ty.is_function)
