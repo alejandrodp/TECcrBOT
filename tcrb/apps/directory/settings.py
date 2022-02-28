@@ -3,8 +3,8 @@ from .pages import index_people, people_builder, dept_builder, loc_builder
 from tcrb.apps.config.pages import PageTy
 
 PEOPLE_PAGES = PageTy(ty=1, model=Person,
-                      desc='personas', index=index_people, build=people_builder)
+                      desc='Personas', index=index_people, build=people_builder)
 
-DEPT_PAGES = PageTy(ty=2, model=Unit, desc='departamentos', build=dept_builder)
+DEPT_PAGES = PageTy(ty=2, model=Unit, desc='Departamentos', build=dept_builder)
 
-LOC_PAGES = PageTy(ty=3, model=Location, desc='campuses', build=loc_builder)
+LOC_PAGES = PageTy(ty=3, model=Location, desc='Campuses', build=loc_builder)
