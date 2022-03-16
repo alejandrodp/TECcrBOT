@@ -4,7 +4,6 @@ import re
 from whoosh.searching import TimeLimit
 
 from tcrb.apps.search import index
-from tcrb.core import beta_msg
 
 QUERY_DELIMITER = "`"
 
@@ -15,8 +14,7 @@ def search_query(query: str, callback, reply):
             results = index.search(ix, query)
         except TimeLimit:
             reply.fail(
-                f"Su búsqueda ha tardado demasiado, intente una más simple\n\n"
-                f"{beta_msg}")
+                f"Su búsqueda ha tardado demasiado, intente una más simple\n\n")
 
         docnums = {hit.docnum: hit for hit in results}
         hits = ((ty, [docnums.pop(no) for no in hits])
