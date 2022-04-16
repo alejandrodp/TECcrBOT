@@ -7,12 +7,12 @@ Estas son algunas pautas y recomendaciones para aportar al tanto al código del 
 
 - [Contribuyendo al TECcrBOT](#contribuyendo-al-teccrbot)
 - [Tabla de contenidos](#tabla-de-contenidos)
-- [Solo tengo unas preguntas, no quiero leer toda esta guía](#solo-tengo-unas-preguntas-no-quiero-leer-toda-esta-gua)
+- [Solo tengo algunas preguntas](#solo-tengo-algunas-preguntas)
 - [Por donde empezar](#por-donde-empezar)
   - [Contribuir al código del bot](#contribuir-al-cdigo-del-bot)
   - [Contribuir a la base de datos](#contribuir-a-la-base-de-datos)
 
-# Solo tengo unas preguntas, no quiero leer toda esta guía
+# Solo tengo algunas preguntas
 Si tiene preguntas no abra un issue en el repositorio, puede usar los siguientes medios para resolver sus dudas.
 
 - Puede enviar un mensaje a Alejandro Díaz por telegram en [@adiazp](https://t.me/adiazp).
