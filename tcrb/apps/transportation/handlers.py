@@ -1,4 +1,8 @@
-from telegram.ext import CallbackContext
+import re
+
+from telegram.ext import CallbackContext, Filters
+
+from tcrb.core.handlers import HandlerConfig, MessageHandler
 
 
 def main_menu_handler(reply, context: CallbackContext) -> None:
@@ -15,3 +19,9 @@ def main_menu_handler(reply, context: CallbackContext) -> None:
                "Formulario: https://forms.office.com/r/vcFWCDDV4v"
 
     reply.text(response)
+
+
+TRANSPORTATION_HANDLERS = HandlerConfig([
+    # TODO: Eliminar esto cuando se restauren los buses
+    MessageHandler(Filters.regex(re.compile(r"bus(?:es)?", re.IGNORECASE)), main_menu_handler)
+])

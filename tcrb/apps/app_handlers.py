@@ -2,7 +2,7 @@ from tcrb.apps import main_menu
 from tcrb.apps.directory.handlers import DIRECTORY_HANDLERS
 from tcrb.apps.search.handlers import SEARCH_HANDLERS
 from tcrb.apps.tracking.handlers import TRACKING_HANDLERS
-from tcrb.apps.transportation.settings import TRANSPORTATION_HANDLERS
+from tcrb.apps.transportation.handlers import TRANSPORTATION_HANDLERS
 from tcrb.pages import PAGE_HANDLER_CONFIGS
 
 
