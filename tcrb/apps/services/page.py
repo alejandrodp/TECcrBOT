@@ -1,6 +1,8 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 from .models import Service
+from .settings import SERVICES_DESC
+from ...pages import PageTy
 
 
 def service_builder(service: Service, reply):
@@ -15,3 +17,6 @@ def service_builder(service: Service, reply):
             InlineKeyboardButton(f"Ir a {service.name}", url=service.link)
         ]) if service.link else None
     )
+
+
+SERVICES_PAGE = PageTy(ty=0, model=Service, desc=SERVICES_DESC, build=service_builder)

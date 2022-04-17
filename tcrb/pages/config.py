@@ -1,6 +1,6 @@
 from tcrb.apps.directory.page import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES
 from tcrb.apps.places.page import PLACES_PAGE
-from tcrb.apps.services.settings import SERVICES_PAGE
+from tcrb.apps.services.page import SERVICES_PAGE
 
 
 class PageTys:
