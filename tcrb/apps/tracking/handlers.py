@@ -1,10 +1,9 @@
 from whoosh.searching import TimeLimit
-
-from tcrb.apps.search.index import read_index, search
-from tcrb.apps.tracking.models import Queries
+from .models import Queries
 
 
 def query_track_handler(reply, context):
+    from tcrb.apps.search.index import read_index, search
     query = reply.text_query()
     with read_index() as ix:
         try:
