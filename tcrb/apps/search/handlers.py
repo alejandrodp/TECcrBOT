@@ -51,3 +51,13 @@ def page_ty_result_handler(reply, context: CallbackContext) -> None:
                 show_one_type_results(r_ty, pages, query, reply)
 
     search_query(query, process_query, reply)
+
+
+def main_menu_handler(reply, context: CallbackContext):
+    response = f"El apartado de búsqueda le permite encontrar información rápidamente, solo ingrese su consulta.\n\n" \
+               f"Podrá encontrar información acerca de lugares, profesores, grupos estudiantiles y demás elementos de la comunidad TEC.\n" \
+               f"Para realizar una consulta puede escribir términos como los siguientes:\n\n" \
+               f"\U0001f4cd Para encontrar un lugar: \"D3\", \"F2\", \"Pretil\"\n\n" \
+               f"\U0001f4d6 Para encontrar una persona: \"secretaria quimica\", \"Juan\""
+
+    reply.text(response)

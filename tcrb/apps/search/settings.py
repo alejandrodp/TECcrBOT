@@ -4,6 +4,8 @@ from tcrb.apps.config.handlers import HandlerConfig, MessageHandler, CallbackQue
 from tcrb.apps.search.buttons import one_type_results_paginator, page_ty_result
 from tcrb.apps.search.handlers import search_handler, one_type_results_paginator_handler, page_ty_result_handler
 
+SEARCH_DESC = "Búsqueda \U0001f50e"
+
 SEARCH_HANDLERS = HandlerConfig([
     CallbackQueryHandler(one_type_results_paginator, one_type_results_paginator_handler),
     CallbackQueryHandler(page_ty_result, page_ty_result_handler),

@@ -4,6 +4,8 @@ from telegram.ext import Filters
 from .config.handlers import HandlerConfig, MessageHandler, CommandHandler
 from .places.handlers import main_menu_handler as places_main_menu
 from .places.settings import PLACES_DESC
+from .search.handlers import main_menu_handler as search_main_menu
+from .search.settings import SEARCH_DESC
 from .services.handlers import main_menu_handler as services_main_menu
 from .services.settings import SERVICES_DESC
 from .transportation.handlers import main_menu_handler as transportation_main_menu
@@ -77,9 +79,11 @@ class MainMenuConfig(HandlerConfig):
 
 
 MAIN_MENU_HANDLERS = MainMenuConfig({
-    PLACES_DESC: places_main_menu,
-    TRANSPORTATION_DESC: transportation_main_menu,
-    SERVICES_DESC: services_main_menu,
+    SEARCH_DESC: search_main_menu,
+
+    # PLACES_DESC: places_main_menu,
+    # TRANSPORTATION_DESC: transportation_main_menu,
+    # SERVICES_DESC: services_main_menu,
     TUTORIAS_DESC: tutorias_main_menu,
     "Info️ \U00002139": info_message_handler,
 })
