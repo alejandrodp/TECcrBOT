@@ -12,4 +12,4 @@ def index_all():
     with write_index() as ix:
         for ty, page, doc in load_pages():
             assert not any(key in doc for key in ('ty', 'id', 'title'))
-            ix.add_document(ty=ty, id=page.id, title=page.title, **doc)
+            ix.add_document(ty=ty, id=page.id, title=page.title, st=page.title[0], **doc)

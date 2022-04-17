@@ -2,13 +2,13 @@ import os.path
 
 from django.conf import settings
 from whoosh.analysis import CharsetFilter, LowercaseFilter, StopFilter, \
-    StemFilter, RegexTokenizer, StandardAnalyzer, default_pattern
+    StemFilter, RegexTokenizer, StandardAnalyzer, default_pattern, CharsetTokenizer
 from whoosh.collectors import TimeLimitCollector
 from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID, KEYWORD
 from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
-from whoosh.support.charset import accent_map
+from whoosh.support.charset import accent_map, default_charset, charset_table_to_dict
 
 from tcrb.settings import PAGINATION_LIMIT
 
@@ -17,6 +17,7 @@ ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')
 EXACT_ANALYZER = StandardAnalyzer() | STOP_FILTER | ACCENT_FILTER
 HINT_ANALYZER = RegexTokenizer(default_pattern) | LowercaseFilter() | \
     STOP_FILTER | ACCENT_FILTER | StemFilter(lang='es')
+LETTER_ANALYZER = CharsetTokenizer(charset_table_to_dict(default_charset)) | ACCENT_FILTER | LowercaseFilter()
 
 
 class Schema(SchemaClass):
@@ -28,6 +29,7 @@ class Schema(SchemaClass):
     surname = TEXT(analyzer=EXACT_ANALYZER, field_boost=2.5)
     email = ID
     tel = ID
+    st = TEXT(stored=True, analyzer=LETTER_ANALYZER)
 
 
 _IX_PATH = os.path.join(settings.BASE_DIR, 'index')
@@ -64,7 +66,7 @@ def read_index():
     return _ix.searcher()
 
 
-_SEARCH_KWS = ['title', 'surname', 'name', 'kw']
+_SEARCH_KWS = ['title', 'surname', 'name', 'kw', 'st']
 _TY_FACET = FieldFacet('ty')
 
 
