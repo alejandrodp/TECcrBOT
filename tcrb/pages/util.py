@@ -32,3 +32,8 @@ def show_page(ty, page_id, reply):
 
     reply.buffer_text(header)
     page_ty.builder(obj, reply)
+
+
+def build_show_page_button(text, ty, page_id):
+    from .buttons import show_page_button
+    return show_page_button(text, ty, page_id)
