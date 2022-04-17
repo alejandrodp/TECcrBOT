@@ -1,4 +1,4 @@
-from tcrb.apps.directory.settings import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES
+from tcrb.apps.directory.page import PEOPLE_PAGES, DEPT_PAGES, LOC_PAGES
 from tcrb.apps.places.settings import PLACES_PAGE
 from tcrb.apps.services.settings import SERVICES_PAGE
 

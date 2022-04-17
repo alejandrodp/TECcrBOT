@@ -2,7 +2,7 @@ from telegram import InlineKeyboardMarkup
 
 from tcrb.apps.search.buttons import one_type_results_paginator, page_ty_result
 from tcrb.apps.search.queries import build_query
-from tcrb.pages import all_pages
+from tcrb.pages.config import all_pages
 
 
 def show_one_type_results(ty, results, query, reply):
