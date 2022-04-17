@@ -1,0 +1,1 @@
+PAGES_INDEX_DESC = "Índice \U0001f5c2"

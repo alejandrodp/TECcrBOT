@@ -69,3 +69,29 @@ class InlinePaginator(Inline):
         paginator.add_before(*buttons)
 
         return paginator
+
+
+class InlineWhooshPaginator(Inline):
+
+    def __init__(self, app, sub_type, *patterns):
+        super().__init__(app, sub_type, "pages", rf"(\d+)", *patterns)
+
+    def __call__(self, page_index, query, *data, **kwargs):
+        from tcrb.pages import build_show_page_button, index
+
+        with index.read_index() as ix:
+            pages = index.search_page(ix, query, page_index)
+
+            buttons = (build_show_page_button(r["title"], r["ty"], r["id"]) for r in pages)
+
+            paginator = InlinePaginatorCustom(
+                page_count=pages.pagecount,
+                current_page=page_index,
+                data_pattern=self.build_callback_pattern(
+                    False, "pages", "{page}", *data
+                )
+            )
+
+            paginator.add_before(*buttons)
+
+            return paginator

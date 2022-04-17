@@ -10,6 +10,8 @@ from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
 from whoosh.support.charset import accent_map
 
+from tcrb.settings import PAGINATION_LIMIT
+
 ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')
 
 EXACT_ANALYZER = StandardAnalyzer() | STOP_FILTER | ACCENT_FILTER
@@ -77,7 +79,7 @@ def search(searcher, query):
 
 def search_page(searcher, query, pagenum):
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
-    return searcher.search_page(parser.parse(query), pagenum, pagelen=5)
+    return searcher.search_page(parser.parse(query), pagenum, pagelen=PAGINATION_LIMIT)
 
 
 def load_pages():
