@@ -66,7 +66,7 @@ def read_index():
     return _ix.searcher()
 
 
-_SEARCH_KWS = ['title', 'surname', 'name', 'kw', 'st']
+_SEARCH_KWS = ['title', 'surname', 'name', 'kw']
 _TY_FACET = FieldFacet('ty')
 
 
