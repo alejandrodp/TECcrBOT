@@ -1,9 +1,9 @@
 from telegram.ext import CallbackContext
 
-from tcrb.apps.config.pages import show_page
 from tcrb.apps.search.buttons import one_type_results_paginator
 from tcrb.apps.search.queries import search_query, clean_query, build_query, get_query
 from tcrb.apps.search.results import show_one_type_results, show_multiple_results
+from tcrb.pages import show_page
 
 
 def search_handler(reply, context: CallbackContext) -> None:
