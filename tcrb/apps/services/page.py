@@ -3,13 +3,6 @@ from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 from .models import Service
 
 
-def index_services(service: Service):
-    return {
-        'id': service.id,
-        'title': service.name,
-    }
-
-
 def service_builder(service: Service, reply):
     response = "\n\n".join((
         f"<i>Descripción:</i> \n{service.description if service.description else 'No disponible'}",
