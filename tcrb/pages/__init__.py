@@ -8,4 +8,5 @@ __all__ = [
     "build_show_page_button",
     "PageTy",
     "show_page",
+    "PAGE_HANDLER_CONFIGS"
 ]
