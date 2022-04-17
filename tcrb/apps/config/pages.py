@@ -14,7 +14,7 @@ class PageTy:
 
 
 def show_page(ty, page_id, reply):
-    from tcrb.apps.config.init import all_pages
+    from tcrb.pages.config import all_pages
     page_ty = all_pages.page_tys.get(ty)
     reply.expect(page_ty is not None)
 

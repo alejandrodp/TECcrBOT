@@ -1,7 +1,6 @@
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import Filters
 
-from .config.handlers import HandlerConfig, MessageHandler, CommandHandler
 from .places.handlers import main_menu_handler as places_main_menu
 from .places.settings import PLACES_DESC
 from .search.handlers import main_menu_handler as search_main_menu
@@ -12,6 +11,7 @@ from .transportation.handlers import main_menu_handler as transportation_main_me
 from .transportation.settings import TRANSPORTATION_DESC
 from .tutorias.handlers import main_menu_handler as tutorias_main_menu
 from .tutorias.settings import TUTORIAS_DESC
+from ..core.handlers import HandlerConfig, CommandHandler, MessageHandler
 
 
 def info_message_handler(reply, context) -> None:

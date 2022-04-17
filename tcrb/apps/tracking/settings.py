@@ -1,7 +1,7 @@
 from telegram.ext import Filters
 
-from tcrb.apps.config.handlers import HandlerConfig, MessageHandler
 from tcrb.apps.tracking.handlers import query_track_handler
+from tcrb.core.handlers import HandlerConfig, MessageHandler
 
 TRACKING_HANDLERS = HandlerConfig([
     MessageHandler(Filters.text &

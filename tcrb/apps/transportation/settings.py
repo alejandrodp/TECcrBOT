@@ -2,8 +2,8 @@ import re
 
 from telegram.ext import Filters
 
-from tcrb.apps.config.handlers import HandlerConfig, MessageHandler
 from tcrb.apps.transportation.handlers import main_menu_handler
+from tcrb.core.handlers import HandlerConfig, MessageHandler
 
 TRANSPORTATION_DESC = "Servicios de transporte \U0001f68c"
 

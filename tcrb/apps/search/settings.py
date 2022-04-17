@@ -1,8 +1,8 @@
 from telegram.ext import Filters
 
-from tcrb.apps.config.handlers import HandlerConfig, MessageHandler, CallbackQueryHandler
 from tcrb.apps.search.buttons import one_type_results_paginator, page_ty_result
 from tcrb.apps.search.handlers import search_handler, one_type_results_paginator_handler, page_ty_result_handler
+from tcrb.core.handlers import HandlerConfig, CallbackQueryHandler, MessageHandler
 
 SEARCH_DESC = "Búsqueda \U0001f50e"
 

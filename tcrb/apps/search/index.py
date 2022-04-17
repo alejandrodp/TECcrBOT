@@ -83,7 +83,7 @@ def search_page(searcher, query, pagenum):
 
 
 def load_pages():
-    from tcrb.apps.config.init import all_pages
+    from tcrb.pages.config import all_pages
     for ty, ty_obj in all_pages.page_tys.items():
         index = ty_obj.index or (lambda _: {})
         for obj in ty_obj.model.objects.all():

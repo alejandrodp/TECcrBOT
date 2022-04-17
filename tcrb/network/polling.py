@@ -2,7 +2,7 @@ from django.conf import settings
 from telegram import ParseMode
 from telegram.ext import Updater, Defaults
 
-from tcrb.apps.config.init import apps
+from tcrb.apps.app_handlers import apps
 
 defaults = Defaults(parse_mode=ParseMode.HTML, )
 
