@@ -1,8 +1,9 @@
-from telegram.ext import CallbackContext
+from telegram.ext import CallbackContext, Filters
 
-from tcrb.apps.search.buttons import one_type_results_paginator
+from tcrb.apps.search.buttons import one_type_results_paginator, page_ty_result
 from tcrb.apps.search.queries import search_query, clean_query, build_query, get_query
 from tcrb.apps.search.results import show_one_type_results, show_multiple_results
+from tcrb.core.handlers import HandlerConfig, CallbackQueryHandler, MessageHandler
 from tcrb.pages import show_page
 
 
@@ -61,3 +62,13 @@ def main_menu_handler(reply, context: CallbackContext):
                f"\U0001f4d6 Para encontrar una persona: \"secretaria quimica\", \"Juan\""
 
     reply.text(response)
+
+
+SEARCH_HANDLERS = HandlerConfig([
+    CallbackQueryHandler(one_type_results_paginator, one_type_results_paginator_handler),
+    CallbackQueryHandler(page_ty_result, page_ty_result_handler),
+    MessageHandler(Filters.text &
+                   ~Filters.command &
+                   ~Filters.update.edited_message &
+                   ~Filters.update.edited_channel_post, search_handler)
+])
