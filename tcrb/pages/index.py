@@ -2,13 +2,14 @@ import os.path
 
 from django.conf import settings
 from whoosh.analysis import CharsetFilter, LowercaseFilter, StopFilter, \
-    StemFilter, RegexTokenizer, StandardAnalyzer, default_pattern, CharsetTokenizer
+    StemFilter, RegexTokenizer, StandardAnalyzer, default_pattern
 from whoosh.collectors import TimeLimitCollector
 from whoosh.fields import SchemaClass, NUMERIC, TEXT, ID, KEYWORD
 from whoosh.index import open_dir, exists_in, create_in
 from whoosh.qparser import MultifieldParser
 from whoosh.sorting import FieldFacet
-from whoosh.support.charset import accent_map, default_charset, charset_table_to_dict
+from whoosh.support.charset import accent_map
+from whoosh.util.text import rcompile
 
 from tcrb.settings import PAGINATION_LIMIT
 
@@ -17,13 +18,13 @@ ACCENT_FILTER, STOP_FILTER = CharsetFilter(accent_map), StopFilter(lang='es')
 EXACT_ANALYZER = StandardAnalyzer() | STOP_FILTER | ACCENT_FILTER
 HINT_ANALYZER = RegexTokenizer(default_pattern) | LowercaseFilter() | \
     STOP_FILTER | ACCENT_FILTER | StemFilter(lang='es')
-LETTER_ANALYZER = CharsetTokenizer(charset_table_to_dict(default_charset)) | ACCENT_FILTER | LowercaseFilter()
+LETTER_ANALYZER = RegexTokenizer(rcompile(r"\w")) | ACCENT_FILTER | LowercaseFilter()
 
 
 class Schema(SchemaClass):
     ty = NUMERIC(stored=True)
     id = NUMERIC(stored=True, unique=True)
-    title = TEXT(stored=True, analyzer=HINT_ANALYZER, field_boost=1.5)
+    title = TEXT(stored=True, analyzer=HINT_ANALYZER, field_boost=1.5, sortable=True)
     kw = KEYWORD(scorable=True, analyzer=HINT_ANALYZER)
     name = TEXT(analyzer=EXACT_ANALYZER, field_boost=2.0)
     surname = TEXT(analyzer=EXACT_ANALYZER, field_boost=2.5)
@@ -81,7 +82,7 @@ def search(searcher, query):
 
 def search_page(searcher, query, pagenum):
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
-    return searcher.search_page(parser.parse(query), pagenum, pagelen=PAGINATION_LIMIT)
+    return searcher.search_page(parser.parse(query), pagenum, pagelen=PAGINATION_LIMIT, sortedby="title")
 
 
 def load_pages():

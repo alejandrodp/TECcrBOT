@@ -44,6 +44,7 @@ class Reply:
         self._buffered += text
 
     def text(self, text, **kwargs):
+        from tcrb.apps import main_menu
         # No utlizar con actualizaciones del tipo InlineQuery
         update = self._read_update()
         if self._buffered:
@@ -57,11 +58,9 @@ class Reply:
             except BadRequest:
                 return message
         else:
-            return message.reply_text(text, **kwargs)
-            # TODO: Poner teclado de manera no kk
-            # return message.reply_text(text, **kwargs) \
-            #     if kwargs.get("reply_markup") \
-            #     else message.reply_text(text, reply_markup=main_menu.MAIN_MENU_HANDLERS.keyboard_markup(), **kwargs)
+            return message.reply_text(text, **kwargs) \
+                if kwargs.get("reply_markup") \
+                else message.reply_text(text, reply_markup=main_menu.MAIN_MENU_HANDLERS.keyboard_markup(), **kwargs)
 
     def edit_markup(self, reply_markup):
         message = self._message()
