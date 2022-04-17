@@ -36,9 +36,9 @@ BOT_APPS = [
     'tcrb.apps.tutorias',
     'tcrb.apps.news',
     'tcrb.apps.directory',
-    'tcrb.apps.pages',
     'tcrb.apps.search',
     'tcrb.apps.tracking',
+    'tcrb.pages',
     'tcrb',
 ]
 

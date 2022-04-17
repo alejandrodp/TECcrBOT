@@ -1,7 +1,5 @@
 import html
 
-from tcrb.apps.pages.models import Page
-
 
 class PageTy:
     def __init__(self, *, ty, model, desc, build, index=None):
@@ -15,6 +13,7 @@ class PageTy:
 
 def show_page(ty, page_id, reply):
     from tcrb.pages.config import all_pages
+    from tcrb.pages.models import Page
     page_ty = all_pages.page_tys.get(ty)
     reply.expect(page_ty is not None)
 

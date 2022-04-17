@@ -1,8 +1,8 @@
 from enum import Enum
 
 from tcrb.apps.directory import settings
-from tcrb.apps.pages.handlers import build_show_page_button
 from tcrb.core.buttons import InlinePaginator
+from tcrb.pages import build_show_page_button
 
 
 class States(Enum):

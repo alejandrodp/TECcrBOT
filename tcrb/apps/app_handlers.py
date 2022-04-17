@@ -1,9 +1,9 @@
 from tcrb.apps import main_menu
 from tcrb.apps.directory.settings import DIRECTORY_HANDLERS
-from tcrb.apps.pages.settings import PAGE_HANDLER_CONFIGS
 from tcrb.apps.search.settings import SEARCH_HANDLERS
 from tcrb.apps.tracking.settings import TRACKING_HANDLERS
 from tcrb.apps.transportation.settings import TRANSPORTATION_HANDLERS
+from tcrb.pages import PAGE_HANDLER_CONFIGS
 
 
 class Handlers:

@@ -6,7 +6,7 @@ from tcrb.apps.search import index
 from . import settings
 from .buttons import dept_people_paginator
 from .models import Person, Unit, Role, RoleTy, Location
-from ..pages.handlers import build_show_page_button
+from ...pages import build_show_page_button
 
 
 def index_people(person: Person):
