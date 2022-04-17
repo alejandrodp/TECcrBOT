@@ -79,7 +79,7 @@ def search(searcher, query):
 
 def search_page(searcher, query, pagenum):
     parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
-    return searcher.search_page(parser.parse(query), pagenum, pagelen=10)
+    return searcher.search_page(parser.parse(query), pagenum, pagelen=5)
 
 
 def load_pages():
