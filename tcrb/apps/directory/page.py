@@ -17,7 +17,7 @@ def index_people(person: Person):
 
 
 def person_kws(person):
-    from tcrb.apps.search import index
+    from tcrb.pages import index
     return [kw.text
             for role in Role.objects.filter(person=person)
             for source in ((role.unit,), (role_ty.ty for role_ty in RoleTy.objects.filter(role=role)))

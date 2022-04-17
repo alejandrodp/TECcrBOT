@@ -5,7 +5,7 @@ from ...core.handlers import HandlerConfig, MessageHandler
 
 
 def query_track_handler(reply, context):
-    from tcrb.apps.search.index import read_index, search
+    from tcrb.pages.index import read_index, search
     query = reply.text_query()
     with read_index() as ix:
         try:

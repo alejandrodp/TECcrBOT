@@ -7,7 +7,7 @@ QUERY_DELIMITER = "`"
 
 
 def search_query(query: str, callback, reply):
-    from tcrb.apps.search import index
+    from tcrb.pages import index
 
     with index.read_index() as ix:
         try:
