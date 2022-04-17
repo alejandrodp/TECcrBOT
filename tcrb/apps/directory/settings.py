@@ -1,7 +1,7 @@
 from .buttons import dept_people_paginator
 from .handlers import dept_people_paginator_handler
 from .models import Person, Unit, Location
-from .pages import index_people, people_builder, dept_builder, loc_builder
+from .page import index_people, people_builder, dept_builder, loc_builder
 from ...core.handlers import HandlerConfig, CallbackQueryHandler
 from ...pages import PageTy
 

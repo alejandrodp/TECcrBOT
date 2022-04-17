@@ -63,8 +63,9 @@ def people_builder(person: Person, reply) -> None:
 
         yield ''
         yield href(person)
-    # TODO: Cambiar por sistema de enlazado general
+
     reply.text('\n'.join(msg()),
+               # TODO: Cambiar por sistema de enlazado general
                reply_markup=InlineKeyboardMarkup.from_column(list(
                    build_show_page_button(f"Ver {role.unit.name}", settings.DEPT_PAGES.ty, role.unit.id)
                    for role in person.role_set.all()
