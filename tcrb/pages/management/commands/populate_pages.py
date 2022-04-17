@@ -10,7 +10,7 @@ from django.db import transaction
 from tcrb.apps.directory.models import Person, Ty, Location, Unit, Role, RoleTy
 from tcrb.apps.directory.page import LOC_PAGES, DEPT_PAGES, PEOPLE_PAGES
 from tcrb.apps.places.models import Place
-from tcrb.apps.places.settings import PLACES_PAGE
+from tcrb.apps.places.page import PLACES_PAGE
 from tcrb.apps.services.models import Service
 from tcrb.apps.services.settings import SERVICES_PAGE
 from tcrb.pages.models import Page

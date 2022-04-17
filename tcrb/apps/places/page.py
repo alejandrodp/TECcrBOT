@@ -1,6 +1,8 @@
 from django.conf import settings
 
 from .models import Place
+from .settings import PLACES_DESC
+from ...pages import PageTy
 
 
 def show_place(place: Place, reply):
@@ -20,3 +22,6 @@ def show_place(place: Place, reply):
     else:
         message.reply_text("Imagen no disponible",
                            reply_to_message_id=message.message_id)
+
+
+PLACES_PAGE = PageTy(ty=4, model=Place, desc=PLACES_DESC, build=show_place)
