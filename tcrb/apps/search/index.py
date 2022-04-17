@@ -77,6 +77,11 @@ def search(searcher, query):
     return collector.results()
 
 
+def search_page(searcher, query, pagenum):
+    parser = MultifieldParser(_SEARCH_KWS, schema=_ix.schema)
+    return searcher.search_page(parser.parse(query), pagenum, pagelen=10)
+
+
 def load_pages():
     from tcrb.apps.config.init import all_pages
     for ty, ty_obj in all_pages.page_tys.items():
