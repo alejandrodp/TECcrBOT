@@ -2,6 +2,8 @@ from django.core.paginator import Paginator
 from telegram import InlineKeyboardButton
 from telegram_bot_pagination import InlineKeyboardPaginator
 
+from tcrb.settings import PAGINATION_LIMIT
+
 
 class InlinePaginatorCustom(InlineKeyboardPaginator):
     def add_before(self, *inline_buttons):
@@ -52,7 +54,7 @@ class InlinePaginator(Inline):
         self._make_buttons = make_buttons
 
     def __call__(self, page_index, objects, *data, **kwargs):
-        pages = Paginator(objects, 5)
+        pages = Paginator(objects, PAGINATION_LIMIT)
         current_page = pages.get_page(page_index)
         buttons = self._make_buttons(current_page.object_list)
 
