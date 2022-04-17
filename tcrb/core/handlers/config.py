@@ -3,7 +3,7 @@ import telegram.ext
 
 class HandlerConfig:
     def __init__(self, handlers, group=telegram.ext.dispatcher.DEFAULT_GROUP):
-        from base import BaseHandler
+        from .base import BaseHandler
         if not all(isinstance(handler, BaseHandler) for handler in handlers):
             raise ValueError(f"All handlers should be a subclass of {BaseHandler.__name__}")
 
