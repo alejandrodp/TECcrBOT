@@ -1,1 +1,0 @@
-PLACES_DESC = "Ubicaciones"

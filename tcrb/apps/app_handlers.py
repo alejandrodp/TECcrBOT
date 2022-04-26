@@ -3,7 +3,6 @@ from tcrb.apps.directory.handlers import DIRECTORY_HANDLERS
 from tcrb.apps.pages_index.handlers import PAGES_INDEX_HANDLERS
 from tcrb.apps.search.handlers import SEARCH_HANDLERS
 from tcrb.apps.tracking.handlers import TRACKING_HANDLERS
-from tcrb.apps.transportation.handlers import TRANSPORTATION_HANDLERS
 from tcrb.pages import PAGE_HANDLER_CONFIGS
 
 
@@ -31,7 +30,6 @@ apps = Handlers([
     main_menu.COMMAND_HANDLERS,
     PAGE_HANDLER_CONFIGS,
     TRACKING_HANDLERS,
-    TRANSPORTATION_HANDLERS,
     DIRECTORY_HANDLERS,
     PAGES_INDEX_HANDLERS,
     # Mantener handlers de búsqueda de último, son los que reciben el texto no reconocido anteriormente.

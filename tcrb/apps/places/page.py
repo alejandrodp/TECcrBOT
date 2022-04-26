@@ -1,7 +1,6 @@
 from django.conf import settings
 
 from .models import Place
-from .settings import PLACES_DESC
 from ...pages import PageTy
 
 
@@ -24,4 +23,4 @@ def show_place(place: Place, reply):
                            reply_to_message_id=message.message_id)
 
 
-PLACES_PAGE = PageTy(ty=4, model=Place, desc=PLACES_DESC, build=show_place)
+PLACES_PAGE = PageTy(ty=4, model=Place, desc="Ubicaciones", build=show_place)
