@@ -11,6 +11,10 @@ from ..core.handlers import HandlerConfig, CommandHandler, MessageHandler
 
 
 def info_message_handler(reply, context) -> None:
+    """
+    Mensaje mostrado cuando el usuario apreta el botón de información.
+    TODO
+    """
     response = f"TECcrBot (TCRB) es un bot dedicado a proporcionar información y " \
                f"utilidades a los integrantes de la comunidad del ITCR.\n\n" \
                f"Creado por Esteban Sánchez Trejos, quién en conjunto con la asociación " \
@@ -34,6 +38,10 @@ def main_menu_keyboard_handler(reply, context) -> None:
 
 
 def greetings_message_handler(reply, context) -> None:
+    """
+    Mensaje que se muestra la primera vez que se inicia el bot.
+    TODO
+    """
     response = f"¡Hola {reply.user_first_name()}!\n" \
                f"Puede preguntar a través de:\n" \
                f"\U0001f539 Mensajes\n" \
@@ -78,7 +86,7 @@ MAIN_MENU_HANDLERS = MainMenuConfig({
     SEARCH_DESC: search_main_menu,
     PAGES_INDEX_DESC: pages_index_main_menu,
     TUTORIAS_DESC: tutorias_main_menu,
-    "Info️ \U00002139": info_message_handler,
+    "Info \U00002139": info_message_handler,
 })
 
 COMMAND_HANDLERS = HandlerConfig([
