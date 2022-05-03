@@ -13,7 +13,6 @@ from ..core.handlers import HandlerConfig, CommandHandler, MessageHandler
 def info_message_handler(reply, context) -> None:
     """
     Mensaje mostrado cuando el usuario apreta el botón de información.
-    TODO
     """
     response = f"TECcrBot (TCRB) es un bot dedicado a proporcionar información y " \
                f"utilidades a los integrantes de la comunidad del ITCR.\n\n" \
@@ -40,21 +39,17 @@ def main_menu_keyboard_handler(reply, context) -> None:
 def greetings_message_handler(reply, context) -> None:
     """
     Mensaje que se muestra la primera vez que se inicia el bot.
-    TODO
     """
-    response = f"¡Hola {reply.user_first_name()}!\n" \
-               f"Puede preguntar a través de:\n" \
-               f"\U0001f539 Mensajes\n" \
-               f"\U0001f539 Menú principal (presione aquí /menu)\n\n" \
-               f"En este bot puede encontrar información acerca del TEC y sus servicios.\n" \
-               f"Para realizar una consulta puede escribir términos como los siguientes:\n" \
-               f"\U0001f4cd Obtener información de un lugar:\n" \
-               f"- D3\n" \
-               f"- F2\n" \
-               f"- admision y registro\n" \
-               f"\U0001f4d6 Obtener información de contacto:\n" \
-               f"- secretaria quimica\n" \
-               f"- nombre y/o apellido del profesor"
+    response =  f"¡Hola {reply.user_first_name()}!\n\n" \
+                f"Para obtener información, podés escribir mensajes así:\n" \
+                f"- D3\n" \
+                f"- Admisión y registro\n" \
+                f"- Secretaria química\n" \
+                f"- Juan Pérez\n" \
+                f"El bot va a tratar de interpretar tu mensaje y darte la mejor\n" \
+                f"información disponible.\n\n" \
+                f"Además, podés usar el Menú Principal para navegar por el índice\n" \
+                f"y encontrar la información que necesitás."
 
     reply.text(response,
                reply_markup=MAIN_MENU_HANDLERS.keyboard_markup()
