@@ -358,3 +358,8 @@ $RECYCLE.BIN/
 
 index
 index/
+
+
+# Pipenv
+Pipfile
+Pipfile.lock
