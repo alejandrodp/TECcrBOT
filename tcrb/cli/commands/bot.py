@@ -1,13 +1,7 @@
 import click
 
 from .backend.bot import start_bot, check_database
-
-import os
-from django.core.management import call_command
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tcrb.settings")
-application = get_wsgi_application()
+from .database import makemigrations, migrate, populate, index
 
 @click.group()
 def bot():
@@ -18,17 +12,32 @@ def bot():
 
 
 @bot.command("start")
-def start():
+@click.option("--builddb", show_default=True, default=False, is_flag=True,
+                                help="Crea las migraciones, \
+                                migra, popula la base de datos \
+                                y genera el índice antes de iniciar.")
+def start(builddb):
     """
     Inicia el bot con la configuración por defecto.
     """
+    if builddb:
+        makemigrations()
+        migrate()
+        populate()
+        index()
+    
     click.echo("Iniciando bot...")
 
-    click.secho(message="Revisando migraciones...", nl=False)
+    click.secho(message="Revisando base de datos...", nl=False)
     if check_database():
         click.secho(message=" Ok", fg='green')
     else:
-        click.secho(message="WARNING", fg='yellow')
+        click.secho(message=" WARNING", fg='yellow')
         click.echo("\tBase de datos parece no estar inicializada.")
 
-    start_bot()
+    if start_bot():
+        click.secho(message="Bot iniciado", fg='green')
+    else:
+        click.secho(message="Error al iniciar bot", fg='red')
+
+
