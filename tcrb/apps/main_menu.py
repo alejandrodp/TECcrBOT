@@ -1,10 +1,12 @@
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import Filters
 
-from .pages_index.handlers import main_menu_handler as pages_index_main_menu
-from .pages_index.settings import PAGES_INDEX_DESC
-from .search.handlers import main_menu_handler as search_main_menu
-from .search.settings import SEARCH_DESC
+from .places.settings import PLACES_DESC
+from .places.handlers import main_menu_handler as places_main_menu
+from .services.settings import SERVICES_DESC
+from .services.handlers import main_menu_handler as services_main_menu
+from .transportation.settings import TRANSPORTATION_DESC
+from .transportation.handlers import main_menu_handler as transportation_main_menu
 from .tutorias.handlers import main_menu_handler as tutorias_main_menu
 from .tutorias.settings import TUTORIAS_DESC
 from ..core.handlers import HandlerConfig, CommandHandler, MessageHandler
@@ -78,10 +80,11 @@ class MainMenuConfig(HandlerConfig):
 
 
 MAIN_MENU_HANDLERS = MainMenuConfig({
-    SEARCH_DESC: search_main_menu,
-    PAGES_INDEX_DESC: pages_index_main_menu,
+    PLACES_DESC: places_main_menu,
+    TRANSPORTATION_DESC: transportation_main_menu,
+    SERVICES_DESC: services_main_menu,
     TUTORIAS_DESC: tutorias_main_menu,
-    "Info \U00002139": info_message_handler,
+    "Info️ \U00002139": info_message_handler,
 })
 
 COMMAND_HANDLERS = HandlerConfig([
