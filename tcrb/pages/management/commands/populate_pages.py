@@ -32,7 +32,7 @@ def load_all():
 
 
 def load_people():
-    scrap_dir = settings.BASE_DIR / 'contrib/people'
+    scrap_dir = settings.BASE_DIR / 'tcrb' / 'contrib' / 'people'
     scrap = subprocess.run(
         [
             scrap_dir / 'tag_edit.py',
@@ -104,14 +104,14 @@ def load_people():
 
 
 def load_places():
-    with open(settings.BASE_DIR / 'contrib/places/places.json') as scrap:
+    with open(settings.BASE_DIR / 'tcrb/contrib/places/places.json') as scrap:
         scrap = json.load(scrap)
 
     for place in scrap:
         name = place['name']
         photo = place.get('photo')
         if photo:
-            photo = os.path.join('contrib/places/photos', photo)
+            photo = os.path.join('tcrb/contrib/places/photos', photo)
 
         Place(
             id=new_page(PLACES_PAGE, title=name),
@@ -123,7 +123,7 @@ def load_places():
 
 
 def load_services():
-    with open(settings.BASE_DIR / 'contrib/services/services.json') as scrap:
+    with open(settings.BASE_DIR / 'tcrb/contrib/services/services.json') as scrap:
         scrap = json.load(scrap)
 
         for service in scrap:
