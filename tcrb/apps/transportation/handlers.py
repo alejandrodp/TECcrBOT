@@ -1,17 +1,38 @@
+from telegram import Message, InputMediaPhoto
 from telegram.ext import CallbackContext
+
+from tcrb.settings import BASE_DIR
 
 
 def main_menu_handler(reply, context: CallbackContext) -> None:
-    response = "(Última modificación: 23-02-2022)\n\n" \
-               "El servicio de bus del TEC no se encuentra disponible en este momento, " \
-               "solo se está ofreciendo el siguiente servicio:\n\n" \
-               "Servicio de buseta que sale del centro de Cartago hacia el TEC a las 7:20 a.m\n" \
-               "Servicio de buseta que sale del TEC al centro de Cartago a las 4:40 p.m\n\n" \
-               "<b>Mensaje de FEITEC:</b>\n" \
-               "Hemos estado recibiendo muchas consultas con respecto al servicio de buses " \
-               "por lo que hicimos un formulario para conocer la necesidad real del servicio " \
-               "y así poder realizar una solicitud a la administración.\n\n" \
-               "Fuente: https://www.instagram.com/p/CaEJWUWu4FI/?utm_medium=copy_link\n" \
-               "Formulario: https://forms.office.com/r/vcFWCDDV4v"
+    response = "(Última modificación: 25-07-2022)\n\n" \
+               "Muy pronto estará disponible esta funcionalidad. " \
+               "Podrá ver precios, horarios, próximas salidas y otra " \
+               "información relevante. ¡Vuelva a revisar pronto!\n\n" \
+               "Por el momento puede ver los horarios publicados por la FEITEC en" \
+               "<a href='https://www.instagram.com/p/Cge1AgHur4w/'>Instagram</a>\n\n" \
+               "Si desea contribuir a este proyecto puede contactar a @adiazp"
 
-    reply.text(response)
+    message: Message = reply.text(response)
+
+    message.reply_media_group([
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/sj.jpg', mode='rb')),
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/sj1.jpg', mode='rb'),
+                        caption='San José - TEC')
+    ])
+
+    message.reply_media_group([
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/alajuela.jpg', mode='rb'),
+                        caption='Alajuela - TEC')
+    ])
+
+    message.reply_media_group([
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/heredia.jpg', mode='rb'),
+                        caption='Heredia - TEC')
+    ])
+
+    message.reply_media_group([
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/coronado.jpg', mode='rb')),
+        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/coronado1.jpg', mode='rb'),
+                        caption='Coronado - TEC')
+    ])
