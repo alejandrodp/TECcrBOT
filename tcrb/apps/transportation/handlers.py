@@ -16,23 +16,23 @@ def main_menu_handler(reply, context: CallbackContext) -> None:
     message: Message = reply.text(response)
 
     message.reply_media_group([
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/sj.jpg', mode='rb')),
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/sj1.jpg', mode='rb'),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/sj.jpg', mode='rb')),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/sj1.jpg', mode='rb'),
                         caption='San José - TEC')
     ])
 
     message.reply_media_group([
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/alajuela.jpg', mode='rb'),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/alajuela.jpg', mode='rb'),
                         caption='Alajuela - TEC')
     ])
 
     message.reply_media_group([
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/heredia.jpg', mode='rb'),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/heredia.jpg', mode='rb'),
                         caption='Heredia - TEC')
     ])
 
     message.reply_media_group([
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/coronado.jpg', mode='rb')),
-        InputMediaPhoto(open('/home/alejandro/projects/tcrb/contrib/transportation/photos/coronado1.jpg', mode='rb'),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/coronado.jpg', mode='rb')),
+        InputMediaPhoto(open(BASE_DIR / 'contrib/transportation/photos/coronado1.jpg', mode='rb'),
                         caption='Coronado - TEC')
     ])
