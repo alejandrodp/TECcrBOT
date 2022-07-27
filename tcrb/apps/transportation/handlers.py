@@ -9,7 +9,7 @@ def main_menu_handler(reply, context: CallbackContext) -> None:
                "Muy pronto estará disponible esta funcionalidad. " \
                "Podrá ver precios, horarios, próximas salidas y otra " \
                "información relevante. ¡Vuelva a revisar pronto!\n\n" \
-               "Por el momento puede ver los horarios publicados por la FEITEC en" \
+               "Por el momento puede ver los horarios publicados por la FEITEC en " \
                "<a href='https://www.instagram.com/p/Cge1AgHur4w/'>Instagram</a>\n\n" \
                "Si desea contribuir a este proyecto puede contactar a @adiazp"
 
