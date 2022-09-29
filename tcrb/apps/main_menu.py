@@ -23,7 +23,7 @@ def info_message_handler(reply, context) -> None:
                f"la autonomía de datos, " \
                f"conformado actualmente por estudiantes del TEC de múltiples carreras.\n\n" \
                f"Si desea contribuir al proyecto, hacer sugerencias o comentarios, puede contactar a @adiazp.\n" \
-               f"Puede encontrar el código de este bot <a href='https://git.cluster451.org/cluster451/tcrb'>aquí</a>"
+               f"Puede encontrar el código de este bot <a href='https://github.com/alejandrodp/TECcrBOT'>aquí</a>"
 
     reply.text(response)
 
