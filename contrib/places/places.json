@@ -14,6 +14,7 @@
     ],
     "lat": 9.857118,
     "long": -83.912543,
+    "photo": "A1.jpg",
     "tags": [
       "Financiero",
       "Rectoría",
@@ -245,6 +246,12 @@
     ]
   },
   {
+    "name": "C2",
+    "lat": 9.854981,
+    "photo": "C2.jpg",
+    "long": -83.913959
+  },
+  {
     "name": "C3",
     "depts": [
       "Biblioteca José Figueres Ferrer",
@@ -364,6 +371,7 @@
     "kw": "tecdigital",
     "lat": 9.855647,
     "long": -83.911844,
+    "photo": "D2.jpg",
     "tags": [
       "TEC Digital",
       "SIMTEC",
@@ -404,6 +412,7 @@
     "name": "D6",
     "lat": 9.855386,
     "long": -83.912022,
+    "photo": "D6.jpg",
     "tags": [
       "Central Telefónica"
     ]
@@ -453,6 +462,7 @@
     "name": "E1",
     "lat": 9.856992,
     "long": -83.910794,
+    "photo": "E1.jpg",
     "tags": [
       "Gimnasio TEC"
     ]
@@ -469,9 +479,16 @@
     "name": "E2",
     "lat": 9.856897,
     "long": -83.910408,
+    "photo": "E2.jpg",
     "tags": [
       "Piscina"
     ]
+  },
+  {
+    "name": "E3",
+    "lat": 9.856612256,
+    "long": -83.91050928,
+    "photo": "E3.jpg"
   },
   {
     "name": "E6",
@@ -480,6 +497,12 @@
     "tags": [
       "Unidad Deportiva"
     ]
+  },
+  {
+    "name": "E7",
+    "lat": 9.856540516,
+    "long": -83.91079357,
+    "photo": "E7.jpg"
   },
   {
     "name": "Entrada Principal TEC Cartago",
@@ -932,11 +955,13 @@
   {
     "name": "L1",
     "lat": 9.849934,
+    "photo": "L1.jpg",
     "long": -83.911083
   },
   {
     "name": "L2",
     "lat": 9.849974,
+    "photo": "L2.jpg",
     "long": -83.910758
   },
   {
@@ -948,6 +973,7 @@
     "kw": "asocia",
     "lat": 9.849709,
     "long": -83.910755,
+    "photo": "L3.jpg",
     "tags": [
       "Ingeniería Forestal"
     ]
@@ -959,9 +985,22 @@
     ],
     "lat": 9.849968,
     "long": -83.910202,
+    "photo": "L4.jpg",
     "tags": [
       "CIF"
     ]
+  },
+  {
+    "name": "L5",
+    "lat": 9.849758698,
+    "long": -83.91176748,
+    "photo": "L5.jpg"
+  },
+  {
+    "name": "L6",
+    "lat": 9.849585011,
+    "long": -83.91141881,
+    "photo": "L6.jpg"
   },
   {
     "name": "Lago",
