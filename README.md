@@ -7,15 +7,15 @@ TECcrBot (TCRB) es un bot de [Telegram](https://telegram.org/) dedicado a propor
 
 Creado por Esteban Sánchez Trejos, quién en conjunto con la asociación de estudiantes de la carrera de mecatrónica lo desarrolló durante 2017-2021. 
 
-Actualmente [Cluster451](https://cluster451.org/) mantiene el proyecto.
+Actualmente Alejandro Díaz ([@adiazp](https://adiazp.t.me)) desarrolla y mantiene el proyecto.
 
-# Instrucciones para correr el proyecto
+# Instrucciones para ejecutar
 
 
 ## Prerequisitos
 ---
 0. Tener python instalado en el sistema
-   - El proyecto ha sido probado en la versión 3.9, no se garantiza funcionalidad con otras versiones.
+   - Se requiere Python 3.10.
 <br></br> 
 
 1. Descargar e instalar modulos en requirements.txt.
