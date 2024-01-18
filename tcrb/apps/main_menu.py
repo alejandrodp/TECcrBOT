@@ -81,9 +81,9 @@ class MainMenuConfig(HandlerConfig):
 
 MAIN_MENU_HANDLERS = MainMenuConfig({
     PLACES_DESC: places_main_menu,
-    TRANSPORTATION_DESC: transportation_main_menu,
-    SERVICES_DESC: services_main_menu,
-    TUTORIAS_DESC: tutorias_main_menu,
+    # TRANSPORTATION_DESC: transportation_main_menu,
+    # SERVICES_DESC: services_main_menu,
+    # TUTORIAS_DESC: tutorias_main_menu,
     "Info️ \U00002139": info_message_handler,
 })
 
