@@ -31,6 +31,20 @@ Si ha encontrado algún bug puede reportarlo creando una issue usando la plantil
 ### Para proponer cambios
 Para proponer cambios puede crear una issue indicando los detalles de su propuesta y el beneficio que traería integrar tales cambios, luego puede crear un pull request relacionado a dicha issue con el fin de que sus cambios sean integrados.
 
+Por favor siga el siguiente formato de ramas si es un contribuidor al repositorio: _TIPO/NOMBRE_
+
+Los tipos a utilizar pueden ser los siguientes:
+
+* **Hotfix**: Se refiere a modificaciones temporales o pequeñas que permiten resolver problemas temporalmente.
+* **Feature**: Se refiere a cambios al código base que agregan o mejoran características.
+* **Internal**: Se refiere a proyectos que no están directamente relacionados a características, por ejemplo mejoras en la documentación para desarrolladores o reorganizaciones de código.
+
+Favor colocar los nombres de estos tipos en minúscula, a continuación se muestran algunos ejemplos:
+
+`internal/update_readme`
+
+`feature/add_people_service`
+
 ## Contribuir a la base de datos
 La base de datos se compone de una serie de archivos json que al ser desplegados en producción se genera una instancia utilizando algún RDBMS (PostgreSQL, SQLite). El bot proporciona variados tipos de información tales como contactos de personas, ubicaciones de interés, información de tutorías, entre otros. Para conocer los detalles de cada tipo y cómo ayudar refiérase a []() en la wiki.
 
